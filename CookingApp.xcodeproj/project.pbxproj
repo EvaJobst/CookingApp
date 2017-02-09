@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DC0EE68A1E4CEA3A00DFC484 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0EE6891E4CEA3A00DFC484 /* AppDelegate.swift */; };
-		DC0EE68C1E4CEA3A00DFC484 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0EE68B1E4CEA3A00DFC484 /* ViewController.swift */; };
+		DC0EE68C1E4CEA3A00DFC484 /* AllRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0EE68B1E4CEA3A00DFC484 /* AllRecipesView.swift */; };
 		DC0EE68F1E4CEA3A00DFC484 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0EE68D1E4CEA3A00DFC484 /* Main.storyboard */; };
 		DC0EE6921E4CEA3A00DFC484 /* CookingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC0EE6901E4CEA3A00DFC484 /* CookingApp.xcdatamodeld */; };
 		DC0EE6941E4CEA3A00DFC484 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0EE6931E4CEA3A00DFC484 /* Assets.xcassets */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		DC0EE6861E4CEA3A00DFC484 /* CookingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0EE6891E4CEA3A00DFC484 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DC0EE68B1E4CEA3A00DFC484 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DC0EE68B1E4CEA3A00DFC484 /* AllRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipesView.swift; sourceTree = "<group>"; };
 		DC0EE68E1E4CEA3A00DFC484 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC0EE6911E4CEA3A00DFC484 /* CookingApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CookingApp.xcdatamodel; sourceTree = "<group>"; };
 		DC0EE6931E4CEA3A00DFC484 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				DC0EE6891E4CEA3A00DFC484 /* AppDelegate.swift */,
-				DC0EE68B1E4CEA3A00DFC484 /* ViewController.swift */,
+				DC0EE68B1E4CEA3A00DFC484 /* AllRecipesView.swift */,
 				DC0EE68D1E4CEA3A00DFC484 /* Main.storyboard */,
 				DC0EE6931E4CEA3A00DFC484 /* Assets.xcassets */,
 				DC0EE6951E4CEA3A00DFC484 /* LaunchScreen.storyboard */,
@@ -262,7 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC0EE68C1E4CEA3A00DFC484 /* ViewController.swift in Sources */,
+				DC0EE68C1E4CEA3A00DFC484 /* AllRecipesView.swift in Sources */,
 				DC0EE6921E4CEA3A00DFC484 /* CookingApp.xcdatamodeld in Sources */,
 				DC0EE68A1E4CEA3A00DFC484 /* AppDelegate.swift in Sources */,
 			);
