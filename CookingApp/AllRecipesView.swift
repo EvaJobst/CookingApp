@@ -15,7 +15,7 @@ class AllRecipesView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Starting here: Code feeding DummyData
+        /*// Starting here: Code feeding DummyData
         data = manager.fetchedEntity! as! [Recipe]
         for i in 0..<data.count {
             manager.delete(entity: data[i])
@@ -28,7 +28,7 @@ class AllRecipesView: UITableViewController {
         
         manager.setRecipe(recipeID: 1, fetchID: "1", name: "Recipe 2", details: "This might probably be the most beautiful cheesecake I have ever had the chance to encounter. Magnificent! Brilliant! Astonishing!", image: "cheesecake.jpg")
         
-        manager.setRecipe(recipeID: 2, fetchID: "2", name: "Recipe 3", details: "This spaghetti with seafood makes you think of a venetian summer night like you have never before.", image: "cheesecake.jpg")
+        manager.setRecipe(recipeID: 2, fetchID: "2", name: "Recipe 3", details: "This spaghetti with seafood makes you think of a venetian summer night like you have never before.", image: "cheesecake.jpg")*/
     
         data = manager.fetchedEntity! as! [Recipe]
         tableView.rowHeight = 100
@@ -42,7 +42,7 @@ class AllRecipesView: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let image : UIImage = UIImage(named: data[indexPath.row].image!)!
-        let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "CustomRecipeCell")! as! CustomRecipeCell
+        let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "allRecipesCell")! as! CustomRecipeCell
 
         cell.recipeTitle.text = data[indexPath.row].name
         cell.recipeDetails.text = data[indexPath.row].details
