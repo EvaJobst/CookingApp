@@ -1,8 +1,8 @@
 //
 //  CoreDataManager.swift
-//  04_task01
+//  CookingApp
 //
-//  Created by Eva Jobst on 29.01.17.
+//  Created by Eva Jobst on 09.02.17.
 //  Copyright © 2017 Eva Jobst. All rights reserved.
 //
 
@@ -16,7 +16,7 @@ class CoreDataManager<T : NSManagedObject> {
     let managedContext: NSManagedObjectContext?
     var fetchRequest : NSFetchRequest<NSManagedObject>?
     var fetchedEntity : [T]?
-    var count : Int
+    //var count : Int
     
     init(entityName: String) {
         self.entityName = entityName
@@ -37,13 +37,13 @@ class CoreDataManager<T : NSManagedObject> {
             print("Fetch failed: \(error.localizedDescription)")
         }
         
-        if(fetchedEntity != nil) {count = (fetchedEntity?.count)!}
-        else {count = 0}
+        //if(fetchedEntity != nil) {count = (fetchedEntity?.count)!}
+        //else {count = 0}
     }
     
     func delete(entity: T) {
         managedContext?.delete(entity as NSManagedObject)
-        count = count - 1
+        //count = count - 1
     }
     
     func setList(listID : String, numOfRecipes : Int16, name : String) {
@@ -54,7 +54,7 @@ class CoreDataManager<T : NSManagedObject> {
         data.setValue(numOfRecipes, forKey: "numOfRecipes")
         data.setValue(name, forKey: "name")
         
-        count = count + 1
+        //count = count + 1
     }
     
     func setTable(listID: Int16, recipeID: Int16) {
@@ -64,7 +64,7 @@ class CoreDataManager<T : NSManagedObject> {
         data.setValue(listID, forKey: "listID")
         data.setValue(recipeID, forKey: "recipeID")
         
-        count = count + 1
+        //count = count + 1
     }
     
     func setRecipe(recipeID: Int16, fetchID: String) {
@@ -74,7 +74,7 @@ class CoreDataManager<T : NSManagedObject> {
         data.setValue(recipeID, forKey: "recipeID")
         data.setValue(fetchID, forKey: "fetchID")
         
-        count = count + 1
+        //count = count + 1
     }
     
     func save() {
