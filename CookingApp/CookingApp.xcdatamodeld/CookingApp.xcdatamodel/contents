@@ -7,7 +7,9 @@
         <relationship name="linkedIn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeListTable" inverseName="containsList" inverseEntity="RecipeListTable" syncable="YES"/>
     </entity>
     <entity name="Recipe" representedClassName="Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fetchID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recipeID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="linkedIn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeListTable" inverseName="containsRecipe" inverseEntity="RecipeListTable" syncable="YES"/>
@@ -21,6 +23,6 @@
     <elements>
         <element name="List" positionX="-137" positionY="108" width="128" height="103"/>
         <element name="RecipeListTable" positionX="61" positionY="45" width="128" height="103"/>
-        <element name="Recipe" positionX="250" positionY="90" width="128" height="103"/>
+        <element name="Recipe" positionX="250" positionY="90" width="128" height="133"/>
     </elements>
 </model>
