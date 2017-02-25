@@ -40,27 +40,39 @@ class CoreDataManager<T : NSManagedObject> {
         if(fetchedEntity != nil) {count = (fetchedEntity?.count)!}
         else {count = 0}
     }
-
+    
     func delete(entity: T) {
         managedContext?.delete(entity as NSManagedObject)
         count = count - 1
     }
     
-    func set(valueString : String, forkeyString: String) {
+    func setList(listID : String, numOfRecipes : Int16, name : String) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
-        data.setValue(valueString, forKey: forkeyString)
+        data.setValue(listID, forKey: "listID")
+        data.setValue(numOfRecipes, forKey: "numOfRecipes")
+        data.setValue(name, forKey: "name")
         
         count = count + 1
     }
     
-    func set(valueInt: Int16, forkeyInt: String, valueString: String, forkeyString: String) {
+    func setTable(listID: Int16, recipeID: Int16) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
-        data.setValue(valueInt, forKey: forkeyInt)
-        data.setValue(valueString, forKey: forkeyString)
+        data.setValue(listID, forKey: "listID")
+        data.setValue(recipeID, forKey: "recipeID")
+        
+        count = count + 1
+    }
+    
+    func setRecipe(recipeID: Int16, fetchID: String) {
+        let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
+            managedContext!)
+        
+        data.setValue(recipeID, forKey: "recipeID")
+        data.setValue(fetchID, forKey: "fetchID")
         
         count = count + 1
     }

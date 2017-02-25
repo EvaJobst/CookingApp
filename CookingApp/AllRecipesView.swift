@@ -35,7 +35,6 @@ class AllRecipesView: UITableViewController {
         
         let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "CustomRecipeCell")! as! CustomRecipeCell
         
-        
         cell.recipeTitle.text = data[indexPath.row].title
         cell.recipeDetails.text = data[indexPath.row].details
         cell.backgroundView = UIImageView(image: data[indexPath.row].image)

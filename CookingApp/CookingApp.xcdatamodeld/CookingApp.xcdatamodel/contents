@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="List" representedClassName="List" syncable="YES" codeGenerationType="class">
+        <attribute name="listID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numOfRecipes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="linkedIn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeListTable" inverseName="containsList" inverseEntity="RecipeListTable" syncable="YES"/>
+    </entity>
+    <entity name="Recipe" representedClassName="Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="fetchID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recipeID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="linkedIn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeListTable" inverseName="containsRecipe" inverseEntity="RecipeListTable" syncable="YES"/>
+    </entity>
+    <entity name="RecipeListTable" representedClassName="RecipeListTable" syncable="YES" codeGenerationType="class">
+        <attribute name="listID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="recipeID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="containsList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="linkedIn" inverseEntity="List" syncable="YES"/>
+        <relationship name="containsRecipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="linkedIn" inverseEntity="Recipe" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="List" positionX="-137" positionY="108" width="128" height="103"/>
+        <element name="RecipeListTable" positionX="61" positionY="45" width="128" height="103"/>
+        <element name="Recipe" positionX="250" positionY="90" width="128" height="103"/>
+    </elements>
 </model>
