@@ -16,7 +16,6 @@ class CoreDataManager<T : NSManagedObject> {
     let managedContext: NSManagedObjectContext?
     var fetchRequest : NSFetchRequest<NSManagedObject>?
     var fetchedEntity : [T]?
-    //var count : Int
     
     init() {
         entityName = ""
@@ -43,14 +42,10 @@ class CoreDataManager<T : NSManagedObject> {
         } catch let error as NSError {
             print("Fetch failed: \(error.localizedDescription)")
         }
-        
-        //if(fetchedEntity != nil) {count = (fetchedEntity?.count)!}
-        //else {count = 0}
     }
     
     func delete(entity: T) {
         managedContext?.delete(entity as NSManagedObject)
-        //count = count - 1
     }
     
     func set(listID : Int16, numOfRecipes : Int16, name : String) {
@@ -60,9 +55,7 @@ class CoreDataManager<T : NSManagedObject> {
         data.setValue(listID, forKey: "listID")
         data.setValue(numOfRecipes, forKey: "numOfRecipes")
         data.setValue(name, forKey: "name")
-        
-        //count = count + 1
-        //update(listID: listID)
+
         save()
         update()
     }
@@ -73,8 +66,7 @@ class CoreDataManager<T : NSManagedObject> {
         
         data.setValue(listID, forKey: "listID")
         data.setValue(recipeID, forKey: "recipeID")
-        
-        //count = count + 1
+
         save()
         update()
     }
@@ -88,8 +80,7 @@ class CoreDataManager<T : NSManagedObject> {
         data.setValue(name, forKey: "name")
         data.setValue(details, forKey: "details")
         data.setValue(image, forKey: "image")
-        
-        //count = count + 1
+
         save()
         update()
     }

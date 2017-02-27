@@ -29,7 +29,7 @@ class ListDetailsView: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let image : UIImage = UIImage(named: data[indexPath.row].image!)!
-        let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "listDetailsCell")! as! CustomRecipeCell
+        let cell : CustomRecipeCellView = self.tableView.dequeueReusableCell(withIdentifier: "listDetailsCell")! as! CustomRecipeCellView
         
         cell.recipeTitle.text = data[indexPath.row].name
         cell.recipeDetails.text = data[indexPath.row].details

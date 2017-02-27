@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A9867C6BF293D69786E5647 /* Pods_CookingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5A5D1C16D816C475576903 /* Pods_CookingApp.framework */; };
 		D1F4EFEA1E6043F300E53E3F /* AddRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F4EFE91E6043F300E53E3F /* AddRecipeView.swift */; };
 		DC0EE68A1E4CEA3A00DFC484 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0EE6891E4CEA3A00DFC484 /* AppDelegate.swift */; };
 		DC0EE68C1E4CEA3A00DFC484 /* AllRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0EE68B1E4CEA3A00DFC484 /* AllRecipesView.swift */; };
@@ -21,7 +20,9 @@
 		DC0EE6BF1E4D20FE00DFC484 /* cheesecake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DC0EE6BE1E4D20FE00DFC484 /* cheesecake.jpg */; };
 		DC55CDDB1E62215700FB003A /* RecipeListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC55CDDA1E62215700FB003A /* RecipeListsView.swift */; };
 		DC55CDE31E6231E900FB003A /* ListDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC55CDE21E6231E900FB003A /* ListDetailsView.swift */; };
-		DC712E201E4F7236004CC12A /* CustomRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC712E1F1E4F7236004CC12A /* CustomRecipeCell.swift */; };
+		DC712E201E4F7236004CC12A /* CustomRecipeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC712E1F1E4F7236004CC12A /* CustomRecipeCellView.swift */; };
+		DC9769941E643B0400639BB0 /* CustomRecipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9769931E643B0400639BB0 /* CustomRecipeCell.xib */; };
+		DC9769D91E644E0700639BB0 /* ActionSheetPicker_3_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9769D81E644E0700639BB0 /* ActionSheetPicker_3_0.framework */; };
 		DC98C0E31E6360B600AD6547 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98C0E21E6360B600AD6547 /* EntityManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,7 +68,9 @@
 		DC0EE6BE1E4D20FE00DFC484 /* cheesecake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cheesecake.jpg; sourceTree = "<group>"; };
 		DC55CDDA1E62215700FB003A /* RecipeListsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeListsView.swift; sourceTree = "<group>"; };
 		DC55CDE21E6231E900FB003A /* ListDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListDetailsView.swift; path = ../ListDetailsView.swift; sourceTree = "<group>"; };
-		DC712E1F1E4F7236004CC12A /* CustomRecipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRecipeCell.swift; sourceTree = "<group>"; };
+		DC712E1F1E4F7236004CC12A /* CustomRecipeCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRecipeCellView.swift; sourceTree = "<group>"; };
+		DC9769931E643B0400639BB0 /* CustomRecipeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomRecipeCell.xib; sourceTree = "<group>"; };
+		DC9769D81E644E0700639BB0 /* ActionSheetPicker_3_0.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActionSheetPicker_3_0.framework; path = "Pods/../build/Debug-iphoneos/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework"; sourceTree = "<group>"; };
 		DC98C0E21E6360B600AD6547 /* EntityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A9867C6BF293D69786E5647 /* Pods_CookingApp.framework in Frameworks */,
+				DC9769D91E644E0700639BB0 /* ActionSheetPicker_3_0.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +103,7 @@
 		0FE8C6D89341478F51F12A06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC9769D81E644E0700639BB0 /* ActionSheetPicker_3_0.framework */,
 				AC5A5D1C16D816C475576903 /* Pods_CookingApp.framework */,
 			);
 			name = Frameworks;
@@ -148,8 +152,9 @@
 				DC0EE6951E4CEA3A00DFC484 /* LaunchScreen.storyboard */,
 				DC0EE6981E4CEA3A00DFC484 /* Info.plist */,
 				DC0EE6901E4CEA3A00DFC484 /* CookingApp.xcdatamodeld */,
-				DC712E1F1E4F7236004CC12A /* CustomRecipeCell.swift */,
+				DC712E1F1E4F7236004CC12A /* CustomRecipeCellView.swift */,
 				D1F4EFE91E6043F300E53E3F /* AddRecipeView.swift */,
+				DC9769931E643B0400639BB0 /* CustomRecipeCell.xib */,
 				D1F4EFEB1E60EA5E00E53E3F /* CookingApp-Bridging-Header.h */,
 				D1F4EFEF1E64283100E53E3F /* Header.h */,
 			);
@@ -306,6 +311,7 @@
 			files = (
 				DC0EE6971E4CEA3A00DFC484 /* LaunchScreen.storyboard in Resources */,
 				DC0EE6941E4CEA3A00DFC484 /* Assets.xcassets in Resources */,
+				DC9769941E643B0400639BB0 /* CustomRecipeCell.xib in Resources */,
 				DC0EE6BF1E4D20FE00DFC484 /* cheesecake.jpg in Resources */,
 				DC0EE68F1E4CEA3A00DFC484 /* Main.storyboard in Resources */,
 			);
@@ -384,7 +390,7 @@
 				DC55CDDB1E62215700FB003A /* RecipeListsView.swift in Sources */,
 				DC55CDE31E6231E900FB003A /* ListDetailsView.swift in Sources */,
 				DC0EE68C1E4CEA3A00DFC484 /* AllRecipesView.swift in Sources */,
-				DC712E201E4F7236004CC12A /* CustomRecipeCell.swift in Sources */,
+				DC712E201E4F7236004CC12A /* CustomRecipeCellView.swift in Sources */,
 				DC0EE6921E4CEA3A00DFC484 /* CookingApp.xcdatamodeld in Sources */,
 				DC0EE6BB1E4CFA0200DFC484 /* CoreDataManager.swift in Sources */,
 				DC98C0E31E6360B600AD6547 /* EntityManager.swift in Sources */,
@@ -542,6 +548,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/ActionSheetPicker-3.0",
+				);
 				INFOPLIST_FILE = CookingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = at.mc.fhooe.swift.CookingApp;
@@ -558,6 +568,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/ActionSheetPicker-3.0",
+				);
 				INFOPLIST_FILE = CookingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = at.mc.fhooe.swift.CookingApp;
