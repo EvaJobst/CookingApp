@@ -48,7 +48,6 @@
 		3959F85BD124D77DAB8EE737 /* Pods-CookingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CookingApp/Pods-CookingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		AC5A5D1C16D816C475576903 /* Pods_CookingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F4EFE91E6043F300E53E3F /* AddRecipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeView.swift; sourceTree = "<group>"; };
-		D1F4EFEB1E60EA5E00E53E3F /* CookingApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CookingApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		D1F4EFEF1E64283100E53E3F /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		DC0EE6861E4CEA3A00DFC484 /* CookingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0EE6891E4CEA3A00DFC484 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,7 +154,6 @@
 				DC712E1F1E4F7236004CC12A /* CustomRecipeCell.swift */,
 				D1F4EFE91E6043F300E53E3F /* AddRecipeView.swift */,
 				DC9769931E643B0400639BB0 /* CustomRecipeCell.xib */,
-				D1F4EFEB1E60EA5E00E53E3F /* CookingApp-Bridging-Header.h */,
 				D1F4EFEF1E64283100E53E3F /* Header.h */,
 			);
 			path = CookingApp;
@@ -556,7 +554,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = at.mc.fhooe.swift.CookingApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CookingApp/CookingApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = CookingApp/Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -576,7 +574,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = at.mc.fhooe.swift.CookingApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CookingApp/CookingApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = CookingApp/Header.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
