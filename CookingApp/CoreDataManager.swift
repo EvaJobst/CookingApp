@@ -1,8 +1,8 @@
 //
 //  CoreDataManager.swift
-//  04_task01
+//  CookingApp
 //
-//  Created by Eva Jobst on 29.01.17.
+//  Created by Eva Jobst on 09.02.17.
 //  Copyright © 2017 Eva Jobst. All rights reserved.
 //
 
@@ -16,7 +16,7 @@ class CoreDataManager<T : NSManagedObject> {
     let managedContext: NSManagedObjectContext?
     var fetchRequest : NSFetchRequest<NSManagedObject>?
     var fetchedEntity : [T]?
-    var count : Int
+    //var count : Int
     
     init(entityName: String) {
         self.entityName = entityName
@@ -37,32 +37,53 @@ class CoreDataManager<T : NSManagedObject> {
             print("Fetch failed: \(error.localizedDescription)")
         }
         
-        if(fetchedEntity != nil) {count = (fetchedEntity?.count)!}
-        else {count = 0}
+        //if(fetchedEntity != nil) {count = (fetchedEntity?.count)!}
+        //else {count = 0}
     }
-
+    
     func delete(entity: T) {
         managedContext?.delete(entity as NSManagedObject)
-        count = count - 1
+        //count = count - 1
     }
     
-    func set(valueString : String, forkeyString: String) {
+    func setList(listID : Int16, numOfRecipes : Int16, name : String) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
-        data.setValue(valueString, forKey: forkeyString)
+        data.setValue(listID, forKey: "listID")
+        data.setValue(numOfRecipes, forKey: "numOfRecipes")
+        data.setValue(name, forKey: "name")
         
-        count = count + 1
+        //count = count + 1
+        save()
+        update()
     }
     
-    func set(valueInt: Int16, forkeyInt: String, valueString: String, forkeyString: String) {
+    func setTable(listID: Int16, recipeID: Int16) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
-        data.setValue(valueInt, forKey: forkeyInt)
-        data.setValue(valueString, forKey: forkeyString)
+        data.setValue(listID, forKey: "listID")
+        data.setValue(recipeID, forKey: "recipeID")
         
-        count = count + 1
+        //count = count + 1
+        save()
+        update()
+    }
+    
+    func setRecipe(recipeID: Int16, fetchID: String, name: String, details: String, image: String) {
+        let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
+            managedContext!)
+        
+        data.setValue(recipeID, forKey: "recipeID")
+        data.setValue(fetchID, forKey: "fetchID")
+        data.setValue(name, forKey: "name")
+        data.setValue(details, forKey: "details")
+        data.setValue(image, forKey: "image")
+        
+        //count = count + 1
+        save()
+        update()
     }
     
     func save() {
