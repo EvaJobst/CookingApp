@@ -16,7 +16,13 @@ class CoreDataManager<T : NSManagedObject> {
     let managedContext: NSManagedObjectContext?
     var fetchRequest : NSFetchRequest<NSManagedObject>?
     var fetchedEntity : [T]?
-    //var count : Int
+    
+    init() {
+        entityName = ""
+        managedContext = nil
+        fetchRequest = nil
+        fetchedEntity = nil
+    }
     
     init(entityName: String) {
         self.entityName = entityName
@@ -36,42 +42,36 @@ class CoreDataManager<T : NSManagedObject> {
         } catch let error as NSError {
             print("Fetch failed: \(error.localizedDescription)")
         }
-        
-        //if(fetchedEntity != nil) {count = (fetchedEntity?.count)!}
-        //else {count = 0}
     }
     
     func delete(entity: T) {
         managedContext?.delete(entity as NSManagedObject)
-        //count = count - 1
     }
     
-    func setList(listID : Int16, numOfRecipes : Int16, name : String) {
+    func set(listID : Int16, numOfRecipes : Int16, name : String) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
         data.setValue(listID, forKey: "listID")
         data.setValue(numOfRecipes, forKey: "numOfRecipes")
         data.setValue(name, forKey: "name")
-        
-        //count = count + 1
+
         save()
         update()
     }
     
-    func setTable(listID: Int16, recipeID: Int16) {
+    func set(listID: Int16, recipeID: Int16) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
         data.setValue(listID, forKey: "listID")
         data.setValue(recipeID, forKey: "recipeID")
-        
-        //count = count + 1
+
         save()
         update()
     }
     
-    func setRecipe(recipeID: Int16, fetchID: String, name: String, details: String, image: String) {
+    func set(recipeID: Int16, fetchID: String, name: String, details: String, image: String) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
@@ -80,8 +80,7 @@ class CoreDataManager<T : NSManagedObject> {
         data.setValue(name, forKey: "name")
         data.setValue(details, forKey: "details")
         data.setValue(image, forKey: "image")
-        
-        //count = count + 1
+
         save()
         update()
     }

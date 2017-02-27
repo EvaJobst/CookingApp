@@ -9,41 +9,25 @@
 import UIKit
 
 class RecipeListsView: UITableViewController {
-    var data : [List] = []
+    var entities : EntityManager? = nil
     var selectedListID : Int16 = 0
-    let manager = CoreDataManager(entityName: "List")
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*// Starting here: Code feeding DummyData
-        data = manager.fetchedEntity! as! [List]
-        for i in 0..<data.count {
-            manager.delete(entity: data[i])
-        }
-        
-        manager.save()
-        manager.update()
-        
-        manager.setList(listID: 0, numOfRecipes: 3, name: "Favorite desserts")
-        manager.setList(listID: 1, numOfRecipes: 23, name: "Inspiration")
-        manager.setList(listID: 2, numOfRecipes: 1, name: "For the next dinner party")
-        manager.setList(listID: 3, numOfRecipes: 4, name: "Best cakes")*/
-        
-        data = manager.fetchedEntity! as! [List]
+        entities = EntityManager()
         tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count;
+        return entities!.lists.count;
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell : UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "ListCell")!
-        cell.textLabel?.text = data[indexPath.row].name
-        cell.detailTextLabel?.text = data[indexPath.row].numOfRecipes.description + " recipes"
-        
+        cell.textLabel?.text = entities?.lists[indexPath.row].name
+        cell.detailTextLabel?.text = (entities?.lists[indexPath.row].numOfRecipes.description)! + " recipes"
         return cell
     }
     
@@ -63,7 +47,6 @@ class RecipeListsView: UITableViewController {
             }
         }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
