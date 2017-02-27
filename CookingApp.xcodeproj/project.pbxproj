@@ -20,6 +20,7 @@
 		DC55CDDB1E62215700FB003A /* RecipeListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC55CDDA1E62215700FB003A /* RecipeListsView.swift */; };
 		DC55CDE31E6231E900FB003A /* ListDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC55CDE21E6231E900FB003A /* ListDetailsView.swift */; };
 		DC712E201E4F7236004CC12A /* CustomRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC712E1F1E4F7236004CC12A /* CustomRecipeCell.swift */; };
+		DC98C0E31E6360B600AD6547 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98C0E21E6360B600AD6547 /* EntityManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		DC55CDDA1E62215700FB003A /* RecipeListsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeListsView.swift; sourceTree = "<group>"; };
 		DC55CDE21E6231E900FB003A /* ListDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListDetailsView.swift; path = ../ListDetailsView.swift; sourceTree = "<group>"; };
 		DC712E1F1E4F7236004CC12A /* CustomRecipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRecipeCell.swift; sourceTree = "<group>"; };
+		DC98C0E21E6360B600AD6547 /* EntityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				DC55CDE11E622FAF00FB003A /* Manager */,
-				DC55CDE01E622FA800FB003A /* Views */,
+				DC55CDE01E622FA800FB003A /* ViewController */,
 				DC0EE6BE1E4D20FE00DFC484 /* cheesecake.jpg */,
 				DC0EE6891E4CEA3A00DFC484 /* AppDelegate.swift */,
 				DC0EE68D1E4CEA3A00DFC484 /* Main.storyboard */,
@@ -141,20 +143,21 @@
 			path = CookingAppUITests;
 			sourceTree = "<group>";
 		};
-		DC55CDE01E622FA800FB003A /* Views */ = {
+		DC55CDE01E622FA800FB003A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				DC55CDE21E6231E900FB003A /* ListDetailsView.swift */,
 				DC0EE68B1E4CEA3A00DFC484 /* AllRecipesView.swift */,
 				DC55CDDA1E62215700FB003A /* RecipeListsView.swift */,
 			);
-			name = Views;
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 		DC55CDE11E622FAF00FB003A /* Manager */ = {
 			isa = PBXGroup;
 			children = (
 				DC0EE6BA1E4CFA0200DFC484 /* CoreDataManager.swift */,
+				DC98C0E21E6360B600AD6547 /* EntityManager.swift */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				DC712E201E4F7236004CC12A /* CustomRecipeCell.swift in Sources */,
 				DC0EE6921E4CEA3A00DFC484 /* CookingApp.xcdatamodeld in Sources */,
 				DC0EE6BB1E4CFA0200DFC484 /* CoreDataManager.swift in Sources */,
+				DC98C0E31E6360B600AD6547 /* EntityManager.swift in Sources */,
 				DC0EE68A1E4CEA3A00DFC484 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

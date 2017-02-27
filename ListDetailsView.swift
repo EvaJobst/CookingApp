@@ -12,38 +12,11 @@ import UIKit
 class ListDetailsView: UITableViewController {
     var selectedListID : Int16 = 0
     var data : [Recipe] = []
-    var recipes : [Recipe] = []
-    var lists : [List] = []
-    var tables : [RecipeListTable] = []
-    let recipeManager = CoreDataManager(entityName: "Recipe")
-    let listManager = CoreDataManager(entityName: "List")
-    let tableManager = CoreDataManager(entityName: "RecipeListTable")
+    let entities = EntityManager()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Starting here: Code feeding DummyData
-        recipes = recipeManager.fetchedEntity! as! [Recipe]
-        lists = listManager.fetchedEntity! as! [List]
-        tables = tableManager.fetchedEntity! as! [RecipeListTable]
-        
-        for i in 0..<tables.count {
-            tableManager.delete(entity: tables[i])
-        }
-        
-        tableManager.save()
-        tableManager.update()
-        
-        tableManager.setTable(listID: 0, recipeID: 0)
-        tableManager.setTable(listID: 0, recipeID: 1)
-        tableManager.setTable(listID: 0, recipeID: 2)
-        tableManager.setTable(listID: 1, recipeID: 0)
-        tableManager.setTable(listID: 3, recipeID: 0)
-        tableManager.setTable(listID: 3, recipeID: 2)
-        
-        tables = tableManager.fetchedEntity! as! [RecipeListTable]
-        
         data = getRecipes()
         tableView.rowHeight = 100
         tableView.reloadData()
@@ -77,9 +50,9 @@ class ListDetailsView: UITableViewController {
     func getRecipes () -> [Recipe] {
         var retRecipes : [Recipe] = []
         
-        for i in 0..<tables.count {
-            if(tables[i].listID == selectedListID) {
-                retRecipes.append(recipes[Int(tables[i].recipeID)])
+        for i in 0..<entities.tables.count {
+            if(entities.tables[i].listID == selectedListID) {
+                retRecipes.append(entities.recipes[Int(entities.tables[i].recipeID)])
             }
         }
         

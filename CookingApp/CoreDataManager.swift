@@ -18,6 +18,13 @@ class CoreDataManager<T : NSManagedObject> {
     var fetchedEntity : [T]?
     //var count : Int
     
+    init() {
+        entityName = ""
+        managedContext = nil
+        fetchRequest = nil
+        fetchedEntity = nil
+    }
+    
     init(entityName: String) {
         self.entityName = entityName
         
@@ -46,7 +53,7 @@ class CoreDataManager<T : NSManagedObject> {
         //count = count - 1
     }
     
-    func setList(listID : Int16, numOfRecipes : Int16, name : String) {
+    func set(listID : Int16, numOfRecipes : Int16, name : String) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
@@ -55,11 +62,12 @@ class CoreDataManager<T : NSManagedObject> {
         data.setValue(name, forKey: "name")
         
         //count = count + 1
+        //update(listID: listID)
         save()
         update()
     }
     
-    func setTable(listID: Int16, recipeID: Int16) {
+    func set(listID: Int16, recipeID: Int16) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
@@ -71,7 +79,7 @@ class CoreDataManager<T : NSManagedObject> {
         update()
     }
     
-    func setRecipe(recipeID: Int16, fetchID: String, name: String, details: String, image: String) {
+    func set(recipeID: Int16, fetchID: String, name: String, details: String, image: String) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
