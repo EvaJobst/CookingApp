@@ -28,7 +28,7 @@ class AllRecipesView: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let image : UIImage = UIImage(named: entities.recipes[indexPath.row].image!)!
-        let cell : CustomRecipeCellView = self.tableView.dequeueReusableCell(withIdentifier: "allRecipesCell")! as! CustomRecipeCellView
+        let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "allRecipesCell")! as! CustomRecipeCell
 
         cell.recipeTitle.text = entities.recipes[indexPath.row].name
         cell.recipeDetails.text = entities.recipes[indexPath.row].details

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CustomRecipeCellView : UITableViewCell {
+class CustomRecipeCell : UITableViewCell {
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeDetails: UILabel!
