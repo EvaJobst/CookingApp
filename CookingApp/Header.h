@@ -6,7 +6,7 @@
 //  Copyright © 2017 Eva Jobst. All rights reserved.
 //
 
-#import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
+//#import <ActionSheetPicker-3.0>
 
 
 #ifndef Header_h

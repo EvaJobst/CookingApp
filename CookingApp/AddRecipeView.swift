@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import ActionSheetPicker_3_0
 
 class AddRecipeView : UITableViewController {
 
@@ -27,20 +28,15 @@ class AddRecipeView : UITableViewController {
     
     func onLabelTap() {
         
-        
-        var picker = ActionSheetStringPicker()
-        
-        ActionSheetStringPicker.show(withTitle: "Multiple String Picker", rows: [
-            ["One", "Two", "A lot"],
-            ["Many", "Many more", "Infinite"]
-            ], initialSelection: [2, 2], doneBlock: {
+        ActionSheetStringPicker.show(withTitle: "Pick measurement", rows: ["kg", "g", "dag", "pounds"], initialSelection: 0, doneBlock: {
                 picker, indexes, values in
                 
                 print("values = \(values)")
                 print("indexes = \(indexes)")
                 print("picker = \(picker)")
                 return
-        }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
+        }, cancel: { ActionSheetStringCancelBlock in return }, origin: measurement)
+       
     }
     
     

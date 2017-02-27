@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D11235541E6481CA00060628 /* AddRecipePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11235531E6481CA00060628 /* AddRecipePageViewController.swift */; };
 		D1F4EFEA1E6043F300E53E3F /* AddRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F4EFE91E6043F300E53E3F /* AddRecipeView.swift */; };
 		DC0EE68A1E4CEA3A00DFC484 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0EE6891E4CEA3A00DFC484 /* AppDelegate.swift */; };
 		DC0EE68C1E4CEA3A00DFC484 /* AllRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0EE68B1E4CEA3A00DFC484 /* AllRecipesView.swift */; };
@@ -24,6 +25,7 @@
 		DC9769941E643B0400639BB0 /* CustomRecipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9769931E643B0400639BB0 /* CustomRecipeCell.xib */; };
 		DC9769D91E644E0700639BB0 /* ActionSheetPicker_3_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9769D81E644E0700639BB0 /* ActionSheetPicker_3_0.framework */; };
 		DC98C0E31E6360B600AD6547 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98C0E21E6360B600AD6547 /* EntityManager.swift */; };
+		F0C1543604AB7143D9136BDB /* Pods_CookingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A6FA7F919ACCCC88692856 /* Pods_CookingApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +48,8 @@
 /* Begin PBXFileReference section */
 		0AB1D42C54D2336E3665C971 /* Pods-CookingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-CookingApp/Pods-CookingApp.release.xcconfig"; sourceTree = "<group>"; };
 		3959F85BD124D77DAB8EE737 /* Pods-CookingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CookingApp/Pods-CookingApp.debug.xcconfig"; sourceTree = "<group>"; };
-		AC5A5D1C16D816C475576903 /* Pods_CookingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3A6FA7F919ACCCC88692856 /* Pods_CookingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D11235531E6481CA00060628 /* AddRecipePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddRecipePageViewController.swift; path = ../AddRecipePageViewController.swift; sourceTree = "<group>"; };
 		D1F4EFE91E6043F300E53E3F /* AddRecipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeView.swift; sourceTree = "<group>"; };
 		D1F4EFEF1E64283100E53E3F /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		DC0EE6861E4CEA3A00DFC484 /* CookingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC9769D91E644E0700639BB0 /* ActionSheetPicker_3_0.framework in Frameworks */,
+				F0C1543604AB7143D9136BDB /* Pods_CookingApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				DC9769D81E644E0700639BB0 /* ActionSheetPicker_3_0.framework */,
-				AC5A5D1C16D816C475576903 /* Pods_CookingApp.framework */,
+				B3A6FA7F919ACCCC88692856 /* Pods_CookingApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -142,6 +146,7 @@
 		DC0EE6881E4CEA3A00DFC484 /* CookingApp */ = {
 			isa = PBXGroup;
 			children = (
+				D11235531E6481CA00060628 /* AddRecipePageViewController.swift */,
 				DC55CDE11E622FAF00FB003A /* Manager */,
 				DC55CDE01E622FA800FB003A /* ViewController */,
 				DC0EE6BE1E4D20FE00DFC484 /* cheesecake.jpg */,
@@ -389,6 +394,7 @@
 				DC55CDE31E6231E900FB003A /* ListDetailsView.swift in Sources */,
 				DC0EE68C1E4CEA3A00DFC484 /* AllRecipesView.swift in Sources */,
 				DC712E201E4F7236004CC12A /* CustomRecipeCell.swift in Sources */,
+				D11235541E6481CA00060628 /* AddRecipePageViewController.swift in Sources */,
 				DC0EE6921E4CEA3A00DFC484 /* CookingApp.xcdatamodeld in Sources */,
 				DC0EE6BB1E4CFA0200DFC484 /* CoreDataManager.swift in Sources */,
 				DC98C0E31E6360B600AD6547 /* EntityManager.swift in Sources */,

@@ -4,6 +4,6 @@ inhibit_all_warnings!
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'CookingApp' do
-pod 'ActionSheetPicker-3.0'
+    pod 'ActionSheetPicker-3.0'
 
 end
