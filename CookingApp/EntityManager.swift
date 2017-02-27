@@ -53,7 +53,6 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             switch attributeName {
             case "listID" : lists[index].listID = element; break
             case "numOfRecipes" : lists[index].numOfRecipes = element;
-                print("List: " + lists[index].numOfRecipes.description); break
             default: break
                 
             }
