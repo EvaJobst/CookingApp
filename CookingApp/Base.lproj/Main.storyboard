@@ -379,6 +379,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="allRecipesCell" rowHeight="80" id="2Wh-XN-WYz" customClass="CustomRecipeCell" customModule="CookingApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="80"/>
@@ -425,6 +426,7 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+
                         <connections>
                             <outlet property="dataSource" destination="Za1-Lz-fwO" id="HJf-fQ-ASR"/>
                             <outlet property="delegate" destination="Za1-Lz-fwO" id="WwQ-VI-2o5"/>
@@ -528,6 +530,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="listDetailsCell" id="ah5-Cl-cXQ" customClass="CustomRecipeCell" customModule="CookingApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -561,6 +564,7 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+
                         <connections>
                             <outlet property="dataSource" destination="tZQ-qZ-28Y" id="sZD-8e-Hbj"/>
                             <outlet property="delegate" destination="tZQ-qZ-28Y" id="MR3-C0-ozM"/>

@@ -17,6 +17,7 @@ class ListDetailsView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(UINib (nibName: "CustomRecipeCell", bundle: nil), forCellReuseIdentifier: "cellIdentifier")
         data = getRecipes()
         tableView.rowHeight = 100
         tableView.reloadData()
@@ -29,8 +30,7 @@ class ListDetailsView: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let image : UIImage = UIImage(named: data[indexPath.row].image!)!
-        let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "listDetailsCell")! as! CustomRecipeCell
-        
+        let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")! as! CustomRecipeCell
         cell.recipeTitle.text = data[indexPath.row].name
         cell.recipeDetails.text = data[indexPath.row].details
         cell.backgroundView = UIImageView(image: image)

@@ -14,6 +14,8 @@ class AllRecipesView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.register(UINib (nibName: "CustomRecipeCell", bundle: nil), forCellReuseIdentifier: "cellIdentifier")
+        
         entities.deletingDummyData()
         entities.feedingDummyData()
         
@@ -28,7 +30,7 @@ class AllRecipesView: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let image : UIImage = UIImage(named: entities.recipes[indexPath.row].image!)!
-        let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "allRecipesCell")! as! CustomRecipeCell
+        let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")! as! CustomRecipeCell
 
         cell.recipeTitle.text = entities.recipes[indexPath.row].name
         cell.recipeDetails.text = entities.recipes[indexPath.row].details
