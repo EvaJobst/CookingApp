@@ -13,20 +13,17 @@ import ActionSheetPicker_3_0
 class AddRecipeView : UITableViewController {
 
     
-    @IBOutlet weak var measurement: UILabel!
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: (#selector(AddRecipeView.onLabelTap)))
-        measurement.addGestureRecognizer(gestureRecognizer)
+        //let gestureRecognizer = UITapGestureRecognizer(target: self, action: (#selector(AddRecipeView.onLabelTap)))
+        //measurement.addGestureRecognizer(gestureRecognizer)
         
-        
+        print("VIEW DID LOAD!!!")
     }
     
-    func onLabelTap() {
+    /*func onLabelTap() {
         
         ActionSheetStringPicker.show(withTitle: "Pick measurement", rows: ["kg", "g", "dag", "pounds"], initialSelection: 0, doneBlock: {
                 picker, indexes, values in
@@ -37,7 +34,7 @@ class AddRecipeView : UITableViewController {
                 return
         }, cancel: { ActionSheetStringCancelBlock in return }, origin: measurement)
        
-    }
+    }*/
     
     
 
