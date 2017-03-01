@@ -55,7 +55,7 @@ class CoreDataManager<T : NSManagedObject> {
         data.setValue(listID, forKey: "listID")
         data.setValue(numOfRecipes, forKey: "numOfRecipes")
         data.setValue(name, forKey: "name")
-
+        
         save()
         update()
     }
@@ -66,21 +66,20 @@ class CoreDataManager<T : NSManagedObject> {
         
         data.setValue(listID, forKey: "listID")
         data.setValue(recipeID, forKey: "recipeID")
-
+        
         save()
         update()
     }
     
-    func set(recipeID: Int16, fetchID: String, name: String, details: String, image: String) {
+    func set(recipeID: Int16, label: String, summary: String, image: String) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
         data.setValue(recipeID, forKey: "recipeID")
-        data.setValue(fetchID, forKey: "fetchID")
-        data.setValue(name, forKey: "name")
-        data.setValue(details, forKey: "details")
+        data.setValue(label, forKey: "label")
+        data.setValue(summary, forKey: "summary")
         data.setValue(image, forKey: "image")
-
+        
         save()
         update()
     }
