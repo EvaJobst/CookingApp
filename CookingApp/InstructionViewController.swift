@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class InstructionViewController: UIViewController {
 
@@ -21,8 +22,18 @@ class InstructionViewController: UIViewController {
     
     @IBAction func addAction(_ sender: Any) {
         
+        self.view.endEditing(true)
+        
         print("Send Notification!!!!")
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AddNewInstruction"), object: nil, userInfo: ["instruction" : instructionText.text]); // send
+        if (instructionText.text != ""){
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AddNewInstruction"), object: nil, userInfo: ["instruction" : instructionText.text]); // send
+            
+            instructionText.text = ""
+            
+        }
+        else {
+            self.view.makeToast("Please enter an instruction")
+        }
         
     }
 

@@ -24,6 +24,8 @@ class AddIngriedientViewController: UITableViewController {
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(AddIngriedientViewController.addNewItem(notif:)), name: NSNotification.Name(rawValue: "AddNewIngredient"), object: nil)
+        
+        
     }
     
     
@@ -77,5 +79,22 @@ class AddIngriedientViewController: UITableViewController {
         return cell
         
     }
+    
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            
+            items.remove(at: indexPath.row)
+            self.tableView.reloadData()
+        }
+    }
+    
  
 }

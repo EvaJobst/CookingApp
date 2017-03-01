@@ -14,6 +14,13 @@ class AddRecipePageControlViewController: UIViewController {
     @IBOutlet weak var PageControl: UIPageControl!
 
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        
+    }
+    
+    
    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let addRecipePageViewController = segue.destination as? AddRecipePageViewController {
@@ -21,6 +28,12 @@ class AddRecipePageControlViewController: UIViewController {
         }
     }
     
+    @IBAction func addRecipe(_ sender: Any) {
+    
+        // TO DO ADD RECIPE
+    
+    
+    }
 }
 
 extension AddRecipePageControlViewController: AddRecipePageViewControllerDelegate {

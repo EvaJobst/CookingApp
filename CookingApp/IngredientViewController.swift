@@ -8,6 +8,7 @@
 
 import UIKit
 import ActionSheetPicker_3_0
+import Toast_Swift
 
 class IngredientViewController: UIViewController, UITextFieldDelegate {
 
@@ -20,6 +21,7 @@ class IngredientViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         numberText.delegate = self
     }
 
@@ -57,20 +59,26 @@ class IngredientViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func addAction(_ sender: Any) {
 
-        
+        self.view.endEditing(true)
         
         if onlyNumber {
             print("Send Notification!!!!")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AddNewIngredient"), object: nil, userInfo: ["measurement" : measureButton.title(for: .normal) ?? "Measure", "number": numberText.text ?? "Number", "name": nameText.text ?? "Name"]); // send
+            
+            numberText.text = ""
+            nameText.text = ""
+            
         }
         else {
-            
+            self.view.makeToast("Please check your entered data")
         }
         
         
     }
     
     @IBAction func TouchButtonAction(_ sender: Any) {
+        
+        self.view.endEditing(true)
         
         ActionSheetStringPicker.show(withTitle: "Pick measurement", rows: ["kg", "g", "dag", "prise", "pounds"], initialSelection: 0, doneBlock: {
             picker, value, index in

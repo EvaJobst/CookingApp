@@ -21,6 +21,7 @@ class InstructionTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
     
         NotificationCenter.default.addObserver(self, selector: #selector(AddIngriedientViewController.addNewItem(notif:)), name: NSNotification.Name(rawValue: "AddNewInstruction"), object: nil)
+        
     }
     
     
@@ -42,6 +43,25 @@ class InstructionTableViewController: UITableViewController {
         
         
     }
+    
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            
+            items.remove(at: indexPath.row)
+            self.tableView.reloadData()
+        }
+    }
+    
+
+    
+    
     override var prefersStatusBarHidden: Bool {
         get {
             return true
@@ -66,7 +86,7 @@ class InstructionTableViewController: UITableViewController {
     
     // TO DO - CHANGEABLE HEIGHT
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return UITableViewAutomaticDimension
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
