@@ -42,10 +42,6 @@
 		DC55CDE31E6231E900FB003A /* ListDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC55CDE21E6231E900FB003A /* ListDetailsView.swift */; };
 		DC712E201E4F7236004CC12A /* CustomRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC712E1F1E4F7236004CC12A /* CustomRecipeCell.swift */; };
 		DC9769941E643B0400639BB0 /* CustomRecipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9769931E643B0400639BB0 /* CustomRecipeCell.xib */; };
-		DC9769DE1E65BFB900639BB0 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9769DA1E65BFB900639BB0 /* Alamofire.framework */; };
-		DC9769DF1E65BFB900639BB0 /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9769DB1E65BFB900639BB0 /* Moya.framework */; };
-		DC9769E01E65BFB900639BB0 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9769DC1E65BFB900639BB0 /* Result.framework */; };
-		DC9769E11E65BFB900639BB0 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9769DD1E65BFB900639BB0 /* SwiftyJSON.framework */; };
 		DC9769E31E65BFC300639BB0 /* ActionSheetPicker_3_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9769E21E65BFC300639BB0 /* ActionSheetPicker_3_0.framework */; };
 		DC98C0E31E6360B600AD6547 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98C0E21E6360B600AD6547 /* EntityManager.swift */; };
 /* End PBXBuildFile section */
@@ -127,10 +123,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC9769E31E65BFC300639BB0 /* ActionSheetPicker_3_0.framework in Frameworks */,
-				DC9769DE1E65BFB900639BB0 /* Alamofire.framework in Frameworks */,
-				DC9769DF1E65BFB900639BB0 /* Moya.framework in Frameworks */,
-				DC9769E01E65BFB900639BB0 /* Result.framework in Frameworks */,
-				DC9769E11E65BFB900639BB0 /* SwiftyJSON.framework in Frameworks */,
 				55AE6854BF4B1154F05FE50E /* Pods_CookingApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

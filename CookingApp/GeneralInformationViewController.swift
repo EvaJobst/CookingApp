@@ -8,9 +8,13 @@
 
 import UIKit
 
-class GeneralInformationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class GeneralInformationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,  UITextFieldDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var NameTextField: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,10 +24,13 @@ class GeneralInformationViewController: UIViewController, UIImagePickerControlle
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        
+        NameTextField.delegate = self
     }
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     
     @IBAction func openCameraButton(sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
