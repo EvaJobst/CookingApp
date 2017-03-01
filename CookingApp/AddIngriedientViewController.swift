@@ -8,14 +8,13 @@
 
 import UIKit
 
-
 class AddIngriedientViewController: UITableViewController {
     
     
     //@IBOutlet weak var measureButton: UIButton!
     
     
-    var items = [Ingredient(number: "2", measurement: "kg", name: "Zucker"), Ingredient(number: "1", measurement: "g", name: "Zucker"), Ingredient(number: "2", measurement: "dag", name: "Zucker")]
+    var items = [Ingredient]()
     
     
     override func viewDidLoad() {
@@ -24,7 +23,7 @@ class AddIngriedientViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         
-        NotificationCenter.default.addObserver(self, selector: #selector(AddIngriedientViewController.addNewItem(notif:)), name: NSNotification.Name(rawValue: "AddNewItem"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddIngriedientViewController.addNewItem(notif:)), name: NSNotification.Name(rawValue: "AddNewIngredient"), object: nil)
     }
     
     
@@ -36,7 +35,16 @@ class AddIngriedientViewController: UITableViewController {
         let number = notif.userInfo!["number"] as! String
         let name = notif.userInfo!["name"] as! String
         
-        items.append(Ingredient(number: number, measurement: measure, name: name))
+        if (measure != "Measure" && measure != "Pick") && number != "Number" && name != "Name" {
+            items.append(Ingredient(number: number, measurement: measure, name: name))
+            self.tableView.reloadData()
+        }
+        else {
+            //self.view.makeToast("Please check your input")
+            
+        }
+        
+        
         
     }
     

@@ -9,16 +9,18 @@
 import UIKit
 import ActionSheetPicker_3_0
 
-class IngredientViewController: UIViewController {
+class IngredientViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var measureButton: UIButton!
-    @IBOutlet weak var numberLabel: UITextField!
-    @IBOutlet weak var nameLabel: UITextField!
+    @IBOutlet weak var numberText: UITextField!
+    @IBOutlet weak var nameText: UITextField!
+    
+    var onlyNumber : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        numberText.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,6 +29,22 @@ class IngredientViewController: UIViewController {
     }
     
 
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // Find out what the text field will be after adding the current edit
+        let text = (numberText.text! as NSString).replacingCharacters(in: range, with: string)
+        
+        
+        if Int(text) != nil {
+           onlyNumber = true
+        } else {
+            onlyNumber = false
+        }
+        
+        // Return true so the text field will be changed
+        return true
+    }
+    
+    
     /*
     // MARK: - Navigation
 
@@ -39,14 +57,22 @@ class IngredientViewController: UIViewController {
 
     @IBAction func addAction(_ sender: Any) {
 
-        print("Send Notification!!!!")
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AddNewItem"), object: nil, userInfo: ["measurement" : measureButton.title(for: .normal) ?? "Measure", "number": numberLabel.text ?? "Number", "name": nameLabel.text ?? "Name"]); // send
+        
+        
+        if onlyNumber {
+            print("Send Notification!!!!")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AddNewIngredient"), object: nil, userInfo: ["measurement" : measureButton.title(for: .normal) ?? "Measure", "number": numberText.text ?? "Number", "name": nameText.text ?? "Name"]); // send
+        }
+        else {
+            
+        }
+        
         
     }
     
     @IBAction func TouchButtonAction(_ sender: Any) {
         
-        ActionSheetStringPicker.show(withTitle: "Pick measurement", rows: ["kg", "g", "dag", "prise", "pounds", "knife tip", "teaspoon", "tablespoon"], initialSelection: 0, doneBlock: {
+        ActionSheetStringPicker.show(withTitle: "Pick measurement", rows: ["kg", "g", "dag", "prise", "pounds"], initialSelection: 0, doneBlock: {
             picker, value, index in
             
             print("value = \(value)")
@@ -65,12 +91,6 @@ class IngredientViewController: UIViewController {
                 self.measureButton.setTitle("prise", for: .normal)
             case 4:
                 self.measureButton.setTitle("pounds", for: .normal)
-            case 5:
-                self.measureButton.setTitle("knife tip", for: .normal)
-            case 6:
-                self.measureButton.setTitle("teaspoon", for: .normal)
-            case 7:
-                self.measureButton.setTitle("tablespoon", for: .normal)
             default:
                 self.measureButton.setTitle("Please pick measurement", for: .normal)
             }

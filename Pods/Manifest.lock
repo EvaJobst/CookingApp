@@ -8,12 +8,14 @@ PODS:
     - Result (~> 3.1.0)
   - Result (3.1.0)
   - SwiftyJSON (3.1.4)
+  - Toast-Swift (2.0.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
   - Alamofire
   - Moya
   - SwiftyJSON
+  - Toast-Swift
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
@@ -21,7 +23,8 @@ SPEC CHECKSUMS:
   Moya: f2e10a04fcb27fec154cb2afa4e536e8b46dac04
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
 
-PODFILE CHECKSUM: 1188cb377a415fcf8c0574889a9a2407e715a9e6
+PODFILE CHECKSUM: ea2a55646c2d6e1932179fa7ed2429a174d9dfc1
 
 COCOAPODS: 1.2.0

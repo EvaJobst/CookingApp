@@ -8,6 +8,6 @@ target 'CookingApp' do
     pod 'Alamofire'
     pod 'Moya'
     pod 'SwiftyJSON'
-    
+    pod 'Toast-Swift'
 
 end
