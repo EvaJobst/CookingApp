@@ -10,22 +10,12 @@ import UIKit
 
 class AddRecipePageControlViewController: UIViewController {
     
-    @IBOutlet weak var ContainerView: UIView!
-    @IBOutlet weak var PageControl: UIPageControl!
-
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
-    }
-    
-    
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if let addRecipePageViewController = segue.destination as? AddRecipePageViewController {
-            addRecipePageViewController.addRecipeDelegate = self
-        }
     }
     
     @IBAction func addRecipe(_ sender: Any) {
@@ -34,17 +24,4 @@ class AddRecipePageControlViewController: UIViewController {
     
     
     }
-}
-
-extension AddRecipePageControlViewController: AddRecipePageViewControllerDelegate {
-    
-    
-    func addRecipePageViewController(addRecipePageViewController: AddRecipePageViewController, didUpdatePageCount count: Int) {
-            PageControl.numberOfPages = count
-        }
-    
-    func addRecipePageViewController(addRecipePageViewController: AddRecipePageViewController, didUpdatePageIndex index: Int) {
-        PageControl.currentPage = index
-    }
-    
 }
