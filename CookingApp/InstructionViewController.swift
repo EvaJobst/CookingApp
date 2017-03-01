@@ -9,16 +9,22 @@
 import UIKit
 import Toast_Swift
 
-class InstructionViewController: UIViewController {
+class InstructionViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var instructionText: UITextView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        instructionText.delegate = self
         
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+
     
     @IBAction func addAction(_ sender: Any) {
         

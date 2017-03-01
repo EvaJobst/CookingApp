@@ -156,8 +156,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1j-7K-CxS">
-                                <rect key="frame" x="312" y="144" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1j-7K-CxS">
+                                <rect key="frame" x="309" y="124" width="30" height="30"/>
                                 <state key="normal" title="Add">
                                     <color key="titleColor" red="0.48643293976783752" green="0.62387871742248535" blue="0.7418854832649231" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -165,8 +165,8 @@
                                     <action selector="addAction:" destination="9gc-fb-Fn7" eventType="touchUpInside" id="gGw-85-3s1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAM-2x-rgf">
-                                <rect key="frame" x="88" y="144" width="54" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAM-2x-rgf">
+                                <rect key="frame" x="88" y="123" width="30" height="31"/>
                                 <state key="normal" title="Pick">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -174,8 +174,8 @@
                                     <action selector="TouchButtonAction:" destination="9gc-fb-Fn7" eventType="touchUpInside" id="suZ-FJ-nCL"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YdC-3P-JtG">
-                                <rect key="frame" x="0.0" y="208" width="375" height="422"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YdC-3P-JtG">
+                                <rect key="frame" x="0.0" y="188" width="375" height="430"/>
                                 <connections>
                                     <segue destination="4hL-dg-6zo" kind="embed" id="93Y-3O-htd"/>
                                 </connections>
@@ -199,8 +199,8 @@
                                 <color key="textColor" red="0.48643293976783752" green="0.62387871742248535" blue="0.7418854832649231" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JsM-hO-pU9">
-                                <rect key="frame" x="150" y="144" width="138" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JsM-hO-pU9">
+                                <rect key="frame" x="126" y="124" width="174" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="174" id="yf5-31-3rP"/>
                                 </constraints>
@@ -246,7 +246,7 @@
             <objects>
                 <tableViewController id="4hL-dg-6zo" customClass="AddIngriedientViewController" customModule="CookingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7tm-b1-G0a">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="422"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="430"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -309,8 +309,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F89-xP-ltk">
-                                <rect key="frame" x="36" y="135" width="247" height="68"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F89-xP-ltk">
+                                <rect key="frame" x="36" y="115.5" width="264" height="68"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="68" id="R1T-e7-HlK"/>
@@ -366,7 +366,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HCs-kb-Lkp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6815.1999999999998" y="373.76311844077964"/>
+            <point key="canvasLocation" x="5876" y="421"/>
         </scene>
         <!--Instruction Table View Controller-->
         <scene sceneID="cNI-hL-6Zd">
@@ -422,7 +422,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTI-R9-N2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7653.6000000000004" y="380.95952023988008"/>
+            <point key="canvasLocation" x="6663" y="421"/>
         </scene>
         <!--AllRecipesView-->
         <scene sceneID="feV-3V-kxQ">

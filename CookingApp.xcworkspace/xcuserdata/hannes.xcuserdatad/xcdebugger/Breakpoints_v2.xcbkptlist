@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CookingApp/IngredientViewController.swift"
-            timestampString = "510062072.523875"
+            timestampString = "510090624.45717"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "addAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -173,7 +173,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
             endingLineNumber = "54"
-            landmarkName = "imagePickerController(picker:didFinishPickingImage:editingInfo:)"
+            landmarkName = "openPhotoLibraryButton(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
