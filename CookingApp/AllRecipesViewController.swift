@@ -40,8 +40,8 @@ class AllRecipesViewController: UITableViewController {
         let image : UIImage = UIImage(named: entities.recipes[indexPath.row].image!)!
         let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")! as! CustomRecipeCell
         
-        cell.recipeTitle.text = entities.recipes[indexPath.row].label
-        cell.recipeDetails.text = entities.recipes[indexPath.row].summary
+        //cell.recipeTitle.text = entities.recipes[indexPath.row].label
+        //cell.recipeDetails.text = entities.recipes[indexPath.row].summary
         cell.backgroundView = UIImageView(image: image)
         return cell
     }

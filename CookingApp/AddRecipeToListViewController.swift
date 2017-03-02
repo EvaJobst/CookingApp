@@ -28,6 +28,8 @@ class AddRecipeToListViewController: UIViewController {
         
     }
 
+    @IBAction func SearchAction(_ sender: Any) {
+    }
     
     
     /*

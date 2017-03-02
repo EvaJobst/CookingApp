@@ -31,8 +31,8 @@ class ListDetailsViewController: UITableViewController {
         
         let image : UIImage = UIImage(named: data[indexPath.row].image!)!
         let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")! as! CustomRecipeCell
-        cell.recipeTitle.text = data[indexPath.row].label
-        cell.recipeDetails.text = data[indexPath.row].summary
+        //cell.recipeTitle.text = data[indexPath.row].label
+        //cell.recipeDetails.text = data[indexPath.row].summary
         cell.backgroundView = UIImageView(image: image)
         return cell
     }

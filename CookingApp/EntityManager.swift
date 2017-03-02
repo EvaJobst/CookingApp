@@ -98,9 +98,9 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             
         else if(entityName == "Recipe") {
             switch attributeName {
-            case "label" : recipes[index].label = element; break
+            //case "label" : recipes[index].label = element; break
             case "image" : recipes[index].image = element; break
-            case "summary" : recipes[index].summary = element; break
+            //case "summary" : recipes[index].summary = element; break
             default: break
             }
             
