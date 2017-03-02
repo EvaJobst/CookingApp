@@ -24,4 +24,16 @@ class AddRecipePageControlViewController: UIViewController {
     
     
     }
+    
+    
+    @IBAction func saveAction(_ sender: Any) {
+        // TO DO - SAVING !!
+        self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func cancelAction(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+
 }

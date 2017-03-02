@@ -17,6 +17,7 @@ class InstructionViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         instructionText.delegate = self
+        instructionText.layer.borderWidth = 1
         
     }
     

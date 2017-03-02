@@ -19,6 +19,7 @@ class InstructionTableViewCell: UITableViewCell {
             if let item = instruction {
                 numberLabel.text = String(item.number)
                 InstructionLabel.text = item.instruction
+                //InstructionLabel.layer.borderWidth = 1
             }
             else {
                 numberLabel.text = nil
