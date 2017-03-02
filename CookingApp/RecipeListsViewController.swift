@@ -8,10 +8,10 @@
 
 import UIKit
 
-class RecipeListsView: UITableViewController {
+class RecipeListsViewController: UITableViewController {
     var entities : EntityManager? = nil
     var selectedListID : Int16 = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,7 +42,7 @@ class RecipeListsView: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToDetails" {
-            if let viewInstance = segue.destination as? ListDetailsView {
+            if let viewInstance = segue.destination as? ListDetailsViewController {
                 viewInstance.selectedListID = selectedListID
             }
         }

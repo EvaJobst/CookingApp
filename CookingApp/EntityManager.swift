@@ -26,7 +26,7 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         recipes = recipeManager.fetchedEntity! as! [Recipe]
         lists = listManager.fetchedEntity! as! [List]
         tables = tableManager.fetchedEntity! as! [RecipeListTable]
-
+        
         super.init()
     }
     
@@ -83,7 +83,7 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             tableManager.update()
         }
     }
-
+    
     func update(index: Int, entityName: String, attributeName: String, element: String) {
         if(entityName == "List") {
             switch attributeName {
@@ -98,10 +98,9 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             
         else if(entityName == "Recipe") {
             switch attributeName {
-            case "fetchID" : recipes[index].fetchID = element; break
-            case "name" : recipes[index].name = element; break
+            case "label" : recipes[index].label = element; break
             case "image" : recipes[index].image = element; break
-            case "details" : recipes[index].details = element; break
+            case "summary" : recipes[index].summary = element; break
             default: break
             }
             
@@ -112,22 +111,22 @@ class EntityManager : CoreDataManager<NSManagedObject> {
     
     func feedingDummyData() {
         // RECIPES
-        recipeManager.set(recipeID: 0, fetchID: "0", name: "Recipe 1", details: "A very tasty cookie!", image: "cheesecake.jpg")
+        recipeManager.set(recipeID: 0, label: "Recipe 1", summary: "A very tasty cookie!", image: "cheesecake.jpg")
         
-        recipeManager.set(recipeID: 1, fetchID: "1", name: "Recipe 2", details: "This might probably be the most beautiful cheesecake I have ever had the chance to encounter. Magnificent! Brilliant! Astonishing!", image: "cheesecake.jpg")
+        recipeManager.set(recipeID: 1, label: "Recipe 2", summary: "This might probably be the most beautiful cheesecake I have ever had the chance to encounter. Magnificent! Brilliant! Astonishing!", image: "cheesecake.jpg")
         
-        recipeManager.set(recipeID: 2, fetchID: "2", name: "Recipe 3", details: "This spaghetti with seafood makes you think of a venetian summer night like you have never before.", image: "cheesecake.jpg")
-
+        recipeManager.set(recipeID: 2, label: "Recipe 3", summary: "This spaghetti with seafood makes you think of a venetian summer night like you have never before.", image: "cheesecake.jpg")
+        
         recipes = recipeManager.fetchedEntity as! [Recipe]
-
+        
         // LISTS
         listManager.set(listID: 0, numOfRecipes: 0, name: "Favorite desserts")
         listManager.set(listID: 1, numOfRecipes: 0, name: "Inspiration")
         listManager.set(listID: 2, numOfRecipes: 0, name: "For the next dinner party")
         listManager.set(listID: 3, numOfRecipes: 0, name: "Best cakes")
-
+        
         lists = listManager.fetchedEntity as! [List]
-      
+        
         // TABLES
         set(listID: 0, recipeID: 0)
         set(listID: 0, recipeID: 1)
@@ -135,7 +134,7 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         set(listID: 1, recipeID: 0)
         set(listID: 3, recipeID: 0)
         set(listID: 3, recipeID: 2)
-
+        
         tables = tableManager.fetchedEntity as! [RecipeListTable]
     }
     

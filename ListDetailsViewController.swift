@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ListDetailsView: UITableViewController {
+class ListDetailsViewController: UITableViewController {
     var selectedListID : Int16 = 0
     var data : [Recipe] = []
     let entities = EntityManager()
@@ -17,8 +17,8 @@ class ListDetailsView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(UINib (nibName: "CustomRecipeCell", bundle: nil), forCellReuseIdentifier: "cellIdentifier")
         data = getRecipes()
+        self.tableView.register(UINib (nibName: "CustomRecipeCell", bundle: nil), forCellReuseIdentifier: "cellIdentifier")
         tableView.rowHeight = 100
         tableView.reloadData()
     }
@@ -31,8 +31,8 @@ class ListDetailsView: UITableViewController {
         
         let image : UIImage = UIImage(named: data[indexPath.row].image!)!
         let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")! as! CustomRecipeCell
-        cell.recipeTitle.text = data[indexPath.row].name
-        cell.recipeDetails.text = data[indexPath.row].details
+        cell.recipeTitle.text = data[indexPath.row].label
+        cell.recipeDetails.text = data[indexPath.row].summary
         cell.backgroundView = UIImageView(image: image)
         return cell
     }
@@ -58,5 +58,5 @@ class ListDetailsView: UITableViewController {
         
         return retRecipes
     }
-
+    
 }

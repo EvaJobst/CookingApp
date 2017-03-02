@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Alamofire
 
-class AllRecipesView: UITableViewController {
+class AllRecipesViewController: UITableViewController {
+    let fetches = FetchManager()
     let entities = EntityManager()
     
     override func viewDidLoad() {
@@ -18,6 +20,12 @@ class AllRecipesView: UITableViewController {
         
         entities.deletingDummyData()
         entities.feedingDummyData()
+        
+        let data : [RecipeObject] = fetches.fetch(q: "chicken")
+        
+        for recipe in data {
+            print(recipe.label)
+        }
         
         tableView.rowHeight = 100
         tableView.reloadData()
@@ -31,9 +39,9 @@ class AllRecipesView: UITableViewController {
         
         let image : UIImage = UIImage(named: entities.recipes[indexPath.row].image!)!
         let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")! as! CustomRecipeCell
-
-        cell.recipeTitle.text = entities.recipes[indexPath.row].name
-        cell.recipeDetails.text = entities.recipes[indexPath.row].details
+        
+        cell.recipeTitle.text = entities.recipes[indexPath.row].label
+        cell.recipeDetails.text = entities.recipes[indexPath.row].summary
         cell.backgroundView = UIImageView(image: image)
         return cell
     }
@@ -41,13 +49,13 @@ class AllRecipesView: UITableViewController {
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
