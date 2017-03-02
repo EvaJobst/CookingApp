@@ -21,6 +21,7 @@ class APIManager {
     
     init() {
         api.append(API(url: "http://www.weeatt.com/api/v1/recipes"))
+        
         api.last?.parameter = ["qs" : ""]
         api.last?.encoding = URLEncoding.default
         api.last?.header = ["Accept": "application/json",

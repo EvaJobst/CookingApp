@@ -22,7 +22,7 @@ class EntityManager : CoreDataManager<NSManagedObject> {
     
     override init() {
         listManager = CoreDataManager(entityName: "List")
-        recipeManager = CoreDataManager(entityName: "Recipe")
+        recipeManager = CoreDataManager(entityName: "OfflineRecipe")
         tableManager = CoreDataManager(entityName: "RecipeListTable")
         indexManager = CoreDataManager(entityName: "RecipeIndexManager")
         
@@ -209,5 +209,15 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         recipes = recipeManager.fetchedEntity as! [OfflineRecipe]
         lists = listManager.fetchedEntity as! [List]
         tables = tableManager.fetchedEntity as! [RecipeListTable]
+    }
+    
+    func getconvertedRecipes() -> [RecipeObject] {
+        var objects : [RecipeObject] = []
+        
+        for recipe in recipes {
+            objects.append(RecipeObject(data: recipe))
+        }
+        
+        return objects
     }
 }

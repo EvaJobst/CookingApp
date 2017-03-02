@@ -11,17 +11,17 @@ import Alamofire
 import AlamofireSwiftyJSON
 
 class FetchManager {
+    let fetchKey = "FinishedFetchingRecipes"
     let manager = APIManager()
     var query : String = ""
-    var hasMore : Bool = false
+    var data : [RecipeObject] = []
     
     init() {}
     
-    func fetch(q : String) -> [RecipeObject] {
-        var recipes : [RecipeObject] = []
+    func search(q : String) {
         let api = manager.api[manager.index]
         
-        if(manager.index == 1) { //weeat requires user to signin first before fetch
+        if(manager.index == 0) { //weeat requires user to signin first before fetch
             signIn()
         }
         
@@ -29,25 +29,20 @@ class FetchManager {
         api.parameter[(api.parameter.first?.key)!] = query
         
         Alamofire.request(api.url, method: .get, parameters: api.parameter, encoding: api.encoding!, headers: api.header).responseSwiftyJSON { response in
-            print(response.debugDescription)
-            //let model : HitsModel = HitsModel(jsonData: response.result.value!, index: self.manager.index)!
-            //recipes.append(contentsOf: model.recipes)
-            print(response.result.value)
+            
+            let recipesJSON = response.result.value?["results"]
+            for recipeJSON in recipesJSON! {
+                self.data.append(RecipeObject(jsonData: recipeJSON.1)!)
+            }
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: (self.fetchKey)), object: self)
         }
-        
-        return recipes
     }
     
-    /*func more() -> [RecipeObject] {
-        if(hasMore) {
-            //from = from + 10
-            //to = to + 10
-            return fetch(q: query)
-        }
+    func fetch(recipeID: Int16) {
         
-        let recipes : [RecipeObject] = []
-        return recipes
-    }*/
+    }
+    
     
     /**
      Necessary to sign in before using api

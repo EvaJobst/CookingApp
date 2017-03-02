@@ -48,7 +48,7 @@
 		DC98C0E31E6360B600AD6547 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98C0E21E6360B600AD6547 /* EntityManager.swift */; };
 		DCD1FF9D1E6761E50093496B /* FetchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1FF9C1E6761E50093496B /* FetchManager.swift */; };
 		DCD1FF9F1E6761FC0093496B /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1FF9E1E6761FC0093496B /* APIManager.swift */; };
-		DCD1FFA11E6762620093496B /* HitsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1FFA01E6762620093496B /* HitsObject.swift */; };
+		DCD1FFA11E6762620093496B /* RecipeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1FFA01E6762620093496B /* RecipeObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,7 +124,7 @@
 		DC98C0E21E6360B600AD6547 /* EntityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
 		DCD1FF9C1E6761E50093496B /* FetchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchManager.swift; sourceTree = "<group>"; };
 		DCD1FF9E1E6761FC0093496B /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		DCD1FFA01E6762620093496B /* HitsObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsObject.swift; sourceTree = "<group>"; };
+		DCD1FFA01E6762620093496B /* RecipeObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,7 +299,7 @@
 				DC0EE6901E4CEA3A00DFC484 /* CookingApp.xcdatamodeld */,
 				DC712E1F1E4F7236004CC12A /* CustomRecipeCell.swift */,
 				DC9769931E643B0400639BB0 /* CustomRecipeCell.xib */,
-				DCD1FFA01E6762620093496B /* HitsObject.swift */,
+				DCD1FFA01E6762620093496B /* RecipeObject.swift */,
 				D1F4EFEF1E64283100E53E3F /* Header.h */,
 			);
 			path = CookingApp;
@@ -545,7 +545,7 @@
 				D1202B061E663E6A0014C908 /* InstructionTableViewCell.swift in Sources */,
 				D187F98E1E67613700829C07 /* NewListViewController.swift in Sources */,
 				DCD1FF9D1E6761E50093496B /* FetchManager.swift in Sources */,
-				DCD1FFA11E6762620093496B /* HitsObject.swift in Sources */,
+				DCD1FFA11E6762620093496B /* RecipeObject.swift in Sources */,
 				D11A38B81E66101700CFB3E9 /* IngredientViewController.swift in Sources */,
 				D11A38AF1E66063F00CFB3E9 /* Ingredient.swift in Sources */,
 				DCD1FF9F1E6761FC0093496B /* APIManager.swift in Sources */,

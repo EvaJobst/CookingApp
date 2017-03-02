@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class HitsObject {
+/*class HitsObject {
     let q : String
     let from : Int
     let to : Int
@@ -31,25 +31,38 @@ class HitsObject {
             self.recipes.append(RecipeObject(jsonData: hit)!)
         }
     }
-}
+}*/
 
 class RecipeObject {
-    let label : String
+    let offlineID : Int16
+    let name : String
     let image : String
+    let ingredients : String
+    let instructions : String
     let yield : Int16
     let summary : String
-    let level : String
-    let recipeID : Int16
+    let author : String
+    
+    init(data : OfflineRecipe) {
+        offlineID = data.offlineID
+        name = data.name!
+        image = data.image!
+        ingredients = data.ingredients!
+        instructions = data.instructions!
+        yield = data.yield
+        summary = data.summary!
+        author = data.author!
+    }
     
     init?(jsonData:JSON){
-        let jsonRecipe = jsonData["recipe"]
-        
-        label = jsonRecipe["label"].stringValue
-        image = jsonRecipe["image"].stringValue
-        yield = jsonRecipe["yield"].int16Value
-        summary = jsonRecipe["summary"].stringValue
-        level = jsonRecipe["level"].stringValue
-        recipeID = 0
+        name = jsonData["name"].stringValue
+        image = jsonData["images"][0]["large_image_path"].stringValue
+        yield = jsonData["yield"].int16Value
+        summary = jsonData["description"].stringValue
+        author = jsonData["chef"]["name"].stringValue
+        ingredients = jsonData["ingredients"].stringValue
+        instructions = jsonData["instructions"].stringValue
+        offlineID = 0
     }
 }
 

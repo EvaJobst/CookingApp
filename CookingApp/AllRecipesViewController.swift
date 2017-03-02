@@ -10,7 +10,9 @@ import UIKit
 import Alamofire
 
 class AllRecipesViewController: UITableViewController {
+    let fetchKey = "FinishedFetchingRecipes"
     let fetches = FetchManager()
+    var data : [RecipeObject] = []
     let entities = EntityManager()
     
     override func viewDidLoad() {
@@ -18,31 +20,41 @@ class AllRecipesViewController: UITableViewController {
         
         self.tableView.register(UINib (nibName: "CustomRecipeCell", bundle: nil), forCellReuseIdentifier: "cellIdentifier")
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.reload),
+            name: Notification.Name(rawValue: fetchKey),
+            object: nil)
+        
         entities.deletingDummyData()
         entities.feedingDummyData()
+        data.append(contentsOf: entities.getconvertedRecipes())
+        //fetches.search(q: "chicken")
         
-        //let data : [RecipeObject] = fetches.fetch(q: "")
-        
-        //for recipe in data {
-        //    print(recipe.label)
-        //}
-        
-        tableView.rowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
         tableView.reloadData()
     }
     
+    @objc func reload(notification: NSNotification){
+        //data.append(contentsOf: fetches.data)
+        data = fetches.data
+        
+        DispatchQueue.main.async {
+            print(self.data.count)
+            self.tableView.reloadData()
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return entities.recipes.count;
+        return data.count;
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let image : UIImage = UIImage(named: entities.recipes[indexPath.row].image!)!
+
         let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")! as! CustomRecipeCell
-        
-        cell.recipeTitle.text = entities.recipes[indexPath.row].name
-        cell.recipeDetails.text = entities.recipes[indexPath.row].yield.description
-        cell.backgroundView = UIImageView(image: image)
+        cell.recipeTitle.text = data[indexPath.row].name
+        cell.recipeDetails.text = data[indexPath.row].summary
         return cell
     }
     
