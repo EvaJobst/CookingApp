@@ -22,6 +22,9 @@ class InstructionTableViewController: UITableViewController {
     
         NotificationCenter.default.addObserver(self, selector: #selector(AddIngriedientViewController.addNewItem(notif:)), name: NSNotification.Name(rawValue: "AddNewInstruction"), object: nil)
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 140
+        
     }
     
     
