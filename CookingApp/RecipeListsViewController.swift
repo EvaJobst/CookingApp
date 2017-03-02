@@ -27,7 +27,7 @@ class RecipeListsViewController: UITableViewController {
         
         let cell : UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "ListCell")!
         cell.textLabel?.text = entities?.lists[indexPath.row].name
-        cell.detailTextLabel?.text = (entities?.lists[indexPath.row].numOfRecipes.description)! + " recipes"
+        cell.detailTextLabel?.text = (entities?.lists[indexPath.row].count.description)! + " recipes"
         return cell
     }
     

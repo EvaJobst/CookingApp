@@ -48,18 +48,20 @@ class CoreDataManager<T : NSManagedObject> {
         managedContext?.delete(entity as NSManagedObject)
     }
     
-    func set(listID : Int16, numOfRecipes : Int16, name : String) {
+    // setList
+    func set(listID : Int16, count : Int16, name : String) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
         data.setValue(listID, forKey: "listID")
-        data.setValue(numOfRecipes, forKey: "numOfRecipes")
+        data.setValue(count, forKey: "count")
         data.setValue(name, forKey: "name")
         
         save()
         update()
     }
     
+    // setTable
     func set(listID: Int16, recipeID: Int16) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
@@ -71,14 +73,32 @@ class CoreDataManager<T : NSManagedObject> {
         update()
     }
     
-    func set(recipeID: Int16, label: String, summary: String, image: String) {
+    // setRecipe
+    func set(offlineID: Int16, name: String, ingredients: String, instructions: String, image: String, yield: Int16, author: String, summary: String) {
+        let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
+            managedContext!)
+        
+        data.setValue(offlineID, forKey: "offlineID")
+        data.setValue(name, forKey: "name")
+        data.setValue(ingredients, forKey: "ingredients")
+        data.setValue(instructions, forKey: "instructions")
+        data.setValue(image, forKey: "image")
+        data.setValue(yield, forKey: "yield")
+        data.setValue(author, forKey: "author")
+        data.setValue(summary, forKey: "summary")
+        
+        save()
+        update()
+    }
+    
+    // setIndex
+    func set(recipeID: Int16, isOffline: Bool, sourceIdx : String) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
         data.setValue(recipeID, forKey: "recipeID")
-        data.setValue(label, forKey: "label")
-        data.setValue(summary, forKey: "summary")
-        data.setValue(image, forKey: "image")
+        data.setValue(isOffline, forKey: "isOffline")
+        data.setValue(sourceIdx, forKey: "sourceIdx")
         
         save()
         update()

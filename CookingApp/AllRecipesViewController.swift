@@ -21,11 +21,11 @@ class AllRecipesViewController: UITableViewController {
         entities.deletingDummyData()
         entities.feedingDummyData()
         
-        let data : [RecipeObject] = fetches.fetch(q: "chicken")
+        //let data : [RecipeObject] = fetches.fetch(q: "")
         
-        for recipe in data {
-            print(recipe.label)
-        }
+        //for recipe in data {
+        //    print(recipe.label)
+        //}
         
         tableView.rowHeight = 100
         tableView.reloadData()
@@ -40,8 +40,8 @@ class AllRecipesViewController: UITableViewController {
         let image : UIImage = UIImage(named: entities.recipes[indexPath.row].image!)!
         let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")! as! CustomRecipeCell
         
-        cell.recipeTitle.text = entities.recipes[indexPath.row].label
-        cell.recipeDetails.text = entities.recipes[indexPath.row].summary
+        cell.recipeTitle.text = entities.recipes[indexPath.row].name
+        cell.recipeDetails.text = entities.recipes[indexPath.row].yield.description
         cell.backgroundView = UIImageView(image: image)
         return cell
     }

@@ -565,7 +565,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Recipe Lists" id="8Qh-12-L25"/>
                     <connections>
-                        <segue destination="ATo-yk-AD6" kind="presentation" identifier="goToDetails" id="BDc-TF-b5m"/>
+                        <segue destination="ATo-yk-AD6" kind="showDetail" identifier="goToDetails" action="showViewController:sender:" id="BDc-TF-b5m"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fzC-yi-MB3" userLabel="First Responder" sceneMemberID="firstResponder"/>

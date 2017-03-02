@@ -14,18 +14,22 @@ class EntityManager : CoreDataManager<NSManagedObject> {
     var listManager : CoreDataManager<NSManagedObject>
     var recipeManager : CoreDataManager<NSManagedObject>
     var tableManager : CoreDataManager<NSManagedObject>
+    var indexManager : CoreDataManager<NSManagedObject>
     var lists : [List]
-    var recipes : [Recipe]
+    var recipes : [OfflineRecipe]
     var tables : [RecipeListTable]
+    var indices : [RecipeIndexManager]
     
     override init() {
         listManager = CoreDataManager(entityName: "List")
         recipeManager = CoreDataManager(entityName: "Recipe")
         tableManager = CoreDataManager(entityName: "RecipeListTable")
+        indexManager = CoreDataManager(entityName: "RecipeIndexManager")
         
-        recipes = recipeManager.fetchedEntity! as! [Recipe]
+        recipes = recipeManager.fetchedEntity! as! [OfflineRecipe]
         lists = listManager.fetchedEntity! as! [List]
         tables = tableManager.fetchedEntity! as! [RecipeListTable]
+        indices = indexManager.fetchedEntity! as! [RecipeIndexManager]
         
         super.init()
     }
@@ -34,25 +38,27 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         listManager.update()
         recipeManager.update()
         tableManager.update()
+        indexManager.update()
     }
     
     override func save() {
         listManager.save()
         recipeManager.save()
         tableManager.save()
+        indexManager.save()
     }
     
     override func set(listID: Int16, recipeID: Int16) {
         tableManager.set(listID: listID, recipeID: recipeID)
-        let element = Int16(lists[Int(listID)].numOfRecipes + 1)
-        update(index: Int(listID), entityName: "List", attributeName: "numOfRecipes", element: element)
+        let element = Int16(lists[Int(listID)].count + 1)
+        update(index: Int(listID), entityName: "List", attributeName: "count", element: element)
     }
     
     func update(index: Int, entityName: String, attributeName: String, element: Int16) {
         if(entityName == "List") {
             switch attributeName {
             case "listID" : lists[index].listID = element; break
-            case "numOfRecipes" : lists[index].numOfRecipes = element;
+            case "count" : lists[index].count = element;
             default: break
                 
             }
@@ -62,17 +68,19 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             lists = listManager.fetchedEntity as! [List]
         }
             
-        else if(entityName == "Recipe") {
+        else if(entityName == "OfflineRecipe") {
             switch attributeName {
-            case "recipeID" : recipes[index].recipeID = element; break
+            case "offlineID" : recipes[index].offlineID = element; break
+            case "yield" : recipes[index].yield = element; break
             default: break
             }
             
             recipeManager.save()
             recipeManager.update()
+            recipes = recipeManager.fetchedEntity as! [OfflineRecipe]
         }
             
-        else if(entityName == "Table") {
+        else if(entityName == "RecipeListTable") {
             switch attributeName {
             case "listID" : tables[index].listID = element; break
             case "recipeID" : tables[index].recipeID = element; break
@@ -81,6 +89,18 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             
             tableManager.save()
             tableManager.update()
+            tables = tableManager.fetchedEntity as! [RecipeListTable]
+        }
+        
+        else if(entityName == "RecipeIndexManager") {
+            switch attributeName {
+            case "recipeID" : indices[index].recipeID = element; break
+            default : break
+            }
+            
+            indexManager.save()
+            indexManager.update()
+            indices = indexManager.fetchedEntity as! [RecipeIndexManager]
         }
     }
     
@@ -96,34 +116,58 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             lists = listManager.fetchedEntity as! [List]
         }
             
-        else if(entityName == "Recipe") {
+        else if(entityName == "OfflineRecipe") {
             switch attributeName {
-            case "label" : recipes[index].label = element; break
+            case "name" : recipes[index].name = element; break
+            case "ingredients" : recipes[index].ingredients = element; break
+            case "instructions" : recipes[index].instructions = element; break
             case "image" : recipes[index].image = element; break
+            case "author" : recipes[index].author = element; break
             case "summary" : recipes[index].summary = element; break
             default: break
             }
             
             recipeManager.save()
             recipeManager.update()
+            recipes = recipeManager.fetchedEntity as! [OfflineRecipe]
+        }
+        
+        else if(entityName == "RecipeIndexManager") {
+            switch attributeName {
+            case "sourceIdx" : indices[index].sourceIdx = element; break
+            default: break
+            }
+            
+            indexManager.save()
+            indexManager.update()
+            indices = indexManager.fetchedEntity as! [RecipeIndexManager]
+        }
+    }
+    
+    func update(index: Int, entityName: String, attributeName: String, element: Bool) {
+        if(entityName == "RecipeIndexManager") {
+            switch attributeName {
+            case "isOffline" : indices[index].isOffline = element; break
+            default: break
+            }
         }
     }
     
     func feedingDummyData() {
         // RECIPES
-        recipeManager.set(recipeID: 0, label: "Recipe 1", summary: "A very tasty cookie!", image: "cheesecake.jpg")
+        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", image: "cheesecake.jpg", yield: 4, author: "Eva Jobst", summary: "")
         
-        recipeManager.set(recipeID: 1, label: "Recipe 2", summary: "This might probably be the most beautiful cheesecake I have ever had the chance to encounter. Magnificent! Brilliant! Astonishing!", image: "cheesecake.jpg")
+        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", image: "cheesecake.jpg", yield: 4, author: "Eva Jobst", summary: "")
         
-        recipeManager.set(recipeID: 2, label: "Recipe 3", summary: "This spaghetti with seafood makes you think of a venetian summer night like you have never before.", image: "cheesecake.jpg")
+        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", image: "cheesecake.jpg", yield: 4, author: "Eva Jobst", summary: "")
         
-        recipes = recipeManager.fetchedEntity as! [Recipe]
+        recipes = recipeManager.fetchedEntity as! [OfflineRecipe]
         
         // LISTS
-        listManager.set(listID: 0, numOfRecipes: 0, name: "Favorite desserts")
-        listManager.set(listID: 1, numOfRecipes: 0, name: "Inspiration")
-        listManager.set(listID: 2, numOfRecipes: 0, name: "For the next dinner party")
-        listManager.set(listID: 3, numOfRecipes: 0, name: "Best cakes")
+        listManager.set(listID: 0, count: 0, name: "Favorite desserts")
+        listManager.set(listID: 1, count: 0, name: "Inspiration")
+        listManager.set(listID: 2, count: 0, name: "For the next dinner party")
+        listManager.set(listID: 3, count: 0, name: "Best cakes")
         
         lists = listManager.fetchedEntity as! [List]
         
@@ -162,7 +206,7 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         tableManager.save()
         tableManager.update()
         
-        recipes = recipeManager.fetchedEntity as! [Recipe]
+        recipes = recipeManager.fetchedEntity as! [OfflineRecipe]
         lists = listManager.fetchedEntity as! [List]
         tables = tableManager.fetchedEntity as! [RecipeListTable]
     }

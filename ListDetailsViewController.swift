@@ -11,7 +11,7 @@ import UIKit
 
 class ListDetailsViewController: UITableViewController {
     var selectedListID : Int16 = 0
-    var data : [Recipe] = []
+    var data : [OfflineRecipe] = []
     let entities = EntityManager()
     
     
@@ -31,8 +31,8 @@ class ListDetailsViewController: UITableViewController {
         
         let image : UIImage = UIImage(named: data[indexPath.row].image!)!
         let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")! as! CustomRecipeCell
-        cell.recipeTitle.text = data[indexPath.row].label
-        cell.recipeDetails.text = data[indexPath.row].summary
+        cell.recipeTitle.text = data[indexPath.row].name
+        cell.recipeDetails.text = data[indexPath.row].yield.description
         cell.backgroundView = UIImageView(image: image)
         return cell
     }
@@ -47,8 +47,8 @@ class ListDetailsViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getRecipes () -> [Recipe] {
-        var retRecipes : [Recipe] = []
+    func getRecipes () -> [OfflineRecipe] {
+        var retRecipes : [OfflineRecipe] = []
         
         for i in 0..<entities.tables.count {
             if(entities.tables[i].listID == selectedListID) {
