@@ -38,6 +38,7 @@
 		D1DA87191E697BE00021D859 /* MenuTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DA87181E697BE00021D859 /* MenuTransitionManager.swift */; };
 		D1DA871D1E69A9510021D859 /* MainMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DA871C1E69A9510021D859 /* MainMenuTableViewController.swift */; };
 		D1DA871F1E69B2420021D859 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DA871E1E69B2420021D859 /* MainMenuController.swift */; };
+		D1DA87211E69EE5B0021D859 /* menu-button-2.png in Resources */ = {isa = PBXBuildFile; fileRef = D1DA87201E69EE5B0021D859 /* menu-button-2.png */; };
 		DC0EE68A1E4CEA3A00DFC484 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0EE6891E4CEA3A00DFC484 /* AppDelegate.swift */; };
 		DC0EE68F1E4CEA3A00DFC484 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0EE68D1E4CEA3A00DFC484 /* Main.storyboard */; };
 		DC0EE6921E4CEA3A00DFC484 /* CookingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC0EE6901E4CEA3A00DFC484 /* CookingApp.xcdatamodeld */; };
@@ -109,6 +110,7 @@
 		D1DA87181E697BE00021D859 /* MenuTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTransitionManager.swift; path = Assets.xcassets/MenuTransitionManager.swift; sourceTree = "<group>"; };
 		D1DA871C1E69A9510021D859 /* MainMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuTableViewController.swift; sourceTree = "<group>"; };
 		D1DA871E1E69B2420021D859 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
+		D1DA87201E69EE5B0021D859 /* menu-button-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-button-2.png"; sourceTree = "<group>"; };
 		D1F4EFEF1E64283100E53E3F /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		DC0EE6861E4CEA3A00DFC484 /* CookingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0EE6891E4CEA3A00DFC484 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 		D187F9861E673FB600829C07 /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
+				D1DA87201E69EE5B0021D859 /* menu-button-2.png */,
 				D19D5A241E68F52700A6343C /* darkGrey.png */,
 				D19D5A1E1E68C60C00A6343C /* menu-button.png */,
 				D187F9871E67414400829C07 /* 001-recipes.png */,
@@ -483,6 +486,7 @@
 				D187F9811E673F8900829C07 /* 002-cookbook.png in Resources */,
 				D187F9841E673FA900829C07 /* 001-chef.png in Resources */,
 				DC0EE6941E4CEA3A00DFC484 /* Assets.xcassets in Resources */,
+				D1DA87211E69EE5B0021D859 /* menu-button-2.png in Resources */,
 				D187F9891E67414400829C07 /* 001-recipes.png in Resources */,
 				D19D5A251E68F52700A6343C /* darkGrey.png in Resources */,
 				D1202B0C1E66E97A0014C908 /* lightGrey.jpg in Resources */,

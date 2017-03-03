@@ -18,8 +18,9 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     let entities = EntityManager()
     var switchView : Bool = false
     var nextView : String = ""
+    var menuButton : UIButton? = nil
     
-    @IBOutlet weak var menuButton: UIBarButtonItem!
+    
     var menuTransitionManager = MenuTransitionManager()
     
     
@@ -53,11 +54,14 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        
+        backButton.addTarget(self, action: #selector(menu(_:)), for: .touchUpInside)
+        
+        
         if switchView {
             
             switchView = false
-            
-            print("HALLOOOOOO")
             
             if (nextView == "list") {
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
@@ -68,13 +72,17 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
             else if (nextView == "new") {
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 
-                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "New Recipe") as! UINavigationController
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "newRecipe") as! UINavigationController
                 self.present(nextViewController, animated:true, completion:nil)
             }
             
            
 
         }
+    }
+    
+    func menu(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "mainMenu", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -109,11 +117,16 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
         tableView.estimatedRowHeight = 100
         tableView.reloadData()
         
-        menuButton.image = UIImage(named: "menu-button")
-        menuButton.accessibilityFrame = CGRect(x: 0, y: 0, width: 16, height: 32)
-        menuButton.width = 32
-        menuButton.title = ""
+        menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        menuButton?.setBackgroundImage(UIImage(named: "menu-button"), for: .normal)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton!)
+        
+        
     }
+    
+    
+    
+    
     
     @objc func reload(notification: NSNotification){
         if(actualPage <= 1) {data = fetches.data}

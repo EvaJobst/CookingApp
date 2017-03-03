@@ -144,12 +144,11 @@
                     <navigationItem key="navigationItem" title="All Recipes" id="r4P-SH-gJf">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="DKb-CE-x8W">
                             <connections>
-                                <segue destination="OfC-8n-n59" kind="presentation" id="1dl-cC-U1C"/>
+                                <segue destination="OfC-8n-n59" kind="presentation" identifier="mainMenu" id="1dl-cC-U1C"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="menuButton" destination="DKb-CE-x8W" id="wvJ-Z5-Bhd"/>
                         <outlet property="searchBar" destination="4kK-ru-AJn" id="4H4-Uc-0I7"/>
                         <outlet property="searchDisplayController" destination="bpK-sT-MWK" id="1rE-xF-Dmv"/>
                     </connections>
@@ -569,14 +568,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Recipe Lists" id="8Qh-12-L25">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="Zts-0g-irZ">
+                        <barButtonItem key="leftBarButtonItem" title="Item" width="32" id="Zts-0g-irZ">
+                            <inset key="imageInsets" minX="10" minY="10" maxX="300" maxY="10"/>
                             <connections>
-                                <segue destination="OfC-8n-n59" kind="presentation" id="uxK-h0-Hse"/>
+                                <segue destination="OfC-8n-n59" kind="presentation" identifier="mainMenu" id="uxK-h0-Hse"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="menuButton" destination="Zts-0g-irZ" id="gli-mT-ZAG"/>
                         <segue destination="ATo-yk-AD6" kind="showDetail" identifier="goToDetails" action="showViewController:sender:" id="BDc-TF-b5m"/>
                     </connections>
                 </tableViewController>
@@ -637,7 +636,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kks-ff-bsi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3666" y="1600"/>
+            <point key="canvasLocation" x="3664.8000000000002" y="1599.8500749625189"/>
         </scene>
         <!--Recipe Lists Menu Table View Controller-->
         <scene sceneID="uec-Gi-kIm">
@@ -734,13 +733,10 @@
                     <navigationItem key="navigationItem" id="Pu9-Kj-Jdm">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="MWp-dh-ndr">
                             <connections>
-                                <segue destination="vt5-s1-b0p" kind="presentation" id="T0k-jd-pLH"/>
+                                <segue destination="vt5-s1-b0p" kind="presentation" identifier="mainMenu" id="T0k-jd-pLH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="menuButton" destination="MWp-dh-ndr" id="R7a-7i-B3o"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAM-a3-lcN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -992,7 +988,7 @@
         <!--Main Menu Table View Controller-->
         <scene sceneID="6Fr-WY-uFY">
             <objects>
-                <tableViewController id="OfC-8n-n59" customClass="MainMenuTableViewController" customModule="CookingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="mainMenu" id="OfC-8n-n59" customClass="MainMenuTableViewController" customModule="CookingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="N7W-jn-0d3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
