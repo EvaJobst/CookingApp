@@ -25,8 +25,9 @@ class FetchManager {
             signIn()
         }
         
-        if(query != q) {
-            api.parameter[(api.parameter.first?.key)!] = q
+        query = q
+        
+        api.parameter[(api.parameter.first?.key)!] = q
             
             Alamofire.request(api.url, method: .get, parameters: api.parameter, encoding: api.encoding!, headers: api.header).responseSwiftyJSON { response in
                 self.data.removeAll()
@@ -39,7 +40,7 @@ class FetchManager {
                 
                 NotificationCenter.default.post(name: Notification.Name(rawValue: (self.fetchKey)), object: self)
             }
-        }
+
     }
     
     func fetch(recipeID: Int16) {
