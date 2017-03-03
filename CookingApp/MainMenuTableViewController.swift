@@ -1,5 +1,5 @@
 //
-//  RecipeListsMenuTableViewController.swift
+//  MainMenuTableViewController.swift
 //  CookingApp
 //
 //  Created by Hannes on 03.03.17.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class RecipeListsMenuTableViewController: UITableViewController {
+class MainMenuTableViewController: UITableViewController {
 
-    
-    
     var nameOfCurrenteList : String = ""
     var menuItems : [String] = []
     var currentItem = "Your Lists"
+    var action : String = ""
     
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -36,7 +35,7 @@ class RecipeListsMenuTableViewController: UITableViewController {
         
         self.view.backgroundColor = UIColor(red:CGFloat(r), green:CGFloat(g), blue:CGFloat(b), alpha:1)
         
-        menuItems = ["", "", self.nameOfCurrenteList, "Add Recipe", "Share", "", "Your Lists", "Cookbook", "Settings"]
+        menuItems = ["", "", action, "", "Cookbook", "Your Lists", "Settings"]
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,11 +81,12 @@ class RecipeListsMenuTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let menuTableViewController = segue.source as! RecipeListsMenuTableViewController
+        let menuTableViewController = segue.source as! MainMenuTableViewController
         
         if let selectedRow = menuTableViewController.tableView.indexPathForSelectedRow?.row {
             currentItem = menuItems[selectedRow]
         }
         
     }
+
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MxD-YP-058">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kh6-PK-Uh2">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -142,8 +142,15 @@
                             <outlet property="delegate" destination="bDh-01-Kna" id="tXf-Cw-z1z"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="All Recipes" id="r4P-SH-gJf"/>
+                    <navigationItem key="navigationItem" title="All Recipes" id="r4P-SH-gJf">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="DKb-CE-x8W">
+                            <connections>
+                                <segue destination="OfC-8n-n59" kind="presentation" id="1dl-cC-U1C"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="menuButton" destination="DKb-CE-x8W" id="wvJ-Z5-Bhd"/>
                         <outlet property="searchBar" destination="4kK-ru-AJn" id="4H4-Uc-0I7"/>
                         <outlet property="searchDisplayController" destination="bpK-sT-MWK" id="1rE-xF-Dmv"/>
                     </connections>
@@ -158,7 +165,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2870" y="41"/>
+            <point key="canvasLocation" x="2775" y="50"/>
         </scene>
         <!--General-->
         <scene sceneID="eWR-XI-gZ4">
@@ -493,7 +500,7 @@
                                                 <constraint firstAttribute="width" constant="259" id="aaO-EK-fT1"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" red="0.64475155035306986" green="0.8343389183592741" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -522,41 +529,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTI-R9-N2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6661.6000000000004" y="419.64017991004499"/>
-        </scene>
-        <!--All Recipes-->
-        <scene sceneID="KvH-Eg-pM0">
-            <objects>
-                <navigationController id="322-jG-Ao4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="All Recipes" id="VzH-ed-Qhi"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wFb-a9-gRu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="bDh-01-Kna" kind="relationship" relationship="rootViewController" id="PuN-7n-KFp"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TcX-JE-LjB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="881" y="27"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="8Ud-H4-IKo">
-            <objects>
-                <tabBarController id="MxD-YP-058" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="osX-BM-K22">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="322-jG-Ao4" kind="relationship" relationship="viewControllers" id="orL-5p-s3b"/>
-                        <segue destination="J9W-6v-KLL" kind="relationship" relationship="viewControllers" id="kbj-W8-i47"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wlq-RR-Pmb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="9" y="374"/>
         </scene>
         <!--Recipe Lists-->
         <scene sceneID="mEl-Tc-Fxd">
@@ -597,8 +569,15 @@
                             <outlet property="delegate" destination="cV0-mg-QhI" id="7eq-SF-mA5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Recipe Lists" id="8Qh-12-L25"/>
+                    <navigationItem key="navigationItem" title="Recipe Lists" id="8Qh-12-L25">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="Zts-0g-irZ">
+                            <connections>
+                                <segue destination="OfC-8n-n59" kind="presentation" id="uxK-h0-Hse"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="menuButton" destination="Zts-0g-irZ" id="gli-mT-ZAG"/>
                         <segue destination="ATo-yk-AD6" kind="showDetail" identifier="goToDetails" action="showViewController:sender:" id="BDc-TF-b5m"/>
                     </connections>
                 </tableViewController>
@@ -659,7 +638,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kks-ff-bsi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3580" y="1492.8035982008996"/>
+            <point key="canvasLocation" x="3666" y="1600"/>
         </scene>
         <!--Recipe Lists Menu Table View Controller-->
         <scene sceneID="uec-Gi-kIm">
@@ -705,7 +684,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7iQ-F5-OBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="QPP-1M-Xag" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4517.6000000000004" y="1526.9865067466269"/>
+            <point key="canvasLocation" x="4519" y="1600"/>
         </scene>
         <!--List Details View Controller-->
         <scene sceneID="laZ-QK-Kgv">
@@ -768,49 +747,29 @@
             </objects>
             <point key="canvasLocation" x="4519.1999999999998" y="732.68365817091455"/>
         </scene>
-        <!--Recipe Lists-->
-        <scene sceneID="GdC-Fm-baD">
-            <objects>
-                <navigationController id="J9W-6v-KLL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recipe Lists" id="bkn-5N-C9U"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bHY-R7-huO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Mpq-v9-Lzw" kind="relationship" relationship="rootViewController" id="Ndz-dB-Gjd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="D77-Fe-FAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="881" y="734"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="sF7-hO-QJm">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kh6-PK-Uh2" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AllRecipe" automaticallyAdjustsScrollViewInsets="NO" id="kh6-PK-Uh2" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Xlc-pn-kvn">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1n2-1g-Sot">
-                            <connections>
-                                <segue destination="ChB-L2-Yog" kind="presentation" id="VgQ-si-1qu"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Xlc-pn-kvn"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mpQ-sO-6rt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bDh-01-Kna" kind="relationship" relationship="rootViewController" id="YJJ-jW-e2f"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Thc-ks-ZZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1880.8" y="40.929535232383813"/>
+            <point key="canvasLocation" x="1836" y="27"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="f1y-pM-yMu">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ChB-L2-Yog" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="newRecipe" automaticallyAdjustsScrollViewInsets="NO" id="ChB-L2-Yog" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0DF-RT-Kmz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -823,20 +782,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hma-q2-Oed" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2640.8000000000002" y="-654.42278860569718"/>
+            <point key="canvasLocation" x="2775" y="-654"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W8o-Tm-nGb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mpq-v9-Lzw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RecipeLists" automaticallyAdjustsScrollViewInsets="NO" id="Mpq-v9-Lzw" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="T7g-ej-kUj">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1ps-oL-Miu">
-                            <connections>
-                                <segue destination="L9x-qt-jFe" kind="presentation" id="42M-kY-XJC"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="T7g-ej-kUj"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QMK-ep-UAm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -853,7 +806,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cTn-H9-p1E">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L9x-qt-jFe" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="newList" automaticallyAdjustsScrollViewInsets="NO" id="L9x-qt-jFe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="cFO-ZS-xOF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bl8-Cm-Acc">
@@ -867,12 +820,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ujs-Pf-iTp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2773.5999999999999" y="1492.8035982008996"/>
+            <point key="canvasLocation" x="2775" y="1600"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Recipe Detail Navigation View Controller-->
         <scene sceneID="mdT-bT-aYz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ATo-yk-AD6" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ATo-yk-AD6" customClass="RecipeDetailNavigationViewController" customModule="CookingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kbb-z8-dgL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1037,11 +990,60 @@
             </objects>
             <point key="canvasLocation" x="5876" y="1176.1619190404799"/>
         </scene>
+        <!--Main Menu Table View Controller-->
+        <scene sceneID="6Fr-WY-uFY">
+            <objects>
+                <tableViewController id="OfC-8n-n59" customClass="MainMenuTableViewController" customModule="CookingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="N7W-jn-0d3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeListsMenuCell" id="qwC-Vi-dZD" customClass="RecipeListsTableViewCell" customModule="CookingApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qwC-Vi-dZD" id="JVk-9n-NEy">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zz7-e6-Hrz">
+                                            <rect key="frame" x="28" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.35819565079999999" green="0.46352206779999999" blue="0.5555560907" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Zz7-e6-Hrz" secondAttribute="bottom" constant="11.5" id="DyJ-5p-ERP"/>
+                                        <constraint firstItem="Zz7-e6-Hrz" firstAttribute="top" secondItem="JVk-9n-NEy" secondAttribute="top" constant="11" id="N6I-MR-Um8"/>
+                                        <constraint firstItem="Zz7-e6-Hrz" firstAttribute="leading" secondItem="JVk-9n-NEy" secondAttribute="leadingMargin" constant="20" id="UgJ-ie-fko"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleLabel" destination="Zz7-e6-Hrz" id="CHr-hu-bpB"/>
+                                    <segue destination="4LT-eN-HJh" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="W5j-rW-UCk"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OfC-8n-n59" id="hcy-tU-hgT"/>
+                            <outlet property="delegate" destination="OfC-8n-n59" id="a3h-H7-mtB"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t16-Bi-UIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="4LT-eN-HJh" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1836" y="1600"/>
+        </scene>
     </scenes>
     <resources>
         <image name="001-recipes.png" width="32" height="32"/>
         <image name="002-mitten.png" width="32" height="32"/>
         <image name="003-harvest.png" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1dl-cC-U1C"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.48643293980000002" green="0.6238787174" blue="0.74188548330000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>
