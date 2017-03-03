@@ -65,35 +65,3 @@ class RecipeObject {
         offlineID = 0
     }
 }
-
-// RecipeSource
-// recipeID
-// source
-
-/*
- id
- 
- 
-*/
-
-/*
- WE EAT
- images : [String]
- ingredients : String \r\n
- id : Int
- instructions : String \r\n
- description : String
- name : String
- chef -> name : String
- */
-
-/*
- YUMMLY
- rating : String
- ingredientLines : [String]
- images
- name
- numberOfServings
- source -> sourceRecipeUrl
- source -> id
- */

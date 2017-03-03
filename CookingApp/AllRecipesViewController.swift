@@ -10,12 +10,11 @@ import UIKit
 import Alamofire
 
 class AllRecipesViewController: UITableViewController, MenuTransitionManagerDelegate, UISearchBarDelegate {
-    
-    
     let fetchKey = "FinishedFetchingRecipes"
     let fetches = FetchManager()
     var data : [RecipeObject] = []
     @IBOutlet weak var searchBar: UISearchBar!
+    var actualPage : Int = 0
     let entities = EntityManager()
     var switchView : Bool = false
     var nextView : String = ""
@@ -117,7 +116,8 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     }
     
     @objc func reload(notification: NSNotification){
-        data.append(contentsOf: fetches.data)
+        if(actualPage <= 1) {data = fetches.data}
+        else {data.append(contentsOf: fetches.data)}
         
         DispatchQueue.main.async {
             print(self.data.count)
@@ -126,24 +126,36 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        data.removeAll()
+        actualPage = 0
+        fetches.totalPages = 0
+        
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(UIWebView.reload), object: nil)
+        self.perform(#selector(self.filterContents), with: nil, afterDelay: 0.2)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        data.removeAll()
+        actualPage = 0
+        fetches.totalPages = 0
+        
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(UIWebView.reload), object: nil)
         self.perform(#selector(self.filterContents), with: nil, afterDelay: 0.5)
     }
     
     func filterContents() {
-        data.removeAll()
-        
         switch searchBar.selectedScopeButtonIndex {
         case 0 :
             data.append(contentsOf: getFittingRecipes(searchText: searchBar.text!))
-            fetches.search(q: searchBar.text!)
+            tableView.reloadData()
             break
         case 1 :
-            fetches.search(q: searchBar.text!)
-            break
-        case 2 :
-            data.append(contentsOf: getFittingRecipes(searchText: searchBar.text!))
-            tableView.reloadData()
+            if(actualPage <= fetches.totalPages) {
+                actualPage = actualPage + 1
+                print("actualPage " + actualPage.description)
+                fetches.search(q: searchBar.text!, page: actualPage)
+            }
+            
             break
         default : break
         }
@@ -168,6 +180,10 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.row == self.data.count - 1 {
+            self.loadMore()
+        }
 
         let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")! as! CustomRecipeCell
         cell.recipeTitle.text = data[indexPath.row].name
@@ -179,12 +195,16 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
         return true
     }
     
+    func loadMore() {
+        if(actualPage >= 1) {
+            filterContents()
+        }
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 }
 
