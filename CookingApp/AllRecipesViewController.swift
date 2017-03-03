@@ -57,7 +57,7 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     override func viewDidAppear(_ animated: Bool) {
         
         
-        backButton.addTarget(self, action: #selector(menu(_:)), for: .touchUpInside)
+        menuButton?.addTarget(self, action: #selector(menu(_:)), for: .touchUpInside)
         
         
         if switchView {
