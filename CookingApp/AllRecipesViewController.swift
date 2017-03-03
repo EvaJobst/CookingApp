@@ -9,7 +9,9 @@
 import UIKit
 import Alamofire
 
-class AllRecipesViewController: UITableViewController, UISearchBarDelegate {
+class AllRecipesViewController: UITableViewController, MenuTransitionManagerDelegate, UISearchBarDelegate {
+    
+    
     let fetchKey = "FinishedFetchingRecipes"
     let fetches = FetchManager()
     var data : [RecipeObject] = []
