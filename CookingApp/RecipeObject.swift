@@ -36,7 +36,6 @@ import SwiftyJSON
 class RecipeObject {
     let offlineID : Int16
     let name : String
-    let image : String
     let ingredients : String
     let instructions : String
     let yield : Int16
@@ -46,7 +45,6 @@ class RecipeObject {
     init(data : OfflineRecipe) {
         offlineID = data.offlineID
         name = data.name!
-        image = data.image!
         ingredients = data.ingredients!
         instructions = data.instructions!
         yield = data.yield
@@ -56,7 +54,6 @@ class RecipeObject {
     
     init?(jsonData:JSON){
         name = jsonData["name"].stringValue
-        image = jsonData["images"][0]["large_image_path"].stringValue
         yield = jsonData["yield"].int16Value
         summary = jsonData["description"].stringValue
         author = jsonData["chef"]["name"].stringValue

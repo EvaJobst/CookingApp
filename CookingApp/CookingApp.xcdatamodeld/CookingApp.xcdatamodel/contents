@@ -7,7 +7,6 @@
     </entity>
     <entity name="OfflineRecipe" representedClassName="OfflineRecipe" syncable="YES" codeGenerationType="class">
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ingredients" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,8 +25,8 @@
     </entity>
     <elements>
         <element name="List" positionX="-137" positionY="108" width="128" height="90"/>
-        <element name="OfflineRecipe" positionX="250" positionY="90" width="128" height="165"/>
-        <element name="RecipeListTable" positionX="61" positionY="45" width="128" height="75"/>
+        <element name="OfflineRecipe" positionX="250" positionY="90" width="128" height="150"/>
         <element name="RecipeIndexManager" positionX="63" positionY="153" width="128" height="90"/>
+        <element name="RecipeListTable" positionX="61" positionY="45" width="128" height="75"/>
     </elements>
 </model>

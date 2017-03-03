@@ -21,8 +21,6 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
     
     var menuTransitionManager = MenuTransitionManager()
     
-    
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         get {
             return UIStatusBarStyle.lightContent
@@ -130,11 +128,9 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let image : UIImage = UIImage(named: data[indexPath.row].image!)!
         let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")! as! CustomRecipeCell
         cell.recipeTitle.text = data[indexPath.row].name
         cell.recipeDetails.text = data[indexPath.row].yield.description
-        cell.backgroundView = UIImageView(image: image)
         return cell
     }
     

@@ -129,7 +129,6 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "name" : recipes[index].name = element; break
             case "ingredients" : recipes[index].ingredients = element; break
             case "instructions" : recipes[index].instructions = element; break
-            case "image" : recipes[index].image = element; break
             case "author" : recipes[index].author = element; break
             case "summary" : recipes[index].summary = element; break
             default: break
