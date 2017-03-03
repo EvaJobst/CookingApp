@@ -46,6 +46,8 @@ class CoreDataManager<T : NSManagedObject> {
     
     func delete(entity: T) {
         managedContext?.delete(entity as NSManagedObject)
+        save()
+        update()
     }
     
     // setList

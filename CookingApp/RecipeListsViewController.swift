@@ -9,6 +9,7 @@
 import UIKit
 
 class RecipeListsViewController: UITableViewController, MenuTransitionManagerDelegate {
+    let newListKey = "NewListInDatabase"
     var entities : EntityManager? = nil
     var selectedListID : Int16 = 0
     var indexOfSelectedElement = 0
@@ -88,12 +89,26 @@ class RecipeListsViewController: UITableViewController, MenuTransitionManagerDel
         entities = EntityManager()
         tableView.reloadData()
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.reload),
+            name: Notification.Name(rawValue: newListKey),
+            object: nil)
+        
         nextView = ""
         
         
         menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         menuButton?.setBackgroundImage(UIImage(named: "menu-button"), for: .normal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton!)
+    }
+    
+    @objc func reload(notification: NSNotification){
+        entities?.updateObjects()
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,6 +125,15 @@ class RecipeListsViewController: UITableViewController, MenuTransitionManagerDel
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            print("delete")
+            entities?.listManager.delete(entity: (entities?.lists[indexPath.row])!)
+            entities?.updateObjects()
+            tableView.reloadData()
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

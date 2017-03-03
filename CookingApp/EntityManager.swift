@@ -34,6 +34,14 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         super.init()
     }
     
+    func updateObjects() {
+        update()
+        recipes = recipeManager.fetchedEntity! as! [OfflineRecipe]
+        lists = listManager.fetchedEntity! as! [List]
+        tables = tableManager.fetchedEntity! as! [RecipeListTable]
+        indices = indexManager.fetchedEntity! as! [RecipeIndexManager]
+    }
+    
     override func update() {
         listManager.update()
         recipeManager.update()

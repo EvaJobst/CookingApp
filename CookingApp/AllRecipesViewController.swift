@@ -19,11 +19,7 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     var switchView : Bool = false
     var nextView : String = ""
     var menuButton : UIButton? = nil
-    
-    
     var menuTransitionManager = MenuTransitionManager()
-    
-    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         get {
@@ -109,8 +105,8 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
             name: Notification.Name(rawValue: fetchKey),
             object: nil)
         
-        entities.deletingDummyData()
-        entities.feedingDummyData()
+        //entities.deletingDummyData()
+        //entities.feedingDummyData()
         data.append(contentsOf: entities.getconvertedRecipes())
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -133,7 +129,6 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
         else {data.append(contentsOf: fetches.data)}
         
         DispatchQueue.main.async {
-            print(self.data.count)
             self.tableView.reloadData()
         }
     }
