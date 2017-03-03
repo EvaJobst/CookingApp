@@ -9,13 +9,27 @@
 import Foundation
 import UIKit
 
-class ListDetailsViewController: UITableViewController {
+class ListDetailsViewController: UITableViewController, MenuTransitionManagerDelegate {
+    
     var selectedListID : Int16 = 0
+    var row : Int = 0
     var data : [OfflineRecipe] = []
     let entities = EntityManager()
     
-    
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    var menuTransitionManager = MenuTransitionManager()
+    
+    
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        get {
+            return UIStatusBarStyle.lightContent
+        }
+    }
+    
+    func dismiss() {
+        dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +41,7 @@ class ListDetailsViewController: UITableViewController {
         menuButton.image = UIImage(named: "menu-button")
         menuButton.accessibilityFrame = CGRect(x: 0, y: 0, width: 16, height: 32)
         menuButton.title = ""
+        
     }
     
     
@@ -34,33 +49,38 @@ class ListDetailsViewController: UITableViewController {
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         let sourceController = segue.source as! RecipeListsMenuTableViewController
         self.title = sourceController.title
+        
+        if (sourceController.currentItem == "Add Recipe") {
+            print("Ok, bin in ADD RECIPE")
+        }
+        else if (sourceController.currentItem == "Share") {
+            print("OK BIN IN SHARE")
+        }
+        else if (sourceController.currentItem == "Settings") {
+            print("SETTINGS")
+        }
+        else if (sourceController.currentItem == "Cookbook") {
+            print("COOKBOOK")
+            
+        }
+        else if (sourceController.currentItem == "Your Lists") {
+            print("Your Lists")
+            self.dismiss()
+        }
     }
     
-    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
-        let size = image.size
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let widthRatio  = targetSize.width  / image.size.width
-        let heightRatio = targetSize.height / image.size.height
+        let menuTableViewController = segue.destination as! RecipeListsMenuTableViewController
         
-        // Figure out what our orientation is, and use that to form the rectangle
-        var newSize: CGSize
-        if(widthRatio > heightRatio) {
-            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-        } else {
-            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
-        }
+        menuTableViewController.nameOfCurrenteList = entities.lists[row].name!
+        menuTableViewController.currentItem = menuTableViewController.nameOfCurrenteList
+        menuTableViewController.transitioningDelegate = self.menuTransitionManager
+        menuTransitionManager.delegate = self
         
-        // This is the rect that we've calculated out and this is what is actually used below
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-        
-        // Actually do the resizing to the rect using the ImageContext stuff
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage!
     }
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count;

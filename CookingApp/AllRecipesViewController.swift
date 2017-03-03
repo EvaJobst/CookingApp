@@ -15,6 +15,77 @@ class AllRecipesViewController: UITableViewController, UISearchBarDelegate {
     var data : [RecipeObject] = []
     @IBOutlet weak var searchBar: UISearchBar!
     let entities = EntityManager()
+    var switchView : Bool = false
+    var nextView : String = ""
+    
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    var menuTransitionManager = MenuTransitionManager()
+    
+    
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        get {
+            return UIStatusBarStyle.lightContent
+        }
+    }
+    
+    func dismiss() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func unwindToHome(segue: UIStoryboardSegue) {
+        let sourceController = segue.source as! MainMenuTableViewController
+        self.title = sourceController.title
+        
+        if (sourceController.currentItem == "Settings") {
+            print("SETTINGS")
+        }
+        else if (sourceController.currentItem == "Your Lists") {
+            switchView = true
+            nextView = "list"
+        }
+        else if (sourceController.currentItem == "New Recipe") {
+            nextView = "new"
+            switchView = true
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if switchView {
+            
+            switchView = false
+            
+            print("HALLOOOOOO")
+            
+            if (nextView == "list") {
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "RecipeLists") as! UINavigationController
+                self.present(nextViewController, animated:true, completion:nil)
+            }
+            else if (nextView == "new") {
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "New Recipe") as! UINavigationController
+                self.present(nextViewController, animated:true, completion:nil)
+            }
+            
+           
+
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let menuTableViewController = segue.destination as? MainMenuTableViewController {
+            menuTableViewController.currentItem = "Cookbook"
+            menuTableViewController.action = "New Recipe"
+            menuTableViewController.transitioningDelegate = self.menuTransitionManager
+            menuTransitionManager.delegate = self
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +107,11 @@ class AllRecipesViewController: UITableViewController, UISearchBarDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.reloadData()
+        
+        menuButton.image = UIImage(named: "menu-button")
+        menuButton.accessibilityFrame = CGRect(x: 0, y: 0, width: 16, height: 32)
+        menuButton.width = 32
+        menuButton.title = ""
     }
     
     @objc func reload(notification: NSNotification){
