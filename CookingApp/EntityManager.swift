@@ -151,6 +151,8 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         }
     }
     
+    
+    
     func update(index: Int, entityName: String, attributeName: String, element: Bool) {
         if(entityName == "RecipeIndexManager") {
             switch attributeName {
@@ -162,11 +164,11 @@ class EntityManager : CoreDataManager<NSManagedObject> {
     
     func feedingDummyData() {
         // RECIPES
-        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", image: "cheesecake.jpg", yield: 4, author: "Eva Jobst", summary: "")
+        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", yield: 4, author: "Eva Jobst", summary: "")
         
-        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", image: "cheesecake.jpg", yield: 4, author: "Eva Jobst", summary: "")
+        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", yield: 4, author: "Eva Jobst", summary: "")
         
-        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", image: "cheesecake.jpg", yield: 4, author: "Eva Jobst", summary: "")
+        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", yield: 4, author: "Eva Jobst", summary: "")
         
         recipes = recipeManager.fetchedEntity as! [OfflineRecipe]
         

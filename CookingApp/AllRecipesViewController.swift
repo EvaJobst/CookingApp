@@ -30,8 +30,7 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     func dismiss() {
         dismiss(animated: true, completion: nil)
     }
-    
-    
+ 
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         let sourceController = segue.source as! MainMenuTableViewController
         self.title = sourceController.title
@@ -54,7 +53,6 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
         
         menuButton?.addTarget(self, action: #selector(menu(_:)), for: .touchUpInside)
         
-        
         if switchView {
             
             switchView = false
@@ -71,9 +69,6 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
                 let nextViewController = storyBoard.instantiateViewController(withIdentifier: "newRecipe") as! UINavigationController
                 self.present(nextViewController, animated:true, completion:nil)
             }
-            
-           
-
         }
     }
     
@@ -105,8 +100,6 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
             name: Notification.Name(rawValue: fetchKey),
             object: nil)
         
-        //entities.deletingDummyData()
-        //entities.feedingDummyData()
         data.append(contentsOf: entities.getconvertedRecipes())
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -119,11 +112,7 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
         
         
     }
-    
-    
-    
-    
-    
+
     @objc func reload(notification: NSNotification){
         if(actualPage <= 1) {data = fetches.data}
         else {data.append(contentsOf: fetches.data)}
@@ -160,7 +149,6 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
         case 1 :
             if(actualPage <= fetches.totalPages) {
                 actualPage = actualPage + 1
-                print("actualPage " + actualPage.description)
                 fetches.search(q: searchBar.text!, page: actualPage)
             }
             
@@ -208,7 +196,6 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
             filterContents()
         }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
