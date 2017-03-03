@@ -29,13 +29,12 @@ class RecipeListsMenuTableViewController: UITableViewController {
         
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
-        let pixel : [UInt8] = [0, 0, 0, 0]
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-        //_ = CGContext(data: UnsafeMutablePointer(mutating: pixel), width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: colorSpace, bitmapInfo: )
         
+        let r = 79.0 / 255.0
+        let g = 99.0 / 255.0
+        let b = 124.0 / 255.0
         
-        self.view.backgroundColor = UIColor(red:0.78, green:0.98, blue:1.23, alpha:1)
+        self.view.backgroundColor = UIColor(red:CGFloat(r), green:CGFloat(g), blue:CGFloat(b), alpha:1)
     }
     
     override func didReceiveMemoryWarning() {
