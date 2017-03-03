@@ -661,6 +661,52 @@
             </objects>
             <point key="canvasLocation" x="3580" y="1492.8035982008996"/>
         </scene>
+        <!--Recipe Lists Menu Table View Controller-->
+        <scene sceneID="uec-Gi-kIm">
+            <objects>
+                <tableViewController id="vt5-s1-b0p" customClass="RecipeListsMenuTableViewController" customModule="CookingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1oq-Wv-Qf4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeListsMenuCell" id="Mmn-ke-oE0" customClass="RecipeListsTableViewCell" customModule="CookingApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mmn-ke-oE0" id="AVH-S4-Ufs">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ls7-ug-O1q">
+                                            <rect key="frame" x="28" y="11" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.35819565075638032" green="0.46352206776303057" blue="0.55555609065264011" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ls7-ug-O1q" firstAttribute="top" secondItem="AVH-S4-Ufs" secondAttribute="top" constant="11" id="4NQ-Ms-JbL"/>
+                                        <constraint firstAttribute="bottom" secondItem="ls7-ug-O1q" secondAttribute="bottom" constant="11.5" id="GgL-an-IZg"/>
+                                        <constraint firstItem="ls7-ug-O1q" firstAttribute="leading" secondItem="AVH-S4-Ufs" secondAttribute="leadingMargin" constant="20" id="y5L-d7-YBR"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleLabel" destination="ls7-ug-O1q" id="1Rp-Ar-4W1"/>
+                                    <segue destination="QPP-1M-Xag" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="xvL-Ye-WHY"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vt5-s1-b0p" id="5BH-oU-qG7"/>
+                            <outlet property="delegate" destination="vt5-s1-b0p" id="n9b-np-g4i"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7iQ-F5-OBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="QPP-1M-Xag" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4517.6000000000004" y="1526.9865067466269"/>
+        </scene>
         <!--List Details View Controller-->
         <scene sceneID="laZ-QK-Kgv">
             <objects>
@@ -708,12 +754,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Pu9-Kj-Jdm">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="EcB-hU-OUJ">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="MWp-dh-ndr">
                             <connections>
-                                <segue destination="KLA-kF-xf7" kind="presentation" id="3Es-56-XcG"/>
+                                <segue destination="vt5-s1-b0p" kind="presentation" id="T0k-jd-pLH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="menuButton" destination="MWp-dh-ndr" id="R7a-7i-B3o"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAM-a3-lcN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
