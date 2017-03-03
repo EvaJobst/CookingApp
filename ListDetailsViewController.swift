@@ -15,8 +15,9 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
     var row : Int = 0
     var data : [OfflineRecipe] = []
     let entities = EntityManager()
+    var menuButton : UIButton? = nil
     
-    @IBOutlet weak var menuButton: UIBarButtonItem!
+    
     var menuTransitionManager = MenuTransitionManager()
     
     
@@ -31,6 +32,18 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
         dismiss(animated: true, completion: nil)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        menuButton?.addTarget(self, action: #selector(menu(_:)), for: .touchUpInside)
+        
+    }
+    
+    func menu(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "mainMenu", sender: self)
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         data = getRecipes()
@@ -38,9 +51,11 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
         tableView.rowHeight = 100
         tableView.reloadData()
         
-        menuButton.image = UIImage(named: "menu-button")
-        menuButton.accessibilityFrame = CGRect(x: 0, y: 0, width: 16, height: 32)
-        menuButton.title = ""
+        
+        menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        menuButton?.setBackgroundImage(UIImage(named: "menu-button"), for: .normal)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton!)
+
         
     }
     

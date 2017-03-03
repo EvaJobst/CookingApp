@@ -14,6 +14,7 @@ class RecipeListsViewController: UITableViewController, MenuTransitionManagerDel
     var indexOfSelectedElement = 0
     var switchView : Bool = false
     var nextView : String = ""
+    var menuButton : UIButton? = nil
     
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
@@ -71,8 +72,15 @@ class RecipeListsViewController: UITableViewController, MenuTransitionManagerDel
                 
             }
         }
+
+        
+       menuButton?.addTarget(self, action: #selector(menu(_:)), for: .touchUpInside)
+        
     }
     
+    func menu(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "mainMenu", sender: self)
+    }
     
     
     override func viewDidLoad() {
@@ -81,12 +89,12 @@ class RecipeListsViewController: UITableViewController, MenuTransitionManagerDel
         entities = EntityManager()
         tableView.reloadData()
         
-        menuButton.image = UIImage(named: "menu-button")
-        menuButton.accessibilityFrame = CGRect(x: 0, y: 0, width: 16, height: 32)
-        menuButton.title = ""
-        
         nextView = ""
         
+        
+        menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        menuButton?.setBackgroundImage(UIImage(named: "menu-button"), for: .normal)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton!)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
