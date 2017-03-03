@@ -16,7 +16,8 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
     var data : [OfflineRecipe] = []
     let entities = EntityManager()
     var menuButton : UIButton? = nil
-    
+    var switchView : Bool = false
+    var nextView : String = ""
     
     var menuTransitionManager = MenuTransitionManager()
     
@@ -33,7 +34,29 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        if switchView {
+            
+            switchView = false
+            
+            if nextView == "add" {
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addRecipeToList") as! UINavigationController
+                self.present(nextViewController, animated:true, completion:nil)
+                
+            }
+            else if nextView == "all" {
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AllRecipe") as! UINavigationController
+                self.present(nextViewController, animated:true, completion:nil)
+                
+            }
+            else if nextView == "share" {
+               
+                
+            }
+        }
         menuButton?.addTarget(self, action: #selector(menu(_:)), for: .touchUpInside)
         
     }
@@ -65,22 +88,26 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
         let sourceController = segue.source as! RecipeListsMenuTableViewController
         self.title = sourceController.title
         
+        switchView = true
         if (sourceController.currentItem == "Add Recipe") {
-            print("Ok, bin in ADD RECIPE")
+            nextView = "add"
         }
         else if (sourceController.currentItem == "Share") {
-            print("OK BIN IN SHARE")
+            nextView = "share"
         }
         else if (sourceController.currentItem == "Settings") {
-            print("SETTINGS")
+            nextView = "settings"
         }
         else if (sourceController.currentItem == "Cookbook") {
-            print("COOKBOOK")
+            nextView = "all"
             
         }
         else if (sourceController.currentItem == "Your Lists") {
             print("Your Lists")
             self.dismiss()
+        }
+        else {
+            nextView = ""
         }
     }
     

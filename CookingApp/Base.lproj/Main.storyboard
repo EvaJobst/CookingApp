@@ -969,7 +969,7 @@
         <!--Ingredients-->
         <scene sceneID="34p-g0-K8L">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KLA-kF-xf7" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="addRecipeToList" automaticallyAdjustsScrollViewInsets="NO" id="KLA-kF-xf7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Ingredients" image="003-harvest.png" id="pkL-ho-wXX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FIt-xT-OSG">

@@ -17,7 +17,6 @@ class RecipeListsViewController: UITableViewController, MenuTransitionManagerDel
     var menuButton : UIButton? = nil
     
     
-    @IBOutlet weak var menuButton: UIBarButtonItem!
     var menuTransitionManager = MenuTransitionManager()
     
     
