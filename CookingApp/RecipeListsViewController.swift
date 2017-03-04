@@ -9,7 +9,7 @@
 import UIKit
 
 class RecipeListsViewController: UITableViewController, MenuTransitionManagerDelegate {
-    let newListKey = "NewListInDatabase"
+    let keys = ObserverKeyManager()
     var entities : EntityManager? = nil
     var selectedListID : Int16 = 0
     var indexOfSelectedElement = 0
@@ -92,7 +92,7 @@ class RecipeListsViewController: UITableViewController, MenuTransitionManagerDel
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.reload),
-            name: Notification.Name(rawValue: newListKey),
+            name: Notification.Name(rawValue: keys.newList),
             object: nil)
         
         nextView = ""

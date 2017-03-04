@@ -11,9 +11,8 @@ import Alamofire
 import AlamofireSwiftyJSON
 
 class FetchManager {
-    let authentificationKey = "FinishedAuthentification"
-    let fetchKey = "FinishedFetchingRecipes"
-    let manager = APIManager()
+    let keys = ObserverKeyManager()
+    let api = APIManager()
     var data : [RecipeObject] = []
     var totalPages : Int = 0
     
@@ -21,18 +20,18 @@ class FetchManager {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.request),
-            name: Notification.Name(rawValue: authentificationKey),
+            name: Notification.Name(rawValue: keys.authentification),
             object: nil)
     }
     
     func search(q : String, page : Int) {
-        manager.api.parameter["qs"] = q
-        manager.api.parameter["page"] = page.description
+        api.parameter["qs"] = q
+        api.parameter["page"] = page.description
         signIn()
     }
     
     @objc func request(notification: NSNotification) {
-        Alamofire.request(manager.api.url, method: .get, parameters: manager.api.parameter, encoding: manager.api.encoding!, headers: manager.api.header).responseSwiftyJSON { response in
+        Alamofire.request(api.url, method: .get, parameters: api.parameter, encoding: api.encoding!, headers: api.header).responseSwiftyJSON { response in
             self.data.removeAll()
             
             self.totalPages = (response.result.value?["total_results"].intValue)! / (response.result.value?["per_page"].intValue)!
@@ -46,14 +45,13 @@ class FetchManager {
                 self.data.append(RecipeObject(jsonData: recipeJSON.1)!)
             }
             
-            NotificationCenter.default.post(name: Notification.Name(rawValue: (self.fetchKey)), object: self)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.search)), object: self)
         }
     }
     
     func fetch(recipeID: Int16) {
         
     }
-    
     
     /**
      Necessary to sign in before using api
@@ -69,7 +67,7 @@ class FetchManager {
         
         Alamofire.request("http://www.weeatt.com/api/v1/chefs/sign_in", method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: header).responseJSON {response in
             
-            NotificationCenter.default.post(name: Notification.Name(rawValue: (self.authentificationKey)), object: self)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.authentification)), object: self)
         }
     }
 }

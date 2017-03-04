@@ -9,9 +9,6 @@
 import UIKit
 
 class RecipeListsMenuTableViewController: UITableViewController {
-
-    
-    
     var nameOfCurrenteList : String = ""
     var menuItems : [String] = []
     var currentItem = "Your Lists"
@@ -48,8 +45,6 @@ class RecipeListsMenuTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuItems.count

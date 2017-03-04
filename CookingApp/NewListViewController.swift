@@ -9,7 +9,7 @@
 import UIKit
 
 class NewListViewController: UIViewController {
-    let newListKey = "NewListInDatabase"
+    let keys = ObserverKeyManager()
     let entities = EntityManager()
 
     @IBOutlet weak var NewListName: UITextField!
@@ -27,9 +27,8 @@ class NewListViewController: UIViewController {
     }
     
     @IBAction func saveAction(_ sender: Any) {
-        // TO DO - SAVING !!
         entities.listManager.set(listID: Int16(entities.lists.count), count: 0, name: NewListName.text!)
-        NotificationCenter.default.post(name: Notification.Name(rawValue: (self.newListKey)), object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.newList)), object: self)
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func cancelAction(_ sender: Any) {
