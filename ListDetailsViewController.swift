@@ -53,6 +53,7 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
                
                 
                 let objectsToShare = data
+                
                     
                 let activityController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
                     
