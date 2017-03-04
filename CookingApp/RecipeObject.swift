@@ -41,6 +41,7 @@ class RecipeObject {
     let yield : Int16
     let summary : String
     let author : String
+    let permalink : String
     
     init(data : OfflineRecipe) {
         offlineID = data.offlineID
@@ -50,6 +51,8 @@ class RecipeObject {
         yield = data.yield
         summary = data.summary!
         author = data.author!
+        //permalink = data.permalink!
+        permalink = ""
     }
     
     init?(jsonData:JSON){
@@ -59,6 +62,7 @@ class RecipeObject {
         author = jsonData["chef"]["name"].stringValue
         ingredients = jsonData["ingredients"].stringValue
         instructions = jsonData["instructions"].stringValue
-        offlineID = 0
+        permalink = jsonData["permalink"].stringValue
+        offlineID = Int16(INT16_MIN)
     }
 }

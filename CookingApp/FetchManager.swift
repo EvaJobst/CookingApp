@@ -15,6 +15,8 @@ class FetchManager {
     let api = APIManager()
     var data : [RecipeObject] = []
     var totalPages : Int = 0
+    var actualPage : Int = 0
+    var query : String = ""
     
     init() {
         NotificationCenter.default.addObserver(
@@ -25,27 +27,51 @@ class FetchManager {
     }
     
     func search(q : String, page : Int) {
-        api.parameter["qs"] = q
-        api.parameter["page"] = page.description
-        signIn()
+        if(!q.isEmpty) {
+            query = q
+            actualPage = page
+            //signIn()
+            
+            let parameter : Parameters = ["chef_login" : ["login" : "EvaJobst", "password" : "123456"]]
+            
+            let header : HTTPHeaders = ["Accept": "application/json",
+                                        "Content-Type": "application/json",
+                                        "x-api-key" : "1941ed8ddbb0"]
+            
+            Alamofire.request("http://www.weeatt.com/api/v1/chefs/sign_in", method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: header).responseJSON {response in
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.authentification)), object: self)
+            }
+        }
     }
     
     @objc func request(notification: NSNotification) {
-        Alamofire.request(api.url, method: .get, parameters: api.parameter, encoding: api.encoding!, headers: api.header).responseSwiftyJSON { response in
-            self.data.removeAll()
+        if(actualPage != 0 && !query.isEmpty) {
+            api.parameter["qs"] = query
+            api.parameter["page"] = actualPage.description
             
-            self.totalPages = (response.result.value?["total_results"].intValue)! / (response.result.value?["per_page"].intValue)!
-            
-            if((response.result.value?["total_results"].intValue)! % (response.result.value?["per_page"].intValue)! == 0) {
-                self.totalPages = self.totalPages + 1
+            Alamofire.request(api.url, method: .get, parameters: api.parameter, encoding: api.encoding!, headers: api.header).responseSwiftyJSON { response in
+                self.data.removeAll()
+                
+                print(response.request.debugDescription)
+                //print(response.response.debugDescription)
+                
+                self.totalPages = (response.result.value?["total_results"].intValue)! / (response.result.value?["per_page"].intValue)!
+                
+                if((response.result.value?["total_results"].intValue)! % (response.result.value?["per_page"].intValue)! == 0) {
+                    self.totalPages = self.totalPages + 1
+                }
+                
+                print(response.result.debugDescription)
+                
+                let recipesJSON = response.result.value?["results"]
+                for recipeJSON in recipesJSON! {
+                    self.data.append(RecipeObject(jsonData: recipeJSON.1)!)
+                }
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.search)), object: self)
             }
-            
-            let recipesJSON = response.result.value?["results"]
-            for recipeJSON in recipesJSON! {
-                self.data.append(RecipeObject(jsonData: recipeJSON.1)!)
-            }
-            
-            NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.search)), object: self)
+
         }
     }
     
@@ -57,17 +83,6 @@ class FetchManager {
      Necessary to sign in before using api
      */
     func signIn() {
-        //ALAMOFIRE REQUEST
         
-        let parameter : Parameters = ["chef_login" : ["login" : "EvaJobst", "password" : "123456"]]
-        
-        let header : HTTPHeaders = ["Accept": "application/json",
-                                    "Content-Type": "application/json",
-                                    "x-api-key" : "1941ed8ddbb0"]
-        
-        Alamofire.request("http://www.weeatt.com/api/v1/chefs/sign_in", method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: header).responseJSON {response in
-            
-            NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.authentification)), object: self)
-        }
     }
 }

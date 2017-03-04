@@ -14,6 +14,7 @@ class AddRecipeToListViewController: UITableViewController, UISearchBarDelegate 
     let entities = EntityManager()
     let searches = SearchManager()
     var data : [RecipeObject] = []
+    var listID : Int16 = 0
     @IBOutlet weak var searchBar: UISearchBar!
 
     override func viewDidLoad() {
@@ -90,7 +91,32 @@ class AddRecipeToListViewController: UITableViewController, UISearchBarDelegate 
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //fetches.data[indexPath.row]
+        var recipeID : Int16 = 0
+        var listID : Int16 = 0
+        
+        if(searchBar.selectedScopeButtonIndex == 0) {
+            recipeID = entities.getRecipeID(source: data[indexPath.row].offlineID)
+            listID = self.listID
+        }
+        
+        else { // scope == 1 -> Online
+            recipeID = entities.getRecipeID(source: data[indexPath.row].permalink)
+            listID = self.listID
+            
+            if(recipeID == Int16(INT16_MIN)) {
+                if(entities.indices.count == 0) {
+                    recipeID = 0
+                }
+                
+                else {
+                    recipeID = (entities.indices.last?.recipeID)!+1
+                }
+
+                entities.indexManager.set(recipeID: recipeID, isOffline: false, source: data[indexPath.row].permalink)
+            }
+        }
+        
+        entities.set(listID: listID, recipeID: recipeID)
     }
     
     override func didReceiveMemoryWarning() {

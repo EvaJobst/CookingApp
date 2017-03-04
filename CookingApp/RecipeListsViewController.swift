@@ -129,7 +129,7 @@ class RecipeListsViewController: UITableViewController, MenuTransitionManagerDel
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            print("delete")
+            entities?.removeListObjects(listID: (entities?.lists[indexPath.row].listID)!)
             entities?.listManager.delete(entity: (entities?.lists[indexPath.row])!)
             entities?.updateObjects()
             tableView.reloadData()

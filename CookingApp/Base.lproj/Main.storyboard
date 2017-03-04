@@ -894,9 +894,8 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <scopeButtonTitles>
-                                <string>All</string>
-                                <string>Online</string>
                                 <string>On Device</string>
+                                <string>Online</string>
                             </scopeButtonTitles>
                         </searchBar>
                         <prototypes>

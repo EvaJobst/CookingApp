@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
+import Toast_Swift
 
 class EntityManager : CoreDataManager<NSManagedObject> {
     var listManager : CoreDataManager<NSManagedObject>
@@ -34,6 +35,14 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         super.init()
     }
     
+    func removeListObjects(listID: Int16) {
+        for table in tables {
+            if(table.listID == listID) {
+                tableManager.delete(entity: table)
+            }
+        }
+    }
+    
     func updateObjects() {
         update()
         recipes = recipeManager.fetchedEntity! as! [OfflineRecipe]
@@ -57,9 +66,15 @@ class EntityManager : CoreDataManager<NSManagedObject> {
     }
     
     override func set(listID: Int16, recipeID: Int16) {
-        tableManager.set(listID: listID, recipeID: recipeID)
-        let element = Int16(lists[Int(listID)].count + 1)
-        update(index: Int(listID), entityName: "List", attributeName: "count", element: element)
+        if(!isInList(listID: listID, recipeID: recipeID)) {
+            tableManager.set(listID: listID, recipeID: recipeID)
+            let element = Int16(lists[Int(listID)].count + 1)
+            update(index: Int(listID), entityName: "List", attributeName: "count", element: element)
+        }
+        
+        else {
+            print("Recipe is already in list")
+        }
     }
     
     func update(index: Int, entityName: String, attributeName: String, element: Int16) {
@@ -141,7 +156,7 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         
         else if(entityName == "RecipeIndexManager") {
             switch attributeName {
-            case "sourceIdx" : indices[index].sourceIdx = element; break
+            case "source" : indices[index].source = element; break
             default: break
             }
             
@@ -150,8 +165,6 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             indices = indexManager.fetchedEntity as! [RecipeIndexManager]
         }
     }
-    
-    
     
     func update(index: Int, entityName: String, attributeName: String, element: Bool) {
         if(entityName == "RecipeIndexManager") {
@@ -220,6 +233,39 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         tables = tableManager.fetchedEntity as! [RecipeListTable]
     }
     
+    func getRecipeID(source : Int16) -> Int16 {
+        var id : Int16 = Int16(INT16_MIN)
+        
+        for index in indices {
+            if(index.source == source.description) {
+                id = index.recipeID
+            }
+        }
+        return id
+    }
+    
+    func getTableEntry(listID: Int16, recipeID: Int16) -> RecipeListTable {
+        for table in tables {
+            if(table.listID == listID && table.recipeID == recipeID) {
+                return table
+            }
+        }
+        
+        return RecipeListTable()
+    }
+    
+    func getRecipeID(source : String) -> Int16 {
+        var id : Int16 = Int16(INT16_MIN)
+        
+        for index in indices {
+            if(index.source == source.description) {
+                id = index.recipeID
+            }
+        }
+        
+        return id
+    }
+    
     func getconvertedRecipes() -> [RecipeObject] {
         var objects : [RecipeObject] = []
         
@@ -228,5 +274,25 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         }
         
         return objects
+    }
+    
+    func isInList(listID: Int16, recipeID: Int16) -> Bool {
+        for table in tables {
+            if(table.listID == listID && table.recipeID == recipeID) {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    func hasIndex(recipeID: Int16) -> Bool {
+        for index in indices {
+            if(index.recipeID == recipeID) {
+                return true
+            }
+        }
+        
+        return false
     }
 }

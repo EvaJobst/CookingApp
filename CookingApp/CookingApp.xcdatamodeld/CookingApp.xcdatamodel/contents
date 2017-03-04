@@ -11,13 +11,14 @@
         <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="offlineID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="permalink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="yield" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="RecipeIndexManager" representedClassName="RecipeIndexManager" syncable="YES" codeGenerationType="class">
         <attribute name="isOffline" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="recipeID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="sourceIdx" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="RecipeListTable" representedClassName="RecipeListTable" syncable="YES" codeGenerationType="class">
         <attribute name="listID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -25,7 +26,7 @@
     </entity>
     <elements>
         <element name="List" positionX="-137" positionY="108" width="128" height="90"/>
-        <element name="OfflineRecipe" positionX="250" positionY="90" width="128" height="150"/>
+        <element name="OfflineRecipe" positionX="250" positionY="90" width="128" height="165"/>
         <element name="RecipeIndexManager" positionX="63" positionY="153" width="128" height="90"/>
         <element name="RecipeListTable" positionX="61" positionY="45" width="128" height="75"/>
     </elements>

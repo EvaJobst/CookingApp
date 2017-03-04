@@ -93,13 +93,13 @@ class CoreDataManager<T : NSManagedObject> {
     }
     
     // setIndex
-    func set(recipeID: Int16, isOffline: Bool, sourceIdx : String) {
+    func set(recipeID: Int16, isOffline: Bool, source : String) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
         data.setValue(recipeID, forKey: "recipeID")
         data.setValue(isOffline, forKey: "isOffline")
-        data.setValue(sourceIdx, forKey: "sourceIdx")
+        data.setValue(source, forKey: "source")
         
         save()
         update()

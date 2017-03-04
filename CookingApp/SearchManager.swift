@@ -14,7 +14,7 @@ class SearchManager : UIViewController, UISearchBarDelegate {
     var entities : EntityManager? = nil
     var fetches : FetchManager? = nil
     var data : [RecipeObject] = []
-    var actualPage = 0
+    var actualPage = 1
     var scope = 0
     var searchText = ""
     
@@ -30,7 +30,6 @@ class SearchManager : UIViewController, UISearchBarDelegate {
             
             NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(UIWebView.reload), object: nil)
             self.perform(#selector(self.filterContents), with: nil, afterDelay: 0.5)
-
         }
     }
 
@@ -45,7 +44,7 @@ class SearchManager : UIViewController, UISearchBarDelegate {
             NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.search)), object: self)
             break
         case 1 :
-            if(actualPage <= (fetches?.totalPages)! || actualPage == 1) {
+            if((actualPage <= (fetches?.totalPages)!) || actualPage == 1) {
                 fetches?.search(q: searchText, page: actualPage)
             }
             break
