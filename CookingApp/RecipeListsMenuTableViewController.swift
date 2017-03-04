@@ -9,7 +9,7 @@
 import UIKit
 
 class RecipeListsMenuTableViewController: UITableViewController {
-    var nameOfCurrenteList : String = ""
+    var nameOfCurrentList : String = ""
     var menuItems : [String] = []
     var currentItem = "Your Lists"
     
@@ -33,7 +33,7 @@ class RecipeListsMenuTableViewController: UITableViewController {
         
         self.view.backgroundColor = UIColor(red:CGFloat(r), green:CGFloat(g), blue:CGFloat(b), alpha:1)
         
-        menuItems = ["", "", self.nameOfCurrenteList, "Add Recipe", "Share", "", "Your Lists", "Cookbook", "Settings"]
+        menuItems = ["", "", self.nameOfCurrentList, "Add Recipe", "Share", "", "Your Lists", "Cookbook", "Settings"]
     }
     
     override func didReceiveMemoryWarning() {

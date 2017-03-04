@@ -9,29 +9,42 @@
 import Foundation
 import UIKit
 import CoreData
+import Toast_Swift
 
 class EntityManager : CoreDataManager<NSManagedObject> {
     var listManager : CoreDataManager<NSManagedObject>
     var recipeManager : CoreDataManager<NSManagedObject>
     var tableManager : CoreDataManager<NSManagedObject>
     var indexManager : CoreDataManager<NSManagedObject>
+    var authorManager : CoreDataManager<NSManagedObject>
     var lists : [List]
     var recipes : [OfflineRecipe]
     var tables : [RecipeListTable]
     var indices : [RecipeIndexManager]
+    var author : [Author]
     
     override init() {
         listManager = CoreDataManager(entityName: "List")
         recipeManager = CoreDataManager(entityName: "OfflineRecipe")
         tableManager = CoreDataManager(entityName: "RecipeListTable")
         indexManager = CoreDataManager(entityName: "RecipeIndexManager")
+        authorManager = CoreDataManager(entityName: "Author")
         
         recipes = recipeManager.fetchedEntity! as! [OfflineRecipe]
         lists = listManager.fetchedEntity! as! [List]
         tables = tableManager.fetchedEntity! as! [RecipeListTable]
         indices = indexManager.fetchedEntity! as! [RecipeIndexManager]
+        author = authorManager.fetchedEntity as! [Author]
         
         super.init()
+    }
+    
+    func removeListObjects(listID: Int16) {
+        for table in tables {
+            if(table.listID == listID) {
+                tableManager.delete(entity: table)
+            }
+        }
     }
     
     func updateObjects() {
@@ -40,6 +53,7 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         lists = listManager.fetchedEntity! as! [List]
         tables = tableManager.fetchedEntity! as! [RecipeListTable]
         indices = indexManager.fetchedEntity! as! [RecipeIndexManager]
+        author = authorManager.fetchedEntity as! [Author]
     }
     
     override func update() {
@@ -56,10 +70,17 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         indexManager.save()
     }
     
-    override func set(listID: Int16, recipeID: Int16) {
-        tableManager.set(listID: listID, recipeID: recipeID)
-        let element = Int16(lists[Int(listID)].count + 1)
-        update(index: Int(listID), entityName: "List", attributeName: "count", element: element)
+    func set(listID: Int16, recipeID: Int16) -> Bool {
+        if(!isInList(listID: listID, recipeID: recipeID)) {
+            tableManager.set(listID: listID, recipeID: recipeID)
+            let element = Int16(lists[Int(listID)].count + 1)
+            update(index: Int(listID), entityName: "List", attributeName: "count", element: element)
+            return true
+        }
+        
+        else {
+            return false
+        }
     }
     
     func update(index: Int, entityName: String, attributeName: String, element: Int16) {
@@ -68,12 +89,7 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "listID" : lists[index].listID = element; break
             case "count" : lists[index].count = element;
             default: break
-                
             }
-            
-            listManager.save()
-            listManager.update()
-            lists = listManager.fetchedEntity as! [List]
         }
             
         else if(entityName == "OfflineRecipe") {
@@ -82,10 +98,6 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "yield" : recipes[index].yield = element; break
             default: break
             }
-            
-            recipeManager.save()
-            recipeManager.update()
-            recipes = recipeManager.fetchedEntity as! [OfflineRecipe]
         }
             
         else if(entityName == "RecipeListTable") {
@@ -94,10 +106,6 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "recipeID" : tables[index].recipeID = element; break
             default: break
             }
-            
-            tableManager.save()
-            tableManager.update()
-            tables = tableManager.fetchedEntity as! [RecipeListTable]
         }
         
         else if(entityName == "RecipeIndexManager") {
@@ -105,11 +113,10 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "recipeID" : indices[index].recipeID = element; break
             default : break
             }
-            
-            indexManager.save()
-            indexManager.update()
-            indices = indexManager.fetchedEntity as! [RecipeIndexManager]
         }
+        
+        updateObjects()
+        save()
     }
     
     func update(index: Int, entityName: String, attributeName: String, element: String) {
@@ -118,10 +125,6 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "name" : lists[index].name = element; break
             default: break
             }
-            
-            listManager.save()
-            listManager.update()
-            lists = listManager.fetchedEntity as! [List]
         }
             
         else if(entityName == "OfflineRecipe") {
@@ -133,25 +136,24 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "summary" : recipes[index].summary = element; break
             default: break
             }
-            
-            recipeManager.save()
-            recipeManager.update()
-            recipes = recipeManager.fetchedEntity as! [OfflineRecipe]
         }
         
         else if(entityName == "RecipeIndexManager") {
             switch attributeName {
-            case "sourceIdx" : indices[index].sourceIdx = element; break
+            case "source" : indices[index].source = element; break
             default: break
             }
-            
-            indexManager.save()
-            indexManager.update()
-            indices = indexManager.fetchedEntity as! [RecipeIndexManager]
         }
+        
+        else if(entityName == "User") {
+            if(attributeName == "name") {
+                author[0].name = element
+            }
+        }
+        
+        updateObjects()
+        save()
     }
-    
-    
     
     func update(index: Int, entityName: String, attributeName: String, element: Bool) {
         if(entityName == "RecipeIndexManager") {
@@ -160,6 +162,9 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             default: break
             }
         }
+        
+        updateObjects()
+        save()
     }
     
     func feedingDummyData() {
@@ -220,6 +225,39 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         tables = tableManager.fetchedEntity as! [RecipeListTable]
     }
     
+    func getRecipeID(source : Int16) -> Int16 {
+        var id : Int16 = Int16(INT16_MIN)
+        
+        for index in indices {
+            if(index.source == source.description) {
+                id = index.recipeID
+            }
+        }
+        return id
+    }
+    
+    func getTableEntry(listID: Int16, recipeID: Int16) -> RecipeListTable {
+        for table in tables {
+            if(table.listID == listID && table.recipeID == recipeID) {
+                return table
+            }
+        }
+        
+        return RecipeListTable()
+    }
+    
+    func getRecipeID(source : String) -> Int16 {
+        var id : Int16 = Int16(INT16_MIN)
+        
+        for index in indices {
+            if(index.source == source.description) {
+                id = index.recipeID
+            }
+        }
+        
+        return id
+    }
+    
     func getconvertedRecipes() -> [RecipeObject] {
         var objects : [RecipeObject] = []
         
@@ -228,5 +266,25 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         }
         
         return objects
+    }
+    
+    func isInList(listID: Int16, recipeID: Int16) -> Bool {
+        for table in tables {
+            if(table.listID == listID && table.recipeID == recipeID) {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    func hasIndex(recipeID: Int16) -> Bool {
+        for index in indices {
+            if(index.recipeID == recipeID) {
+                return true
+            }
+        }
+        
+        return false
     }
 }

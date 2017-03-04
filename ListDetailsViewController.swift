@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class ListDetailsViewController: UITableViewController, MenuTransitionManagerDelegate {
-    
     var selectedListID : Int16 = 0
     var row : Int = 0
     var data : [OfflineRecipe] = []
@@ -40,6 +39,9 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 
                 let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addRecipeLists") as! UINavigationController
+                
+                let addRecipeToList = nextViewController.viewControllers[0] as! AddRecipeToListViewController
+                addRecipeToList.listID = selectedListID                
                 self.present(nextViewController, animated:true, completion:nil)
             }
             else if nextView == "all" {
@@ -136,8 +138,8 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
         
         let menuTableViewController = segue.destination as! RecipeListsMenuTableViewController
         
-        menuTableViewController.nameOfCurrenteList = entities.lists[row].name!
-        menuTableViewController.currentItem = menuTableViewController.nameOfCurrenteList
+        menuTableViewController.nameOfCurrentList = entities.lists[row].name!
+        menuTableViewController.currentItem = menuTableViewController.nameOfCurrentList
         menuTableViewController.transitioningDelegate = self.menuTransitionManager
         menuTransitionManager.delegate = self
         
@@ -160,6 +162,15 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
         return true
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            let recipeID = entities.getRecipeID(source: getRecipes()[indexPath.row].offlineID)
+            let table = entities.getTableEntry(listID: selectedListID, recipeID: recipeID)
+            entities.delete(entity: table)
+            entities.updateObjects()
+            tableView.reloadData()
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

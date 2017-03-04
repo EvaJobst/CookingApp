@@ -12,8 +12,6 @@ import UIKit
 
 
 struct Instruction {
-    
     var number : Int
     var instruction : String
-    
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class MainMenuTableViewController: UITableViewController {
 
-    var nameOfCurrenteList : String = ""
+    var nameOfCurrentList : String = ""
     var menuItems : [String] = []
     var currentItem = "Your Lists"
     var action : String = ""
