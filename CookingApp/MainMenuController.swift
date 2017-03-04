@@ -69,7 +69,7 @@ class MainMenuController: UINavigationController, MenuTransitionManagerDelegate 
         
         let menuTableViewController = segue.destination as! RecipeListsMenuTableViewController
         
-        menuTableViewController.currentItem = menuTableViewController.nameOfCurrenteList
+        menuTableViewController.currentItem = menuTableViewController.nameOfCurrentList
         menuTableViewController.transitioningDelegate = self.menuTransitionManager
         menuTransitionManager.delegate = self
         

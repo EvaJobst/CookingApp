@@ -136,8 +136,8 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
         
         let menuTableViewController = segue.destination as! RecipeListsMenuTableViewController
         
-        menuTableViewController.nameOfCurrenteList = entities.lists[row].name!
-        menuTableViewController.currentItem = menuTableViewController.nameOfCurrenteList
+        menuTableViewController.nameOfCurrentList = entities.lists[row].name!
+        menuTableViewController.currentItem = menuTableViewController.nameOfCurrentList
         menuTableViewController.transitioningDelegate = self.menuTransitionManager
         menuTransitionManager.delegate = self
         
