@@ -16,7 +16,6 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     let searches = SearchManager()
     var data : [RecipeObject] = []
     @IBOutlet weak var searchBar: UISearchBar!
-    //var actualPage : Int = 0
     var switchView : Bool = false
     var nextView : String = ""
     var menuButton : UIButton? = nil

@@ -12,7 +12,7 @@ import AlamofireSwiftyJSON
 
 class FetchManager {
     let keys = ObserverKeyManager()
-    let manager = APIManager()
+    let api = APIManager()
     var data : [RecipeObject] = []
     var totalPages : Int = 0
     
@@ -25,13 +25,13 @@ class FetchManager {
     }
     
     func search(q : String, page : Int) {
-        manager.api.parameter["qs"] = q
-        manager.api.parameter["page"] = page.description
+        api.parameter["qs"] = q
+        api.parameter["page"] = page.description
         signIn()
     }
     
     @objc func request(notification: NSNotification) {
-        Alamofire.request(manager.api.url, method: .get, parameters: manager.api.parameter, encoding: manager.api.encoding!, headers: manager.api.header).responseSwiftyJSON { response in
+        Alamofire.request(api.url, method: .get, parameters: api.parameter, encoding: api.encoding!, headers: api.header).responseSwiftyJSON { response in
             self.data.removeAll()
             
             self.totalPages = (response.result.value?["total_results"].intValue)! / (response.result.value?["per_page"].intValue)!
