@@ -9,14 +9,10 @@
 import UIKit
 
 class InstructionTableViewController: UITableViewController {
-
-    
     var items = [Instruction]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         tableView.rowHeight = UITableViewAutomaticDimension
     

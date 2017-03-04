@@ -239,6 +239,7 @@
                     <connections>
                         <outlet property="NameTextField" destination="Awe-pf-elw" id="g9o-0M-IQn"/>
                         <outlet property="authorLabel" destination="PYn-Vz-yEz" id="L1E-fF-hgn"/>
+                        <outlet property="nameTextField" destination="Awe-pf-elw" id="OfZ-h5-ffA"/>
                         <outlet property="servingsTextField" destination="gUX-uU-T0k" id="Www-iC-FAO"/>
                         <outlet property="summaryTextField" destination="574-JZ-VEh" id="p0T-gH-iHm"/>
                     </connections>
