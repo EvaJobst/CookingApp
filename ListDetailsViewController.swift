@@ -39,9 +39,8 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
             if nextView == "add" {
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 
-                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addRecipeToList") as! UINavigationController
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addRecipeLists") as! UINavigationController
                 self.present(nextViewController, animated:true, completion:nil)
-                
             }
             else if nextView == "all" {
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
@@ -53,11 +52,33 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
             else if nextView == "share" {
                
                 
+                let objectsToShare = data
+                    
+                let activityController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+                    
+                let excludedActivities = [UIActivityType.postToFlickr, UIActivityType.postToWeibo, UIActivityType.message, UIActivityType.mail, UIActivityType.print, UIActivityType.copyToPasteboard, UIActivityType.assignToContact, UIActivityType.saveToCameraRoll, UIActivityType.addToReadingList, UIActivityType.postToFlickr, UIActivityType.postToVimeo, UIActivityType.postToTencentWeibo]
+                    
+                activityController.excludedActivityTypes = excludedActivities
+                present(activityController, animated: true, completion: nil)
+                
+                
             }
         }
         menuButton?.addTarget(self, action: #selector(menu(_:)), for: .touchUpInside)
         
     }
+    
+    func fileToURL(file: String) -> URL? {
+        // Get the full path of the file
+        let fileComponents = file.components(separatedBy: ".")
+        
+        if let filePath = Bundle.main.path(forResource: fileComponents[0], ofType: fileComponents[1]) {
+            return URL(fileURLWithPath: filePath)
+        }
+        
+        return nil
+    }
+    
     
     func menu(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "mainMenu", sender: self)
