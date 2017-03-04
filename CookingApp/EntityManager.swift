@@ -34,6 +34,14 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         super.init()
     }
     
+    func updateObjects() {
+        update()
+        recipes = recipeManager.fetchedEntity! as! [OfflineRecipe]
+        lists = listManager.fetchedEntity! as! [List]
+        tables = tableManager.fetchedEntity! as! [RecipeListTable]
+        indices = indexManager.fetchedEntity! as! [RecipeIndexManager]
+    }
+    
     override func update() {
         listManager.update()
         recipeManager.update()
@@ -121,7 +129,6 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "name" : recipes[index].name = element; break
             case "ingredients" : recipes[index].ingredients = element; break
             case "instructions" : recipes[index].instructions = element; break
-            case "image" : recipes[index].image = element; break
             case "author" : recipes[index].author = element; break
             case "summary" : recipes[index].summary = element; break
             default: break
@@ -144,6 +151,8 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         }
     }
     
+    
+    
     func update(index: Int, entityName: String, attributeName: String, element: Bool) {
         if(entityName == "RecipeIndexManager") {
             switch attributeName {
@@ -155,11 +164,11 @@ class EntityManager : CoreDataManager<NSManagedObject> {
     
     func feedingDummyData() {
         // RECIPES
-        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", image: "cheesecake.jpg", yield: 4, author: "Eva Jobst", summary: "")
+        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", yield: 4, author: "Eva Jobst", summary: "")
         
-        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", image: "cheesecake.jpg", yield: 4, author: "Eva Jobst", summary: "")
+        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", yield: 4, author: "Eva Jobst", summary: "")
         
-        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", image: "cheesecake.jpg", yield: 4, author: "Eva Jobst", summary: "")
+        recipeManager.set(offlineID: 0, name: "Recipe 1", ingredients: "", instructions: "", yield: 4, author: "Eva Jobst", summary: "")
         
         recipes = recipeManager.fetchedEntity as! [OfflineRecipe]
         

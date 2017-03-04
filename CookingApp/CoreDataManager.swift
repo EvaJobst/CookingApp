@@ -46,6 +46,8 @@ class CoreDataManager<T : NSManagedObject> {
     
     func delete(entity: T) {
         managedContext?.delete(entity as NSManagedObject)
+        save()
+        update()
     }
     
     // setList
@@ -74,7 +76,7 @@ class CoreDataManager<T : NSManagedObject> {
     }
     
     // setRecipe
-    func set(offlineID: Int16, name: String, ingredients: String, instructions: String, image: String, yield: Int16, author: String, summary: String) {
+    func set(offlineID: Int16, name: String, ingredients: String, instructions: String, yield: Int16, author: String, summary: String) {
         let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
             managedContext!)
         
@@ -82,7 +84,6 @@ class CoreDataManager<T : NSManagedObject> {
         data.setValue(name, forKey: "name")
         data.setValue(ingredients, forKey: "ingredients")
         data.setValue(instructions, forKey: "instructions")
-        data.setValue(image, forKey: "image")
         data.setValue(yield, forKey: "yield")
         data.setValue(author, forKey: "author")
         data.setValue(summary, forKey: "summary")

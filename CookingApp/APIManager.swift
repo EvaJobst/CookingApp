@@ -16,15 +16,13 @@ import Foundation
 import Alamofire
 
 class APIManager {
-    var api: [API] = []
-    var index = 0
+    var api : API
     
     init() {
-        api.append(API(url: "http://www.weeatt.com/api/v1/recipes"))
-        
-        api.last?.parameter = ["qs" : ""]
-        api.last?.encoding = URLEncoding.default
-        api.last?.header = ["Accept": "application/json",
+        api = API(url: "http://www.weeatt.com/api/v1/recipes")
+        api.parameter = ["qs" : "", "page" : "0"]
+        api.encoding = URLEncoding.default
+        api.header = ["Accept": "application/json",
                             "Content-Type": "application/json",
                             "x-api-key" : "1941ed8ddbb0"]
         
