@@ -105,6 +105,13 @@ class CoreDataManager<T : NSManagedObject> {
         update()
     }
     
+    func set(name: String) {
+        let data = NSEntityDescription.insertNewObject(forEntityName: entityName, into:
+            managedContext!)
+        
+        data.setValue(name, forKey: "name")
+    }
+    
     func save() {
         do {
             try managedContext?.save()

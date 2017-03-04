@@ -16,21 +16,25 @@ class EntityManager : CoreDataManager<NSManagedObject> {
     var recipeManager : CoreDataManager<NSManagedObject>
     var tableManager : CoreDataManager<NSManagedObject>
     var indexManager : CoreDataManager<NSManagedObject>
+    var authorManager : CoreDataManager<NSManagedObject>
     var lists : [List]
     var recipes : [OfflineRecipe]
     var tables : [RecipeListTable]
     var indices : [RecipeIndexManager]
+    var author : [Author]
     
     override init() {
         listManager = CoreDataManager(entityName: "List")
         recipeManager = CoreDataManager(entityName: "OfflineRecipe")
         tableManager = CoreDataManager(entityName: "RecipeListTable")
         indexManager = CoreDataManager(entityName: "RecipeIndexManager")
+        authorManager = CoreDataManager(entityName: "Author")
         
         recipes = recipeManager.fetchedEntity! as! [OfflineRecipe]
         lists = listManager.fetchedEntity! as! [List]
         tables = tableManager.fetchedEntity! as! [RecipeListTable]
         indices = indexManager.fetchedEntity! as! [RecipeIndexManager]
+        author = authorManager.fetchedEntity as! [Author]
         
         super.init()
     }
@@ -49,6 +53,7 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         lists = listManager.fetchedEntity! as! [List]
         tables = tableManager.fetchedEntity! as! [RecipeListTable]
         indices = indexManager.fetchedEntity! as! [RecipeIndexManager]
+        author = authorManager.fetchedEntity as! [Author]
     }
     
     override func update() {
@@ -65,15 +70,16 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         indexManager.save()
     }
     
-    override func set(listID: Int16, recipeID: Int16) {
+    func set(listID: Int16, recipeID: Int16) -> Bool {
         if(!isInList(listID: listID, recipeID: recipeID)) {
             tableManager.set(listID: listID, recipeID: recipeID)
             let element = Int16(lists[Int(listID)].count + 1)
             update(index: Int(listID), entityName: "List", attributeName: "count", element: element)
+            return true
         }
         
         else {
-            print("Recipe is already in list")
+            return false
         }
     }
     
@@ -83,12 +89,7 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "listID" : lists[index].listID = element; break
             case "count" : lists[index].count = element;
             default: break
-                
             }
-            
-            listManager.save()
-            listManager.update()
-            lists = listManager.fetchedEntity as! [List]
         }
             
         else if(entityName == "OfflineRecipe") {
@@ -97,10 +98,6 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "yield" : recipes[index].yield = element; break
             default: break
             }
-            
-            recipeManager.save()
-            recipeManager.update()
-            recipes = recipeManager.fetchedEntity as! [OfflineRecipe]
         }
             
         else if(entityName == "RecipeListTable") {
@@ -109,10 +106,6 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "recipeID" : tables[index].recipeID = element; break
             default: break
             }
-            
-            tableManager.save()
-            tableManager.update()
-            tables = tableManager.fetchedEntity as! [RecipeListTable]
         }
         
         else if(entityName == "RecipeIndexManager") {
@@ -120,11 +113,10 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "recipeID" : indices[index].recipeID = element; break
             default : break
             }
-            
-            indexManager.save()
-            indexManager.update()
-            indices = indexManager.fetchedEntity as! [RecipeIndexManager]
         }
+        
+        updateObjects()
+        save()
     }
     
     func update(index: Int, entityName: String, attributeName: String, element: String) {
@@ -133,10 +125,6 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "name" : lists[index].name = element; break
             default: break
             }
-            
-            listManager.save()
-            listManager.update()
-            lists = listManager.fetchedEntity as! [List]
         }
             
         else if(entityName == "OfflineRecipe") {
@@ -148,10 +136,6 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "summary" : recipes[index].summary = element; break
             default: break
             }
-            
-            recipeManager.save()
-            recipeManager.update()
-            recipes = recipeManager.fetchedEntity as! [OfflineRecipe]
         }
         
         else if(entityName == "RecipeIndexManager") {
@@ -159,11 +143,16 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             case "source" : indices[index].source = element; break
             default: break
             }
-            
-            indexManager.save()
-            indexManager.update()
-            indices = indexManager.fetchedEntity as! [RecipeIndexManager]
         }
+        
+        else if(entityName == "User") {
+            if(attributeName == "name") {
+                author[0].name = element
+            }
+        }
+        
+        updateObjects()
+        save()
     }
     
     func update(index: Int, entityName: String, attributeName: String, element: Bool) {
@@ -173,6 +162,9 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             default: break
             }
         }
+        
+        updateObjects()
+        save()
     }
     
     func feedingDummyData() {

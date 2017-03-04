@@ -9,9 +9,6 @@
 import UIKit
 
 class AddRecipePageControlViewController: UIViewController {
-    
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,15 +22,12 @@ class AddRecipePageControlViewController: UIViewController {
     
     }
     
-    
     @IBAction func saveAction(_ sender: Any) {
         // TO DO - SAVING !!
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func cancelAction(_ sender: Any) {
-        
         self.dismiss(animated: true, completion: nil)
-        
     }
 
 }

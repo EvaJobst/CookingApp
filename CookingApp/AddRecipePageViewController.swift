@@ -10,8 +10,6 @@ import UIKit
 
 
 class AddRecipePageViewController: UIPageViewController {
-    
-    
     weak var addRecipeDelegate: AddRecipePageViewControllerDelegate?
     
     
@@ -20,15 +18,11 @@ class AddRecipePageViewController: UIPageViewController {
                 self.newInformationViewController(information: "Ingredients"),
                 self.newInformationViewController(information: "Instructions")]
     }()
-    
-    
-    
-    
+
     private func newInformationViewController(information: String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil) .
             instantiateViewController(withIdentifier: "\(information)Information")
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +39,7 @@ class AddRecipePageViewController: UIPageViewController {
         
         addRecipeDelegate?.addRecipePageViewController(addRecipePageViewController: self, didUpdatePageCount: orderedViewControllers.count)
     }
-    
 }
-
 
 extension AddRecipePageViewController: UIPageViewControllerDataSource {
     
@@ -96,7 +88,6 @@ extension AddRecipePageViewController: UIPageViewControllerDataSource {
     
 }
 
-
 extension AddRecipePageViewController: UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController,
@@ -108,7 +99,6 @@ extension AddRecipePageViewController: UIPageViewControllerDelegate {
             addRecipeDelegate?.addRecipePageViewController(addRecipePageViewController: self, didUpdatePageIndex: index)
         }
     }
-    
 }
 
 protocol AddRecipePageViewControllerDelegate: class {

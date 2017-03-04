@@ -116,7 +116,10 @@ class AddRecipeToListViewController: UITableViewController, UISearchBarDelegate 
             }
         }
         
-        entities.set(listID: listID, recipeID: recipeID)
+        if(!entities.set(listID: listID, recipeID: recipeID)) {
+            view.makeToast("Recipe is already in this list!")
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

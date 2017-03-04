@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Author" representedClassName="Author" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="List" representedClassName="List" syncable="YES" codeGenerationType="class">
         <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="listID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -29,5 +32,6 @@
         <element name="OfflineRecipe" positionX="250" positionY="90" width="128" height="165"/>
         <element name="RecipeIndexManager" positionX="63" positionY="153" width="128" height="90"/>
         <element name="RecipeListTable" positionX="61" positionY="45" width="128" height="75"/>
+        <element name="Author" positionX="54" positionY="126" width="128" height="60"/>
     </elements>
 </model>

@@ -148,7 +148,10 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == self.data.count - 1 {
-            if(searches.actualPage >= 1 && searchBar.selectedScopeButtonIndex == 1 && data.count > 0) {
+            if(searches.actualPage >= 1 &&
+                searchBar.selectedScopeButtonIndex == 1 &&
+                data.count > 0 &&
+                (searches.actualPage < (searches.fetches?.totalPages)!)) {
                 searches.actualPage = searches.actualPage + 1
                 searches.filterContents()
             }

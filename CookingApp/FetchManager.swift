@@ -53,15 +53,10 @@ class FetchManager {
             Alamofire.request(api.url, method: .get, parameters: api.parameter, encoding: api.encoding!, headers: api.header).responseSwiftyJSON { response in
                 self.data.removeAll()
                 
-                print(response.request.debugDescription)
+                //print(response.request.debugDescription)
                 //print(response.response.debugDescription)
                 
-                self.totalPages = (response.result.value?["total_results"].intValue)! / (response.result.value?["per_page"].intValue)!
-                
-                if((response.result.value?["total_results"].intValue)! % (response.result.value?["per_page"].intValue)! == 0) {
-                    self.totalPages = self.totalPages + 1
-                }
-                
+                self.totalPages = (response.result.value?["total_pages"].intValue)!
                 print(response.result.debugDescription)
                 
                 let recipesJSON = response.result.value?["results"]

@@ -9,10 +9,13 @@
 import UIKit
 
 class GeneralInformationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,  UITextFieldDelegate {
+    @IBOutlet weak var summaryTextField: UITextView!
 
-    @IBOutlet weak var imageView: UIImageView!
+    //@IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var NameTextField: UITextField!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var servingsTextField: UITextField!
     
     
     override func viewDidLoad() {
@@ -32,7 +35,7 @@ class GeneralInformationViewController: UIViewController, UIImagePickerControlle
         return false
     }
     
-    @IBAction func openCameraButton(sender: AnyObject) {
+    /*@IBAction func openCameraButton(sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
             
             let imagePicker = UIImagePickerController()
@@ -60,8 +63,5 @@ class GeneralInformationViewController: UIViewController, UIImagePickerControlle
         imageView.image = image
         self.dismiss(animated: true, completion: nil)
         
-    }
-    
-
-    
+    }*/
 }
