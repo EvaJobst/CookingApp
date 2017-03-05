@@ -51,8 +51,14 @@ class RecipeObject {
         yield = data.yield
         summary = data.summary!
         author = data.author!
-        //permalink = data.permalink!
-        permalink = ""
+        
+        if(offlineID == Int16(INT16_MIN)) {
+            permalink = data.permalink!
+        }
+        
+        else {
+            permalink = ""
+        }
     }
     
     init?(jsonData:JSON){

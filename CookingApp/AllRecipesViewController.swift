@@ -90,6 +90,8 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //entities.deletingDummyData()
+        
         tableView.dataSource = self
         searchBar.delegate = self
         self.tableView.register(UINib (nibName: "CustomRecipeCell", bundle: nil), forCellReuseIdentifier: "cellIdentifier")
@@ -98,6 +100,12 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
             self,
             selector: #selector(self.reload),
             name: Notification.Name(rawValue: keys.search),
+            object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.newRecipe),
+            name: Notification.Name(rawValue: keys.newRecipe),
             object: nil)
         
         data = entities.getconvertedRecipes()
@@ -110,8 +118,22 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
         menuButton?.setBackgroundImage(UIImage(named: "menu-button"), for: .normal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton!)
     }
+    
+    @objc func newRecipe(notification: NSNotification){
+        entities.updateObjects()
+        
+        if(searchBar.selectedScopeButtonIndex == 0) {
+            data = entities.getconvertedRecipes()
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     @objc func reload(notification: NSNotification){
+        entities.printData()
+        
         switch searchBar.selectedScopeButtonIndex {
         case 0 :
             data = searches.data
@@ -168,10 +190,6 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            // delete recipe from recipes
-            // delete recipe from indices
-            // delete recipe from tables
-            
             let offlineID = data[indexPath.row].offlineID
             let recipeID = entities.getRecipeID(source: offlineID)
             let tables = entities.getTableEntries(recipeID: recipeID)

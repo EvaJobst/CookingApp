@@ -22,6 +22,7 @@ class AddRecipeToListViewController: UITableViewController, UISearchBarDelegate 
         
         tableView.dataSource = self
         searchBar.delegate = self
+
         self.tableView.register(UINib (nibName: "CustomRecipeCell", bundle: nil), forCellReuseIdentifier: "cellIdentifier")
         
         NotificationCenter.default.addObserver(
@@ -120,6 +121,10 @@ class AddRecipeToListViewController: UITableViewController, UISearchBarDelegate 
             view.makeToast("Recipe is already in this list!")
         }
         
+        else {
+            view.makeToast("Added Recipe to list!")
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -130,6 +135,13 @@ class AddRecipeToListViewController: UITableViewController, UISearchBarDelegate 
     @IBAction func cancelAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func saveAction(_ sender: Any) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.newRecipeInList)), object: self)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
 
     //@IBAction func SearchAction(_ sender: Any) {
     //}

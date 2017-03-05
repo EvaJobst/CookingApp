@@ -10,13 +10,17 @@ import Foundation
 import UIKit
 
 class ListDetailsViewController: UITableViewController, MenuTransitionManagerDelegate {
+    let entities = EntityManager()
+    let keys = ObserverKeyManager()
+    let fetches = FetchManager()
+    
     var selectedListID : Int16 = 0
     var row : Int = 0
-    var data : [OfflineRecipe] = []
-    let entities = EntityManager()
+    var data : [RecipeObject] = []
     var menuButton : UIButton? = nil
     var switchView : Bool = false
     var nextView : String = ""
+    
     
     var menuTransitionManager = MenuTransitionManager()
     
@@ -91,20 +95,45 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        data = getRecipes()
-        self.tableView.register(UINib (nibName: "CustomRecipeCell", bundle: nil), forCellReuseIdentifier: "cellIdentifier")
-        tableView.rowHeight = 100
-        tableView.reloadData()
-        
-        
+        //data = getRecipes()
         menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         menuButton?.setBackgroundImage(UIImage(named: "menu-button"), for: .normal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton!)
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.reload),
+            name: Notification.Name(rawValue: keys.newRecipeInList),
+            object: nil)
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.reloadAfterFetch),
+            name: Notification.Name(rawValue: keys.fetchForList),
+            object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.nextToUpdate),
+            name: Notification.Name(rawValue: keys.next),
+            object: nil)
+        
+        updateRecipes()
+        self.tableView.register(UINib (nibName: "CustomRecipeCell", bundle: nil), forCellReuseIdentifier: "cellIdentifier")
+        tableView.rowHeight = 100
+        tableView.reloadData()
     }
     
+    @objc func reload(notification: NSNotification){
+        updateRecipes()
+        //data = getRecipes()
+        tableView.reloadData()
+    }
     
+    @objc func reloadAfterFetch(notification: NSNotification){
+        data.append(fetches.data[0])
+        tableView.reloadData()
+    }
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         let sourceController = segue.source as! RecipeListsMenuTableViewController
@@ -154,7 +183,7 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
         
         let cell : CustomRecipeCell = self.tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")! as! CustomRecipeCell
         cell.recipeTitle.text = data[indexPath.row].name
-        cell.recipeDetails.text = data[indexPath.row].yield.description
+        cell.recipeDetails.text = data[indexPath.row].summary
         return cell
     }
     
@@ -164,10 +193,11 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            let recipeID = entities.getRecipeID(source: getRecipes()[indexPath.row].offlineID)
+            let recipeID = entities.getRecipeID(source: data[indexPath.row].offlineID)
             let table = entities.getTableEntry(listID: selectedListID, recipeID: recipeID)
-            entities.tableManager.delete(entity: table)
+            entities.delete(entity: table, listID: Int(selectedListID))
             entities.updateObjects()
+            updateRecipes()
             tableView.reloadData()
         }
     }
@@ -177,16 +207,43 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
         // Dispose of any resources that can be recreated.
     }
     
-    func getRecipes () -> [OfflineRecipe] {
-        var retRecipes : [OfflineRecipe] = []
+    func updateRecipes () {
+        var recipesInList : [RecipeListTable] = []
         
-        for i in 0..<entities.tables.count {
-            if(entities.tables[i].listID == selectedListID) {
-                retRecipes.append(entities.recipes[Int(entities.tables[i].recipeID)])
+        for table in entities.tables {
+            if(table.listID == selectedListID) {
+                recipesInList.append(table)
             }
         }
         
-        return retRecipes
+        if(recipesInList.count > 0) {
+            let dictObject = ["recipesInList" : recipesInList, "index" : 0] as [String : Any]
+            NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.next)), object: dictObject)
+        }
     }
     
+    @objc func nextToUpdate(notification: NSNotification){
+        var dictObject = notification.object as! [String : Any]
+        let index = dictObject["index"] as! Int
+        let recipesInList = dictObject["recipesInList"] as! [RecipeListTable]
+        
+        print(index.description)
+        
+        if(index < recipesInList.count) {
+            let recipeID = recipesInList[index].recipeID
+            let listID = recipesInList[index].listID
+            let indexElement = entities.indices[Int(recipeID)]
+            
+            if(indexElement.isOffline) {
+                data.append(RecipeObject(data: entities.recipes[Int(indexElement.source!)!]))
+                dictObject["index"] = index + 1
+                NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.next)), object: dictObject)
+            }
+                
+            else {
+                fetches.fetch(recipeID: recipeID, dictObject: dictObject)
+                //NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.next)), object: (index+1))
+            }
+        }
+    }
 }

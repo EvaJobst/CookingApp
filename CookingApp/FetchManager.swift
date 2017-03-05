@@ -9,10 +9,12 @@
 import Foundation
 import Alamofire
 import AlamofireSwiftyJSON
+import SwiftyJSON
 
 class FetchManager {
     let keys = ObserverKeyManager()
     let api = APIManager()
+    let entities = EntityManager()
     var data : [RecipeObject] = []
     var totalPages : Int = 0
     var actualPage : Int = 0
@@ -21,8 +23,14 @@ class FetchManager {
     init() {
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(self.request),
-            name: Notification.Name(rawValue: keys.authentification),
+            selector: #selector(self.searchRequest),
+            name: Notification.Name(rawValue: keys.authentificationSearch),
+            object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.fetchRequest),
+            name: Notification.Name(rawValue: keys.authentificationFetch),
             object: nil)
     }
     
@@ -30,27 +38,40 @@ class FetchManager {
         if(!q.isEmpty) {
             query = q
             actualPage = page
+            signIn(isFetch: false, dictObject: [:])
+        }
+    }
+    
+    func signIn(isFetch: Bool, dictObject : [String : Any]) {
+        //sign in required before fetching
+        let parameter : Parameters = ["chef_login" : ["login" : "EvaJobst", "password" : "123456"]]
+        
+        let header : HTTPHeaders = ["Accept": "application/json",
+                                    "Content-Type": "application/json",
+                                    "x-api-key" : "1941ed8ddbb0"]
+        
+        Alamofire.request("http://www.weeatt.com/api/v1/chefs/sign_in", method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: header).responseJSON {response in
+            //print("Sign In!")
+            print(response.response.debugDescription)
+            print(response.result.debugDescription)
             
-            //sign in required before fetching
-            let parameter : Parameters = ["chef_login" : ["login" : "EvaJobst", "password" : "123456"]]
+            if(isFetch) {
+                //print("To fetch!")
+                NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.authentificationFetch)), object: dictObject)
+            }
             
-            let header : HTTPHeaders = ["Accept": "application/json",
-                                        "Content-Type": "application/json",
-                                        "x-api-key" : "1941ed8ddbb0"]
-            
-            Alamofire.request("http://www.weeatt.com/api/v1/chefs/sign_in", method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: header).responseJSON {response in
-                
-                NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.authentification)), object: self)
+            else {
+                NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.authentificationSearch)), object: self)
             }
         }
     }
     
-    @objc func request(notification: NSNotification) {
+    @objc func searchRequest(notification: NSNotification) {
         if(actualPage != 0 && !query.isEmpty) {
-            api.parameter["qs"] = query
-            api.parameter["page"] = actualPage.description
+            api.search.parameter["qs"] = query
+            api.search.parameter["page"] = actualPage.description
             
-            Alamofire.request(api.url, method: .get, parameters: api.parameter, encoding: api.encoding!, headers: api.header).responseSwiftyJSON { response in
+            Alamofire.request(api.search.url, method: .get, parameters: api.search.parameter, encoding: api.search.encoding!, headers: api.search.header).responseSwiftyJSON { response in
                 self.data.removeAll()
                 
                 self.totalPages = (response.result.value?["total_pages"].intValue)!
@@ -62,11 +83,36 @@ class FetchManager {
                 
                 NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.search)), object: self)
             }
-
         }
     }
     
-    func fetch(recipeID: Int16) {
+    func fetch(recipeID: Int16, dictObject: [String : Any]) {
+        if(!entities.indices[Int(recipeID)].isOffline && entities.indices[Int(recipeID)].source != "") {
+            //api.fetch.url = api.getBaseFetchURL()
+            //api.fetch.url.append(entities.indices[Int(recipeID)].source!)
+            api.fetch.parameter["permalink"] = entities.indices[Int(recipeID)].source!
+            signIn(isFetch: true, dictObject : dictObject)
+        }
+    }
+    
+    @objc func fetchRequest(notification: NSNotification) {
+        data.removeAll()
+        if((api.fetch.parameter["permalink"] as! String) != "") {
+            var dictObject = notification.object as! [String : Any]
+            
+            print("URL in request: " + api.fetch.url)
+            Alamofire.request(api.fetch.url, method: .get, parameters: api.fetch.parameter, encoding: api.fetch.encoding!, headers: api.fetch.header).responseSwiftyJSON { response in
+                print(response.request.debugDescription)
+                print(response.response.debugDescription)
+                let recipeJSON = response.result.value!
+                self.data.append(RecipeObject(jsonData: recipeJSON)!)
+                self.api.resetFetch()
+                
+                let index = dictObject["index"] as! Int
+                dictObject["index"] = index + 1
+                NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.next)), object: dictObject)
+            }
+        }
         
     }
 }

@@ -9,9 +9,13 @@
 import Foundation
 
 class ObserverKeyManager {
-    let authentification = "FinishedAuthentificationForAPI"
+    let authentificationFetch = "FinishedAuthentificationFetchForAPI"
+    let authentificationSearch = "FinishedAuthentificationSearchForAPI"
     let search = "FinishedSearchingRecipes"
     let fetch = "FinishedFetchingRecipe"
     let newRecipeInList = "NewRecipeInList"
+    let fetchForList = "FinishedFetchingRecipeForList"
     let newList = "NewListInDatabase"
+    let newRecipe = "NewRecipe"
+    let next = "NextElementToUpdate"
 }

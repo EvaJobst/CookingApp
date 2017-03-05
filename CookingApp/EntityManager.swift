@@ -39,6 +39,39 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         super.init()
     }
     
+    func printData() {
+        print("RECIPES")
+        print("Count: " + recipes.count.description)
+        
+        for recipe in recipes {
+            print("Name: " + recipe.name!)
+        }
+        
+        print()
+        print("INDICES")
+        print("Count: " + indices.count.description)
+        
+        for index in indices {
+            print("Source: " + index.source!)
+        }
+        
+        print()
+        print("LISTS")
+        print("Count: " + lists.count.description)
+        
+        for list in lists {
+            print("Name: " + list.name!)
+        }
+        
+        print()
+        print("TABLES")
+        print("Count: " + tables.count.description)
+        
+        for table in tables {
+            print("List: " + table.listID.description + ", Recipe: " + table.recipeID.description)
+        }
+    }
+    
     func removeListObjects(listID: Int16) {
         for table in tables {
             if(table.listID == listID) {
@@ -54,6 +87,12 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         tables = tableManager.fetchedEntity! as! [RecipeListTable]
         indices = indexManager.fetchedEntity! as! [RecipeIndexManager]
         author = authorManager.fetchedEntity as! [Author]
+    }
+    
+    func delete(entity: NSManagedObject, listID: Int) {
+        tableManager.delete(entity: entity)
+        let element = Int16(lists[Int(listID)].count - 1)
+        update(index: Int(listID), entityName: "List", attributeName: "count", element: element)
     }
     
     override func update() {
@@ -212,6 +251,12 @@ class EntityManager : CoreDataManager<NSManagedObject> {
             tableManager.delete(entity: tables[i])
         }
         
+        // INDICES
+        // TABLES
+        for i in 0..<indices.count {
+            indexManager.delete(entity: indices[i])
+        }
+        
         // SAVING
         recipeManager.save()
         recipeManager.update()
@@ -219,10 +264,13 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         listManager.update()
         tableManager.save()
         tableManager.update()
+        indexManager.save()
+        indexManager.update()
         
         recipes = recipeManager.fetchedEntity as! [OfflineRecipe]
         lists = listManager.fetchedEntity as! [List]
         tables = tableManager.fetchedEntity as! [RecipeListTable]
+        indices = indexManager.fetchedEntity as! [RecipeIndexManager]
     }
     
     func getRecipeID(source : Int16) -> Int16 {

@@ -9,6 +9,7 @@
 import UIKit
 
 class AddRecipePageControlViewController: UIViewController {
+    let keys = ObserverKeyManager()
     let entities = EntityManager()
     var generalViewController : GeneralInformationViewController? = nil
     var ingredientsViewController : AddIngriedientViewController? = nil
@@ -26,6 +27,9 @@ class AddRecipePageControlViewController: UIViewController {
     @IBAction func saveAction(_ sender: Any) {
         getController()
         saveRecipe()
+        
+        NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.newRecipe)), object: self)
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -58,8 +62,9 @@ class AddRecipePageControlViewController: UIViewController {
         
         let offlineID = Int16(entities.recipes.count)
         
-        entities.indexManager.set(recipeID: Int16(entities.indices.count), isOffline: false, source: offlineID.description)
+        entities.indexManager.set(recipeID: Int16(entities.indices.count), isOffline: true, source: offlineID.description)
         entities.recipeManager.set(offlineID: offlineID, name: name!, ingredients: ingredients, instructions: instructions, yield: Int16(yield!)!, author: author, summary: summary!)
+        entities.updateObjects()
     }
     
     func toString(instructions: [Instruction]) -> String {

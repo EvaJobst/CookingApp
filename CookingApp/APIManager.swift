@@ -10,10 +10,33 @@ import Foundation
 import Alamofire
 
 class APIManager {
-    var url: String = "http://www.weeatt.com/api/v1/recipes"
-    var parameter : Parameters = ["qs" : "", "page" : "0"]
-    var header : HTTPHeaders = ["Accept": "application/json",
+    let search : API = API()
+    let fetch : API = API()
+    let login : API = API()
+    
+    
+    init() {
+        search.url = "http://www.weeatt.com/api/v1/recipes"
+        search.parameter = ["qs" : "", "page" : "0"]
+        
+        fetch.url = "http://www.weeatt.com/api/v1/recipes/"
+        fetch.parameter = ["permalink" : ""]
+    }
+    
+    func resetFetch() {
+        fetch.url = getBaseFetchURL()
+    }
+    
+    func getBaseFetchURL() -> String {
+        return "http://www.weeatt.com/api/v1/recipes/"
+    }
+}
+
+class API {
+    var url = ""
+    var parameter : Parameters = [:]
+    let header : HTTPHeaders = ["Accept": "application/json",
                                 "Content-Type": "application/json",
                                 "x-api-key" : "1941ed8ddbb0"]
-    var encoding : ParameterEncoding? = URLEncoding.default
+    let encoding : ParameterEncoding? = URLEncoding.default
 }
