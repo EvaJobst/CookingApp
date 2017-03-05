@@ -126,6 +126,8 @@ class AddRecipeToListViewController: UITableViewController, UISearchBarDelegate 
             view.makeToast("Added Recipe to list!")
         }
         
+        entities.updateObjects()
+        
     }
     
     override func didReceiveMemoryWarning() {
