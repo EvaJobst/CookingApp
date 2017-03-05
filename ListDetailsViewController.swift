@@ -20,6 +20,7 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
     var menuButton : UIButton? = nil
     var switchView : Bool = false
     var nextView : String = ""
+    var list: RecipeList? = nil
     
     
     var menuTransitionManager = MenuTransitionManager()
@@ -57,9 +58,29 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
             }
             else if nextView == "share" {
                
+                guard let list = list,
+                    let url = list.exportToFileURL() else {
+                        return
+                }
                 
-                // TO DO SHARE
+                let activityViewController = UIActivityViewController(
+                    activityItems: ["Check out my list.", url],
+                    applicationActivities: nil)
                 
+                
+                activityViewController.completionWithItemsHandler = {
+                    (activity, success, items, error) in
+                    print("Activity: \(activity) Success: \(success) Items: \(items) Error: \(error)")
+                    do {
+                        try FileManager.default.removeItem(at: url)
+                        print("File Removed from Documents Folder")
+                    } catch {
+                        print("Failed to remove item from Documents Folder")
+                    }
+                }
+                
+                
+                present(activityViewController, animated: true, completion: nil)
                 
             }
         }
@@ -114,6 +135,10 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
         self.tableView.register(UINib (nibName: "CustomRecipeCell", bundle: nil), forCellReuseIdentifier: "cellIdentifier")
         tableView.rowHeight = 100
         tableView.reloadData()
+        
+        list = RecipeList()
+        list?.name = entities.lists[row].name!
+        list?.recipes = data
     }
     
     @objc func reload(notification: NSNotification){
