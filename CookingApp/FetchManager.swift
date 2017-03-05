@@ -102,15 +102,16 @@ class FetchManager {
             
             print("URL in request: " + api.fetch.url)
             Alamofire.request(api.fetch.url, method: .get, parameters: api.fetch.parameter, encoding: api.fetch.encoding!, headers: api.fetch.header).responseSwiftyJSON { response in
-                print(response.request.debugDescription)
-                print(response.response.debugDescription)
                 let recipeJSON = response.result.value!
-                self.data.append(RecipeObject(jsonData: recipeJSON)!)
+                print(recipeJSON)
+                self.data.append(RecipeObject(jsonData: recipeJSON["results"][0])!)
                 self.api.resetFetch()
                 
                 let index = dictObject["index"] as! Int
                 dictObject["index"] = index + 1
+                
                 NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.next)), object: dictObject)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.fetchForList)), object: self)
             }
         }
         

@@ -114,6 +114,7 @@ class AddRecipeToListViewController: UITableViewController, UISearchBarDelegate 
                 }
 
                 entities.indexManager.set(recipeID: recipeID, isOffline: false, source: data[indexPath.row].permalink)
+                entities.updateObjects()
             }
         }
         

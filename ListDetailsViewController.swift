@@ -221,6 +221,9 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
         
         print(index.description)
         
+        entities.updateObjects()
+        tableView.reloadData()
+        
         if(index < recipesInList.count) {
             let recipeID = recipesInList[index].recipeID
             let listID = recipesInList[index].listID
