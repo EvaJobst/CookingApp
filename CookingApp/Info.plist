@@ -92,15 +92,15 @@
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
-			<key>UTITypeTagSpecification</key>
+			<key>UTTypeTagSpecification</key>
 			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>recipe</string>
-				</array>
 				<key>public.mime-type</key>
 				<array>
 					<string>application/cookingapp</string>
+				</array>
+				<key>public.filename-extension</key>
+				<array>
+					<string>recipe</string>
 				</array>
 			</dict>
 			<key>UTTypeConformsTo</key>
@@ -113,15 +113,15 @@
 			<string>at.fh-ooe.hgb.mc.ios.recipe</string>
 		</dict>
 		<dict>
-			<key>UTITypeTagSpecification</key>
+			<key>UTTypeTagSpecification</key>
 			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>recipe</string>
-				</array>
 				<key>public.mime-type</key>
 				<array>
 					<string>application/cookingapp</string>
+				</array>
+				<key>public.filename-extension</key>
+				<array>
+					<string>recipe</string>
 				</array>
 			</dict>
 			<key>UTTypeConformsTo</key>
