@@ -19,7 +19,25 @@ class InstructionViewController: UIViewController, UITextViewDelegate {
         instructionText.delegate = self
         instructionText.layer.borderWidth = 1
         
+        hideKeyboard()
+        
     }
+    
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
+
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)

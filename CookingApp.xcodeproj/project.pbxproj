@@ -76,7 +76,7 @@
 		D1DA87791E6AE1330021D859 /* Default-Landscape@2x~ipad_2048x1536.png in Resources */ = {isa = PBXBuildFile; fileRef = D1DA87731E6AE1330021D859 /* Default-Landscape@2x~ipad_2048x1536.png */; };
 		D1DA877A1E6AE1330021D859 /* Default-Landscape~ipad_1024x748.png in Resources */ = {isa = PBXBuildFile; fileRef = D1DA87741E6AE1330021D859 /* Default-Landscape~ipad_1024x748.png */; };
 		D1DA877B1E6AE1330021D859 /* Default-Landscape~ipad_1024x768.png in Resources */ = {isa = PBXBuildFile; fileRef = D1DA87751E6AE1330021D859 /* Default-Landscape~ipad_1024x768.png */; };
-		D1DA877D1E6C62C10021D859 /* RecipeItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DA877C1E6C62C10021D859 /* RecipeItemSource.swift */; };
+		D1DA877D1E6C62C10021D859 /* RecipeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DA877C1E6C62C10021D859 /* RecipeList.swift */; };
 		D1DA877F1E6C8DAE0021D859 /* RecipeOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DA877E1E6C8DAE0021D859 /* RecipeOverviewViewController.swift */; };
 		DC0EE68A1E4CEA3A00DFC484 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0EE6891E4CEA3A00DFC484 /* AppDelegate.swift */; };
 		DC0EE68F1E4CEA3A00DFC484 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0EE68D1E4CEA3A00DFC484 /* Main.storyboard */; };
@@ -189,7 +189,7 @@
 		D1DA87731E6AE1330021D859 /* Default-Landscape@2x~ipad_2048x1536.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad_2048x1536.png"; path = "Launchscreen/Default-Landscape@2x~ipad_2048x1536.png"; sourceTree = "<group>"; };
 		D1DA87741E6AE1330021D859 /* Default-Landscape~ipad_1024x748.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad_1024x748.png"; path = "Launchscreen/Default-Landscape~ipad_1024x748.png"; sourceTree = "<group>"; };
 		D1DA87751E6AE1330021D859 /* Default-Landscape~ipad_1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad_1024x768.png"; path = "Launchscreen/Default-Landscape~ipad_1024x768.png"; sourceTree = "<group>"; };
-		D1DA877C1E6C62C10021D859 /* RecipeItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeItemSource.swift; sourceTree = "<group>"; };
+		D1DA877C1E6C62C10021D859 /* RecipeList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeList.swift; sourceTree = "<group>"; };
 		D1DA877E1E6C8DAE0021D859 /* RecipeOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeOverviewViewController.swift; sourceTree = "<group>"; };
 		D1F4EFEF1E64283100E53E3F /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		DC0EE6861E4CEA3A00DFC484 /* CookingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -474,7 +474,7 @@
 				DC9769931E643B0400639BB0 /* CustomRecipeCell.xib */,
 				DCD1FFA01E6762620093496B /* RecipeObject.swift */,
 				D1F4EFEF1E64283100E53E3F /* Header.h */,
-				D1DA877C1E6C62C10021D859 /* RecipeItemSource.swift */,
+				D1DA877C1E6C62C10021D859 /* RecipeList.swift */,
 			);
 			path = CookingApp;
 			sourceTree = "<group>";
@@ -769,7 +769,7 @@
 				D11A38B81E66101700CFB3E9 /* IngredientViewController.swift in Sources */,
 				D11A38AF1E66063F00CFB3E9 /* Ingredient.swift in Sources */,
 				DCD1FF9F1E6761FC0093496B /* APIManager.swift in Sources */,
-				D1DA877D1E6C62C10021D859 /* RecipeItemSource.swift in Sources */,
+				D1DA877D1E6C62C10021D859 /* RecipeList.swift in Sources */,
 				D187F9951E686C8700829C07 /* RecipeListsViewController.swift in Sources */,
 				D11A38B11E66094E00CFB3E9 /* IngredientTableViewCell.swift in Sources */,
 				DC1900D01E6AAF42007C92F6 /* ObserverKeyManager.swift in Sources */,

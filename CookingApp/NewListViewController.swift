@@ -19,12 +19,29 @@ class NewListViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        hideKeyboard()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
+
     
     @IBAction func saveAction(_ sender: Any) {
         entities.listManager.set(listID: Int16(entities.lists.count), count: 0, name: NewListName.text!)

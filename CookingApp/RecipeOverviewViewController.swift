@@ -84,9 +84,8 @@ class RecipeOverviewViewController: UIViewController, MenuTransitionManagerDeleg
         
         
         let heigth = ingredientsLable.bounds.size.height + instructionsLabel.bounds.size.height
-        let width = ingredientsLable.bounds.size.width + instructionsLabel.bounds.size.width
         
-        scrollView.contentSize = CGSize(width: width, height: heigth)
+        scrollView.contentSize = CGSize(width: scrollView.bounds.width, height: heigth)
         
         recipe = RecipeObject(name: name, ingredients: ingredients, instructions: instructions, summary: summary, author: author)
     }

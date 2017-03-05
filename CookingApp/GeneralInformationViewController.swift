@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GeneralInformationViewController: UIViewController, UINavigationControllerDelegate {
+class GeneralInformationViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var summaryTextField: UITextView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var authorLabel: UILabel!
@@ -16,11 +16,17 @@ class GeneralInformationViewController: UIViewController, UINavigationController
     let entities = EntityManager()
     //@IBOutlet weak var imageView: UIImageView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //authorLabel.text = entities.author[0].name
         authorLabel.text = "Dummy Person"
         summaryTextField.layer.borderWidth = 1
+        
+        summaryTextField.delegate = self
+        nameTextField.delegate = self
+        servingsTextField.delegate = self
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -29,11 +35,26 @@ class GeneralInformationViewController: UIViewController, UINavigationController
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         //nameTextField.delegate = self
+        self.hideKeyboard()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard()
+    {
+        view.endEditing(true)
     }
     
     /*@IBAction func openCameraButton(sender: AnyObject) {

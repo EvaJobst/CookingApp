@@ -24,12 +24,29 @@ class IngredientViewController: UIViewController, UITextFieldDelegate {
         
         numberText.delegate = self
         nameText.delegate = self
+        
+        hideKeyboard()
     }
 
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+
+    
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard()
+    {
+        view.endEditing(true)
     }
 
     
