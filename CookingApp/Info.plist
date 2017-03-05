@@ -2,35 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeName</key>
-			<string></string>
-			<key>LSHandlerRank</key>
-			<string>Default</string>
-		</dict>
-	</array>
-	<key>UTExportedTypeDeclarations</key>
-	<array>
-		<dict>
-			<key>UTTypeConformsTo</key>
+			<key>CFBundleTypeExtensions</key>
+			<string>Editor</string>
+			<key>CFBundleTypeIconFiles</key>
 			<array>
-				<string></string>
+				<string>001-chef</string>
+				<string>003-oat</string>
+				<string>002-stew</string>
+				<string>002-cookbook</string>
 			</array>
-			<key>UTTypeIdentifier</key>
-			<string></string>
-			<key>UTTypeTagSpecification</key>
-			<dict/>
+			<key>CFBundleTypeName</key>
+			<string>at.fh-ooe.hgb.mc.ios.recipe</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 		</dict>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -47,6 +38,11 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -67,6 +63,26 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Recipe File</string>
+			<key>UTTypeIdentifier</key>
+			<string>at.fh-ooe.hgb.mc.ios.recipe</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>recipe</string>
+				</array>
+			</dict>
+		</dict>
 	</array>
 </dict>
 </plist>
