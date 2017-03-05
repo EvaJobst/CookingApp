@@ -148,7 +148,6 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
         }
 
         DispatchQueue.main.async {
-            print(self.data.count)
             self.tableView.reloadData()
         }
     }
@@ -192,7 +191,29 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
         performSegue(withIdentifier: "showRecipe", sender: nil)
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            // delete recipe from recipes
+            // delete recipe from indices
+            // delete recipe from tables
+            
+            let offlineID = data[indexPath.row].offlineID
+            let recipeID = entities.getRecipeID(source: offlineID)
+            let tables = entities.getTableEntries(recipeID: recipeID)
+            
+            for table in tables {
+                entities.tableManager.delete(entity: table)
+            }
+            
+            entities.indexManager.delete(entity: entities.getIndexEntry(source: offlineID))
+            entities.recipeManager.delete(entity: entities.recipes[Int(offlineID)])
+            
+            entities.updateObjects()
+            tableView.reloadData()
+        }
+    }
     
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

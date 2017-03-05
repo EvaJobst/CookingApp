@@ -158,7 +158,7 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             let recipeID = entities.getRecipeID(source: getRecipes()[indexPath.row].offlineID)
             let table = entities.getTableEntry(listID: selectedListID, recipeID: recipeID)
-            entities.delete(entity: table)
+            entities.tableManager.delete(entity: table)
             entities.updateObjects()
             tableView.reloadData()
         }

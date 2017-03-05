@@ -41,8 +41,8 @@ class IngredientViewController: UIViewController, UITextFieldDelegate {
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // Find out what the text field will be after adding the current edit
-        let text = (numberText.text! as NSString).replacingCharacters(in: range, with: string)
-        
+        //let text = (numberText.text! as NSString).replacingCharacters(in: range, with: string)
+        let text = numberText.text!
         
         if Int(text) != nil {
            onlyNumber = true

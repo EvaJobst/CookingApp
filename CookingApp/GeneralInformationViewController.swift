@@ -13,10 +13,14 @@ class GeneralInformationViewController: UIViewController, UINavigationController
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var servingsTextField: UITextField!
+    let entities = EntityManager()
     //@IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //authorLabel.text = entities.author[0].name
+        authorLabel.text = "Dummy Person"
+        summaryTextField.layer.borderWidth = 1
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
