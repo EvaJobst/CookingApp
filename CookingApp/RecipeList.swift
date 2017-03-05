@@ -10,7 +10,8 @@ import UIKit
 
 class RecipeList : NSObject {
     
-    var recipes: [OfflineRecipe] = []
+    var recipes: [RecipeObject] = []
+    var name : String = ""
     
     
     fileprivate enum Keys: String {
@@ -28,20 +29,29 @@ class RecipeList : NSObject {
     
     static func importData(from url: URL) {
         
+        let entities = EntityManager()
+        var offlineID = entities.recipes.count + 1
+        let yield = 0
+        
+        
         guard let dictionary = NSDictionary(contentsOf: url),
-            let recipeInfo = dictionary as? [String: AnyObject],
-            let ingredients = recipeInfo[Keys.ingredients.rawValue] as? String,
-            let instructions = recipeInfo[Keys.instructions.rawValue] as? String,
-            let summary = recipeInfo[Keys.summary.rawValue] as? String,
-            let author = recipeInfo[Keys.author.rawValue] as? String,
-            let name = recipeInfo[Keys.name.rawValue] as? String else {
+            let recipeInfo = dictionary as? [String: AnyObject] else {
                 return
         }
         
-        let entities = EntityManager()
-        let offlineID = entities.recipes.count + 1
-        let yield = 0
-        entities.recipeManager.set(offlineID: Int16(offlineID), name: name, ingredients: ingredients, instructions: instructions, yield: Int16(yield), author: author, summary: summary)
+        entities.listManager.set(listID: Int16(entities.lists.count), count: Int16(recipeInfo.count), name: recipeInfo["name"] as! String)
+        
+        for var i in 0...recipeInfo.count {
+            if let recipe = recipeInfo["recipe\(i)"] as? [String: AnyObject] {
+                entities.recipeManager.set(offlineID: Int16(offlineID), name: recipe[Keys.name.rawValue] as! String, ingredients: recipe[Keys.ingredients.rawValue] as! String, instructions: recipe[Keys.instructions.rawValue] as! String, yield: Int16(yield), author: recipe[Keys.author.rawValue] as! String, summary: recipe[Keys.summary.rawValue] as! String)
+                
+                entities.listManager.set(listID: Int16(entities.lists.count), recipeID: Int16(offlineID))
+                
+                offlineID = offlineID + 1
+            }
+            
+        }
+       
         
         entities.recipeManager.update()
         
@@ -58,8 +68,10 @@ class RecipeList : NSObject {
         var contents: [String : Any] = [:]
         var index : Int = 0
         
+        contents["name"] = name
+        
         for var i in recipes {
-            var id = "recipe\(index)"
+            let id = "recipe\(index)"
             index = index + 1
             
             contents[id] = [Keys.author.rawValue: i.author, Keys.ingredients.rawValue: i.ingredients, Keys.instructions.rawValue: i.instructions, Keys.name.rawValue: i.name, Keys.summary.rawValue: i.summary]
