@@ -30,8 +30,8 @@ class FetchManager {
         if(!q.isEmpty) {
             query = q
             actualPage = page
-            //signIn()
             
+            //sign in required before fetching
             let parameter : Parameters = ["chef_login" : ["login" : "EvaJobst", "password" : "123456"]]
             
             let header : HTTPHeaders = ["Accept": "application/json",
@@ -53,11 +53,7 @@ class FetchManager {
             Alamofire.request(api.url, method: .get, parameters: api.parameter, encoding: api.encoding!, headers: api.header).responseSwiftyJSON { response in
                 self.data.removeAll()
                 
-                //print(response.request.debugDescription)
-                //print(response.response.debugDescription)
-                
                 self.totalPages = (response.result.value?["total_pages"].intValue)!
-                print(response.result.debugDescription)
                 
                 let recipesJSON = response.result.value?["results"]
                 for recipeJSON in recipesJSON! {
@@ -71,13 +67,6 @@ class FetchManager {
     }
     
     func fetch(recipeID: Int16) {
-        
-    }
-    
-    /**
-     Necessary to sign in before using api
-     */
-    func signIn() {
         
     }
 }

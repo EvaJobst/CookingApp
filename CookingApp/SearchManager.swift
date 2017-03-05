@@ -34,10 +34,6 @@ class SearchManager : UIViewController, UISearchBarDelegate {
     }
 
     func filterContents() {
-        print("actualPage: " + actualPage.description)
-        print("searchText: " + searchText)
-        print("dataLength: " + data.count.description)
-        
         switch scope {
         case 0 :
             data = getFittingRecipes()

@@ -128,7 +128,6 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
         }
 
         DispatchQueue.main.async {
-            print(self.data.count)
             self.tableView.reloadData()
         }
     }
