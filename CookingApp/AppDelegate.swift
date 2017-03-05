@@ -20,10 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
-        guard url.pathExtension == "recipe" else { return false }
-    
-        RecipeObject.importData(from: url)
-    
+        if url.pathExtension == "recipe" {
+            RecipeObject.importData(from: url)
+        }
+        else if url.pathExtension == "list" {
+            RecipeList.importData(from: url)
+        }
+        else {
+            return false
+        }
+        
         return true
     }
 

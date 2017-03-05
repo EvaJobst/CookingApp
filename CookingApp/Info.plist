@@ -11,10 +11,19 @@
 			<string>Editor</string>
 			<key>CFBundleTypeIconFiles</key>
 			<array>
-				<string>001-chef</string>
-				<string>003-oat</string>
-				<string>002-stew</string>
-				<string>002-cookbook</string>
+				<string>001-recipes</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>at.fh-ooe.hgb.mc.ios.list</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<string>Editor</string>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>001-recipes</string>
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>at.fh-ooe.hgb.mc.ios.recipe</string>
@@ -80,6 +89,23 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>recipe</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Recipe List File</string>
+			<key>UTTypeIdentifier</key>
+			<string>at.fh-ooe.hgb.mc.ios.list</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>list</string>
 				</array>
 			</dict>
 		</dict>
