@@ -53,9 +53,19 @@ class RecipeList : NSObject {
     }
     
     
-    /*func exportToFileURL() -> URL? {
+    func exportToFileURL() -> URL? {
         
-        //let contents: [String : Any] = [Keys.author.rawValue: author, Keys.ingredients.rawValue: ingredients, Keys.instructions.rawValue: instructions, Keys.name.rawValue: name, Keys.summary.rawValue: summary]
+        var contents: [String : Any] = [:]
+        var index : Int = 0
+        
+        for var i in recipes {
+            var id = "recipe\(index)"
+            index = index + 1
+            
+            contents[id] = [Keys.author.rawValue: i.author, Keys.ingredients.rawValue: i.ingredients, Keys.instructions.rawValue: i.instructions, Keys.name.rawValue: i.name, Keys.summary.rawValue: i.summary]
+            
+        }
+        
         
         
         guard let path = FileManager.default
@@ -64,10 +74,10 @@ class RecipeList : NSObject {
         }
         
         
-        //let saveFileURL = path.appendingPathComponent("/\(name).recipe")
-        //(contents as NSDictionary).write(to: saveFileURL, atomically: true)
+        let saveFileURL = path.appendingPathComponent("/\(name).recipe")
+        (contents as NSDictionary).write(to: saveFileURL, atomically: true)
         return saveFileURL
-    }*/
+    }
 
     
     

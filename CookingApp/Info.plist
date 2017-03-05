@@ -104,9 +104,9 @@
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
-				<array>
-					<string>list</string>
-				</array>
+				<string>recipe</string>
+				<key>public.mime-type</key>
+				<string>application/CookingApp</string>
 			</dict>
 		</dict>
 	</array>
