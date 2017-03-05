@@ -186,9 +186,21 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            let recipeID = entities.getRecipeID(source: data[indexPath.row].offlineID)
+            
+            var recipeID : Int16
+            
+            if(data[indexPath.row].permalink == "") {
+                recipeID = entities.getRecipeID(source: data[indexPath.row].offlineID)
+            }
+            
+            else {
+                recipeID = entities.getRecipeID(source: data[indexPath.row].permalink)
+            }
+           
             let table = entities.getTableEntry(listID: selectedListID, recipeID: recipeID)
-            entities.delete(entity: table, listID: Int(selectedListID))
+            print(table.recipeID)
+            print(table.listID)
+            entities.delete(entity: table)
             
             entities.updateObjects()
             updateRecipes()

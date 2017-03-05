@@ -20,7 +20,7 @@ class GeneralInformationViewController: UIViewController, UINavigationController
     override func viewDidLoad() {
         super.viewDidLoad()
         //authorLabel.text = entities.author[0].name
-        authorLabel.text = "Dummy Person"
+        authorLabel.text = "User"
         summaryTextField.layer.borderWidth = 1
         
         summaryTextField.delegate = self

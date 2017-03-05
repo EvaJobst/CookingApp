@@ -93,6 +93,11 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         tableManager.delete(entity: entity)
         let element = Int16(lists[Int(listID)].count - 1)
         update(index: Int(listID), entityName: "List", attributeName: "count", element: element)
+
+        save()
+        updateObjects()
+        
+        printData()
     }
     
     override func update() {
@@ -320,7 +325,7 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         var id : Int16 = Int16(INT16_MIN)
         
         for index in indices {
-            if(index.source == source.description) {
+            if(index.source == source) {
                 id = index.recipeID
             }
         }
@@ -336,6 +341,16 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         }
         
         return objects
+    }
+    
+    func getRecipe(offlineID: Int16) -> OfflineRecipe {
+        for recipe in recipes {
+            if(offlineID == recipe.offlineID) {
+                return recipe
+            }
+        }
+        
+        return OfflineRecipe()
     }
     
     func isInList(listID: Int16, recipeID: Int16) -> Bool {

@@ -231,7 +231,8 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
             entities.updateObjects()
             entities.save()
             
-            entities.recipeManager.delete(entity: entities.recipes[Int(offlineID)])
+            let element = entities.getRecipe(offlineID: offlineID)
+            entities.recipeManager.delete(entity: element)
             
             entities.updateObjects()
             entities.save()
