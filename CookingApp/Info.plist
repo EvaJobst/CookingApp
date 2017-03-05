@@ -95,13 +95,9 @@
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.mime-type</key>
-				<array>
-					<string>application/cookingapp</string>
-				</array>
+				<string>application/cookingapp</string>
 				<key>public.filename-extension</key>
-				<array>
-					<string>recipe</string>
-				</array>
+				<string>recipe</string>
 			</dict>
 			<key>UTTypeConformsTo</key>
 			<array>
