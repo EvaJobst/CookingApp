@@ -117,6 +117,7 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
     }
     
     @objc func reload(notification: NSNotification){
+        entities.updateObjects()
         updateRecipes()
         //data = getRecipes()
         tableView.reloadData()
@@ -188,8 +189,10 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
             let recipeID = entities.getRecipeID(source: data[indexPath.row].offlineID)
             let table = entities.getTableEntry(listID: selectedListID, recipeID: recipeID)
             entities.delete(entity: table, listID: Int(selectedListID))
+            
             entities.updateObjects()
             updateRecipes()
+            
             tableView.reloadData()
         }
     }
@@ -200,6 +203,7 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
     }
     
     func updateRecipes () {
+        data.removeAll()
         var recipesInList : [RecipeListTable] = []
         
         for table in entities.tables {

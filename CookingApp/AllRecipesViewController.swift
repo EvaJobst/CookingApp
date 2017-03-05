@@ -223,10 +223,18 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
                 entities.delete(entity: table, listID: Int(table.listID))
             }
             
+            entities.updateObjects()
+            entities.save()
+            
             entities.indexManager.delete(entity: entities.getIndexEntry(source: offlineID))
+            
+            entities.updateObjects()
+            entities.save()
+            
             entities.recipeManager.delete(entity: entities.recipes[Int(offlineID)])
             
             entities.updateObjects()
+            entities.save()
             
             if(searchBar.text != "") {
                 searches.search(entities: entities, fetches: fetches, scope: searchBar.selectedScopeButtonIndex, searchText: searchBar.text!)
