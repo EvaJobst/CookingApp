@@ -37,10 +37,7 @@ class RecipeListsViewController: UITableViewController, MenuTransitionManagerDel
         let sourceController = segue.source as! MainMenuTableViewController
         self.title = sourceController.title
         
-        if (sourceController.currentItem == "Settings") {
-            print("SETTINGS")
-        }
-        else if (sourceController.currentItem == "Cookbook") {
+        if (sourceController.currentItem == "Cookbook") {
             print("COOKBOOK")
             switchView = true
             nextView = "all"
@@ -153,7 +150,7 @@ class RecipeListsViewController: UITableViewController, MenuTransitionManagerDel
                 
             }
         }
-        else {
+        else if segue.identifier == "mainMenu"{
             let menuTableViewController = segue.destination as! MainMenuTableViewController
             
             menuTableViewController.currentItem = "Your Lists"

@@ -20,6 +20,7 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     var nextView : String = ""
     var menuButton : UIButton? = nil
     var menuTransitionManager = MenuTransitionManager()
+    var indexOfSelectedElement = 0
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         get {
@@ -78,12 +79,31 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let menuTableViewController = segue.destination as? MainMenuTableViewController {
-            menuTableViewController.currentItem = "Cookbook"
-            menuTableViewController.action = "New Recipe"
-            menuTableViewController.transitioningDelegate = self.menuTransitionManager
-            menuTransitionManager.delegate = self
+        if segue.identifier == "mainMenu" {
+            
+            if let menuTableViewController = segue.destination as? MainMenuTableViewController {
+                menuTableViewController.currentItem = "Cookbook"
+                menuTableViewController.action = "New Recipe"
+                menuTableViewController.transitioningDelegate = self.menuTransitionManager
+                menuTransitionManager.delegate = self
+            }
         }
+        else if segue.identifier == "showRecipe" {
+            
+            
+            if let viewInstance = segue.destination as? UINavigationController {
+                
+                let view = viewInstance.topViewController as! RecipeOverviewViewController
+            
+                view.author = data[indexOfSelectedElement].author
+                view.name = data[indexOfSelectedElement].name
+                view.ingredients = data[indexOfSelectedElement].ingredients
+                view.instructions = data[indexOfSelectedElement].instructions
+                view.summary = data[indexOfSelectedElement].summary
+                
+            }
+        }
+
         
     }
     
@@ -166,6 +186,12 @@ class AllRecipesViewController: UITableViewController, MenuTransitionManagerDele
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        indexOfSelectedElement = indexPath.row
+        performSegue(withIdentifier: "showRecipe", sender: nil)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

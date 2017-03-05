@@ -54,15 +54,7 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
             else if nextView == "share" {
                
                 
-                let objectsToShare = data
-                
-                    
-                let activityController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-                    
-                let excludedActivities = [UIActivityType.postToFlickr, UIActivityType.postToWeibo, UIActivityType.message, UIActivityType.mail, UIActivityType.print, UIActivityType.copyToPasteboard, UIActivityType.assignToContact, UIActivityType.saveToCameraRoll, UIActivityType.addToReadingList, UIActivityType.postToFlickr, UIActivityType.postToVimeo, UIActivityType.postToTencentWeibo]
-                    
-                activityController.excludedActivityTypes = excludedActivities
-                present(activityController, animated: true, completion: nil)
+                // TO DO SHARE
                 
                 
             }

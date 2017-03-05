@@ -14,6 +14,7 @@ class MainMenuTableViewController: UITableViewController {
     var menuItems : [String] = []
     var currentItem = "Your Lists"
     var action : String = ""
+    var recipeName = ""
     
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -35,7 +36,7 @@ class MainMenuTableViewController: UITableViewController {
         
         self.view.backgroundColor = UIColor(red:CGFloat(r), green:CGFloat(g), blue:CGFloat(b), alpha:1)
         
-        menuItems = ["", "", action, "", "Cookbook", "Your Lists", "Settings"]
+        menuItems = ["", recipeName, action, "", "Cookbook", "Your Lists"]
     }
     
     override func didReceiveMemoryWarning() {
