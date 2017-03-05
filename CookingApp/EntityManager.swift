@@ -246,6 +246,28 @@ class EntityManager : CoreDataManager<NSManagedObject> {
         return RecipeListTable()
     }
     
+    func getIndexEntry(source: Int16) -> RecipeIndexManager {
+        for index in indices {
+            if(index.source == source.description) {
+                return index
+            }
+        }
+        
+        return RecipeIndexManager()
+    }
+    
+    func getTableEntries(recipeID: Int16) -> [RecipeListTable] {
+        var retTable : [RecipeListTable] = []
+        
+        for table in tables {
+            if(table.recipeID == recipeID) {
+                retTable.append(table)
+            }
+        }
+        
+        return retTable
+    }
+    
     func getRecipeID(source : String) -> Int16 {
         var id : Int16 = Int16(INT16_MIN)
         
