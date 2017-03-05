@@ -7,32 +7,26 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>at.fh-ooe.hgb.mc.ios.recipe</string>
-			</array>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string></string>
 			</array>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
 			<key>CFBundleTypeIconFiles</key>
 			<array>
 				<string>001-recipes</string>
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>Cooking Book recipe list</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
-		</dict>
-		<dict>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>at.fh-ooe.hgb.mc.ios.recipe</string>
 			</array>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string></string>
@@ -43,8 +37,14 @@
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>Cookingbook recipe data</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>at.fh-ooe.hgb.mc.ios.recipe</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -92,6 +92,17 @@
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
+			<key>UITypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>recipe</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/cookingapp</string>
+				</array>
+			</dict>
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>public.data</string>
@@ -100,19 +111,15 @@
 			<string>Recipe File</string>
 			<key>UTTypeIdentifier</key>
 			<string>at.fh-ooe.hgb.mc.ios.recipe</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.mime-type</key>
-				<array>
-					<string>application/cookingapp</string>
-				</array>
-				<key>public.filename-extension</key>
-				<array>
-					<string>recipe</string>
-				</array>
-			</dict>
 		</dict>
 		<dict>
+			<key>UITypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<string>recipe</string>
+				<key>public.mime-type</key>
+				<string>application/CookingApp</string>
+			</dict>
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>public.data</string>
@@ -121,13 +128,30 @@
 			<string>Recipe List File</string>
 			<key>UTTypeIdentifier</key>
 			<string>at.fh-ooe.hgb.mc.ios.list</string>
-			<key>UTTypeTagSpecification</key>
+		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UITypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
-				<string>recipe</string>
+				<array>
+					<string>recipe</string>
+				</array>
 				<key>public.mime-type</key>
-				<string>application/CookingApp</string>
+				<array>
+					<string>application/CookingApp</string>
+				</array>
 			</dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Recipe data</string>
+			<key>UTTypeIdentifier</key>
+			<string>at.fh-ooe.hgb.mc.ios.recipe</string>
 		</dict>
 	</array>
 </dict>
