@@ -140,6 +140,19 @@ class RecipeOverviewViewController: UIViewController, MenuTransitionManagerDeleg
                     activityItems: ["Check out this recipe.", url],
                     applicationActivities: nil)
                 
+                
+                activityViewController.completionWithItemsHandler = {
+                    (activity, success, items, error) in
+                    print("Activity: \(activity) Success: \(success) Items: \(items) Error: \(error)")
+                    do {
+                        try FileManager.default.removeItem(at: url)
+                        print("File Removed from Documents Folder")
+                    } catch {
+                        print("Failed to remove item from Documents Folder")
+                    }
+                }
+                
+                
                 present(activityViewController, animated: true, completion: nil)
                 
                 

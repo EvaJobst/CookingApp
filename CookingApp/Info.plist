@@ -7,26 +7,42 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>at.fh-ooe.hgb.mc.ios.recipe</string>
+			</array>
 			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string></string>
+			</array>
+			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleTypeIconFiles</key>
 			<array>
 				<string>001-recipes</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>at.fh-ooe.hgb.mc.ios.list</string>
+			<string>Cooking Book recipe list</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>at.fh-ooe.hgb.mc.ios.recipe</string>
+			</array>
+			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string></string>
+			</array>
 			<key>CFBundleTypeIconFiles</key>
 			<array>
 				<string>001-recipes</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>at.fh-ooe.hgb.mc.ios.recipe</string>
+			<string>Cookingbook recipe data</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 		</dict>
@@ -86,6 +102,10 @@
 			<string>at.fh-ooe.hgb.mc.ios.recipe</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/cookingapp</string>
+				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>recipe</string>
