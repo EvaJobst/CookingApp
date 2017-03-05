@@ -92,7 +92,7 @@
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
-			<key>UITypeTagSpecification</key>
+			<key>UTITypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
@@ -113,12 +113,16 @@
 			<string>at.fh-ooe.hgb.mc.ios.recipe</string>
 		</dict>
 		<dict>
-			<key>UITypeTagSpecification</key>
+			<key>UTITypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
-				<string>recipe</string>
+				<array>
+					<string>recipe</string>
+				</array>
 				<key>public.mime-type</key>
-				<string>application/CookingApp</string>
+				<array>
+					<string>application/cookingapp</string>
+				</array>
 			</dict>
 			<key>UTTypeConformsTo</key>
 			<array>
@@ -128,30 +132,6 @@
 			<string>Recipe List File</string>
 			<key>UTTypeIdentifier</key>
 			<string>at.fh-ooe.hgb.mc.ios.list</string>
-		</dict>
-	</array>
-	<key>UTImportedTypeDeclarations</key>
-	<array>
-		<dict>
-			<key>UITypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>recipe</string>
-				</array>
-				<key>public.mime-type</key>
-				<array>
-					<string>application/CookingApp</string>
-				</array>
-			</dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.data</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>Recipe data</string>
-			<key>UTTypeIdentifier</key>
-			<string>at.fh-ooe.hgb.mc.ios.recipe</string>
 		</dict>
 	</array>
 </dict>
