@@ -63,7 +63,7 @@ class RecipeList : NSObject {
     }
     
     
-    /*func exportToFileURL() -> URL? {
+    func exportToFileURL() -> URL? {
         
         var contents: [String : Any] = [:]
         var index : Int = 0
@@ -86,10 +86,10 @@ class RecipeList : NSObject {
         }
         
         
-        /*let saveFileURL = path.appendingPathComponent("/\(name).recipe")
+        let saveFileURL = path.appendingPathComponent("/\(name).recipe")
         (contents as NSDictionary).write(to: saveFileURL, atomically: true)
-        return saveFileURL*/
-    }*/
+        return saveFileURL
+    }
 
     
     

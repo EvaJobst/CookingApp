@@ -33,7 +33,7 @@ class RecipeListsMenuTableViewController: UITableViewController {
         
         self.view.backgroundColor = UIColor(red:CGFloat(r), green:CGFloat(g), blue:CGFloat(b), alpha:1)
         
-        menuItems = ["", "", self.nameOfCurrentList, "Add Recipe", "Share", "", "Your Lists", "Cookbook", "Settings"]
+        menuItems = ["", "", self.nameOfCurrentList, "Add Recipe", "Share", "", "Your Lists", "Cookbook"]
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,12 +76,15 @@ class RecipeListsMenuTableViewController: UITableViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+       
         let menuTableViewController = segue.source as! RecipeListsMenuTableViewController
-        
+            
         if let selectedRow = menuTableViewController.tableView.indexPathForSelectedRow?.row {
             currentItem = menuItems[selectedRow]
         }
-        
     }
+    
+    
+   
+
 }

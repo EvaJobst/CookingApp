@@ -946,6 +946,7 @@
 			baseConfigurationReference = 3959F85BD124D77DAB8EE737 /* Pods-CookingApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 44HGCJ43HA;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -967,6 +968,7 @@
 			baseConfigurationReference = 0AB1D42C54D2336E3665C971 /* Pods-CookingApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 44HGCJ43HA;
 				FRAMEWORK_SEARCH_PATHS = (

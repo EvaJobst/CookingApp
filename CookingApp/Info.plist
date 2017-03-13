@@ -68,8 +68,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -92,13 +90,6 @@
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.mime-type</key>
-				<string>application/cookingapp</string>
-				<key>public.filename-extension</key>
-				<string>recipe</string>
-			</dict>
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>public.data</string>
@@ -107,19 +98,15 @@
 			<string>Recipe File</string>
 			<key>UTTypeIdentifier</key>
 			<string>at.fh-ooe.hgb.mc.ios.recipe</string>
-		</dict>
-		<dict>
 			<key>UTTypeTagSpecification</key>
 			<dict>
-				<key>public.mime-type</key>
-				<array>
-					<string>application/cookingapp</string>
-				</array>
 				<key>public.filename-extension</key>
-				<array>
-					<string>recipe</string>
-				</array>
+				<string>recipe</string>
+				<key>public.mime-type</key>
+				<string>application/cookingapp</string>
 			</dict>
+		</dict>
+		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>public.data</string>
@@ -128,6 +115,17 @@
 			<string>Recipe List File</string>
 			<key>UTTypeIdentifier</key>
 			<string>at.fh-ooe.hgb.mc.ios.list</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>recipe</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/cookingapp</string>
+				</array>
+			</dict>
 		</dict>
 	</array>
 </dict>

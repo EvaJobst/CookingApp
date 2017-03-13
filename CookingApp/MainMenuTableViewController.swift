@@ -36,7 +36,13 @@ class MainMenuTableViewController: UITableViewController {
         
         self.view.backgroundColor = UIColor(red:CGFloat(r), green:CGFloat(g), blue:CGFloat(b), alpha:1)
         
-        menuItems = ["", recipeName, action, "", "Cookbook", "Your Lists"]
+        if action == "listOverview" {
+            menuItems = ["", "", nameOfCurrentList, "Add Recipe", "Share", "", "Your Lists", "Cookbook"]
+        }
+        else {
+            menuItems = ["", recipeName, action, "", "Cookbook", "Your Lists"]
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

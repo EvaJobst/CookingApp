@@ -83,6 +83,9 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
                 present(activityViewController, animated: true, completion: nil)
                 
             }
+            else if nextView == "addRecipe" {
+                
+            }
         }
         menuButton?.addTarget(self, action: #selector(menu(_:)), for: .touchUpInside)
         
@@ -154,7 +157,7 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
     }
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
-        let sourceController = segue.source as! RecipeListsMenuTableViewController
+        let sourceController = segue.source as! MainMenuTableViewController
         self.title = sourceController.title
         
         switchView = true
@@ -183,12 +186,29 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let menuTableViewController = segue.destination as! RecipeListsMenuTableViewController
         
-        menuTableViewController.nameOfCurrentList = entities.lists[row].name!
-        menuTableViewController.currentItem = menuTableViewController.nameOfCurrentList
-        menuTableViewController.transitioningDelegate = self.menuTransitionManager
-        menuTransitionManager.delegate = self
+        if segue.identifier == "goToDetails" {
+            if let viewInstance = segue.destination as? UINavigationController {
+                
+                if let view = viewInstance.viewControllers.first as? ListDetailsViewController {
+                    view.row = row
+                    view.selectedListID = selectedListID
+                }
+                
+            }
+        }
+        else if segue.identifier == "mainMenu" {
+
+        
+            let menuTableViewController = segue.destination as! MainMenuTableViewController
+        
+            
+            menuTableViewController.nameOfCurrentList = entities.lists[row].name!
+            menuTableViewController.action = "listOverview"
+            menuTableViewController.currentItem = menuTableViewController.nameOfCurrentList
+            menuTableViewController.transitioningDelegate = self.menuTransitionManager
+            menuTransitionManager.delegate = self
+        }
         
     }
     
@@ -281,5 +301,12 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
                 //NotificationCenter.default.post(name: Notification.Name(rawValue: (self.keys.next)), object: (index+1))
             }
         }
+    }
+    
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        row = indexPath.row
+        performSegue(withIdentifier: "goToDetails", sender: nil)
     }
 }
