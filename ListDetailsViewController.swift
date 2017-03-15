@@ -288,7 +288,7 @@ class ListDetailsViewController: UITableViewController, MenuTransitionManagerDel
         if(index < recipesInList.count) {
             let recipeID = recipesInList[index].recipeID
             let listID = recipesInList[index].listID
-            let indexElement = entities.indices[Int(recipeID)]
+            let indexElement = entities.indices[index]
             
             if(indexElement.isOffline) {
                 data.append(RecipeObject(data: entities.recipes[Int(indexElement.source!)!]))

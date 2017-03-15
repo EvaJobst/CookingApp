@@ -87,12 +87,20 @@ class FetchManager {
     }
     
     func fetch(recipeID: Int16, dictObject: [String : Any]) {
-        if(!entities.indices[Int(recipeID)].isOffline && entities.indices[Int(recipeID)].source != "") {
-            //api.fetch.url = api.getBaseFetchURL()
-            //api.fetch.url.append(entities.indices[Int(recipeID)].source!)
-            api.fetch.parameter["permalink"] = entities.indices[Int(recipeID)].source!
-            signIn(isFetch: true, dictObject : dictObject)
+        
+        for index in 0...entities.indices.count-1 {
+            if entities.indices[index].recipeID == recipeID {
+                if(!entities.indices[index].isOffline && entities.indices[index].source != "") {
+                    //api.fetch.url = api.getBaseFetchURL()
+                    //api.fetch.url.append(entities.indices[Int(recipeID)].source!)
+                    api.fetch.parameter["permalink"] = entities.indices[index].source!
+                    signIn(isFetch: true, dictObject : dictObject)
+                }
+            }
+            
         }
+        
+        
     }
     
     @objc func fetchRequest(notification: NSNotification) {

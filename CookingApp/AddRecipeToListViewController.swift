@@ -15,6 +15,7 @@ class AddRecipeToListViewController: UITableViewController, UISearchBarDelegate 
     let searches = SearchManager()
     var data : [RecipeObject] = []
     var listID : Int16 = 0
+    var checked = [Int]()
     @IBOutlet weak var searchBar: UISearchBar!
 
     override func viewDidLoad() {
@@ -95,14 +96,45 @@ class AddRecipeToListViewController: UITableViewController, UISearchBarDelegate 
         var recipeID : Int16 = 0
         var listID : Int16 = 0
         
+        
+        let cell = tableView.cellForRow(at: indexPath)
+    
+        /*if cell?.accessoryType == UITableViewCellAccessoryType.checkmark {
+            cell?.accessoryType = UITableViewCellAccessoryType.none
+            
+            if checked.contains(indexPath.row) {
+                let index = checked.index(of: indexPath.row)
+                checked.remove(at: index!)
+            }
+            
+        }
+        else {
+            cell?.accessoryType = UITableViewCellAccessoryType.checkmark
+            checked.append(indexPath.row)
+        }*/
+        
+        let message = "Do you want to add \(cell?.textLabel?.text)to the list?"
+        
         if(searchBar.selectedScopeButtonIndex == 0) {
             recipeID = entities.getRecipeID(source: data[indexPath.row].offlineID)
             listID = self.listID
+            
+            
+            
+            let alert = UIAlertController(title: "Add recipe", message: message, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Add", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         
         else { // scope == 1 -> Online
             recipeID = entities.getRecipeID(source: data[indexPath.row].permalink)
             listID = self.listID
+            
+            let alert = UIAlertController(title: "Add recipe", message: message, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+
             
             if(recipeID == Int16(INT16_MIN)) {
                 if(entities.indices.count == 0) {
@@ -113,7 +145,7 @@ class AddRecipeToListViewController: UITableViewController, UISearchBarDelegate 
                     recipeID = (entities.indices.last?.recipeID)!+1
                 }
 
-                entities.indexManager.set(recipeID: recipeID, isOffline: false, source: data[indexPath.row].permalink)
+                //entities.indexManager.set(recipeID: recipeID, isOffline: false, source: data[indexPath.row].permalink)
                 entities.updateObjects()
             }
         }
@@ -130,6 +162,10 @@ class AddRecipeToListViewController: UITableViewController, UISearchBarDelegate 
         
     }
     
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.contentView.backgroundColor = UIColor.white
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
